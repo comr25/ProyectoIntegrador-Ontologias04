@@ -1,0 +1,8 @@
+#sparql --query edad.sparql --graph edad.n3
+
+PREFIX    :   <http://www.ejemplo.org/#> 
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+
+SELECT ?x ?c WHERE {
+ ?x :edad ?c .
+}

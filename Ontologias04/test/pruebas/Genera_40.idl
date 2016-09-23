@@ -1,0 +1,137 @@
+module componentprovider{
+                domain x;
+                subdomain y;
+
+                provided interface IBank{
+                     void iniciaGraficos();
+                     void shortextxy(in short x, in short y, in char num, in short collet, in short colorfon,in short tam)
+                     { pre: collet>=66.
+                       post: x>=1943.
+                     };
+                     short eliminaPoli(out char b)
+                     { pre: b>80.
+                       post: b==2588.
+                     };
+                     short insertaDatB(out char a, out float c, in short e)
+                     { pre: e<=25.
+                       post: e<2654.
+                     };
+                     short creanodoPoli(out char b, out float c,in short e)
+                     { pre: b<22.
+                       post: c<=4405.
+                     };
+                     float evalua(out char b,out float xm)
+                     { pre: xm<>90.
+                       post: b<>465.
+                     };
+                     void captionmat(out float matriz,in short n,in short cual)
+                     { pre: n==57.
+                       post: n<347.
+                     };
+                     void changeLine(out float matriz, in short ren, in short col, in short n)
+                     { pre: matriz<>3.
+                       post: col>593.
+                     };
+                     void llenacero(out float matriz, in short n)
+                     { pre: n<=26.
+                       post: matriz==3185.
+                     };
+                     void menu();
+                     void ventMenu();
+                     void ventanaCaptura(in short x1,in short y1,in short x2,in short y2)
+                     { pre: y2<14.
+                       post: x1<>1442.
+                     };
+                     long calculaFactorial(in short n)
+                     { pre: n<11.
+                       post: n<=1577.
+                     };
+                     void factorial();
+                     void captDatB(out char a,in short cual)
+                     { pre: cual<=91.
+                       post: a==2031.
+                     };
+                     void captDatBiseccion(out char a)
+                     { pre: a==18.
+                       post: a>3047.
+                     };
+                     float biseccion(out char i,out float a,out float b,out float tol,out float ant)
+                     { pre: a>=21.
+                       post: tol<=580.
+                     };
+                     void captDatRegFalsa(out char a)
+                     { pre: a>=88.
+                       post: a>1812.
+                     };
+                     float regFalsa(out char i,out float a,out float b,out float tol,out float ant)
+                     { pre: b>=96.
+                       post: b<1938.
+                     };
+                     float gaussJordan(out double matriz, in short n)
+                     { pre: matriz<>98.
+                       post: n==1560.
+                     };
+                     void inprimeJordan(out float matriz,out float nuevo,in short n,in short op,in short cual)
+                     { pre: nuevo>=43.
+                       post: n<2204.
+                     };
+                     float gaussSeidel(out float matriz,in short n,out float tol)
+                     { pre: n>38.
+                       post: matriz<=4087.
+                     };
+                     void inprimeSeidel(out double nuevo,in short n)
+                     { pre: nuevo==11.
+                       post: nuevo<484.
+                     };
+                     short cumple(out float matriz,in short r, in short ren,in short n )
+                     { pre: ren==54.
+                       post: matriz<911.
+                     };
+                     short converge(out float matriz,in short n)
+                     { pre: n>=87.
+                       post: matriz<=3539.
+                     };
+                     void sustituyeAtras(out float lu,in short n,out float vector)
+                     { pre: vector==9.
+                       post: vector==397.
+                     };
+                     float sustituyeade(out float lu, in short n)
+                     { pre: lu==43.
+                       post: n==3353.
+                     };
+                     short crealu(out float lu,out float mat,in short n)
+                     { pre: lu<>56.
+                       post: lu>=3862.
+                     };
+                     void pushatend(out float head,out float addx,out float addxy)
+                     { pre: addxy==13.
+                       post: head>3834.
+                     };
+                     void freei(out char cab)
+                     { pre: cab>81.
+                       post: cab<>138.
+                     };
+                     void ajustacurva(out double cab)
+                     { pre: cab<7.
+                       post: cab>1705.
+                     };
+                     void minimosCuadrados();
+                     void derivamenu();
+                     float derivacion(out short arre ,in short n)
+                     { pre: n>36.
+                       post: arre<>2269.
+                     };
+                     void simpson();
+                     void lagrange();
+                     void metodoLagrange();
+                     void lagrange(out float punto, in short n)
+                     { pre: n>=57.
+                       post: n<2445.
+                     };
+                     void leedato(in char a,in short x,in short y,in short n)
+                     { pre: x==53.
+                       post: n>1049.
+                     };
+                     void shortegracionNumerica();
+                };
+};

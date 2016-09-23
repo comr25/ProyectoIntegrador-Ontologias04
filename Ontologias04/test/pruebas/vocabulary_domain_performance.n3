@@ -1,0 +1,18 @@
+:abs   a :Vocabulary .
+:sin    a :Vocabulary .
+:cos   a :Vocabulary .
+:tan   a :Vocabulary .
+:asin a :Vocabulary .
+:acos a :Vocabulary .
+:atan a :Vocabulary .
+:exp    a :Vocabulary .                                  
+:log    a :Vocabulary .
+:sqrt   a :Vocabulary .
+ :ceil   a :Vocabulary .
+ :floor  a :Vocabulary .
+ :pow  a :Vocabulary .
+ :round    a :Vocabulary .                
+ :random  a :Vocabulary .
+ :max  a :Vocabulary .
+ :min a :Vocabulary .
+ :factorial a :Vocabulary .

@@ -1,0 +1,20 @@
+ module ATM{    
+        domain            Bank;
+        subdomain       Atm;         
+
+        required interface IAtmClient{
+            long deposit(in long amount, in long numclient)       
+            { 
+               pre : amount > 0 .
+               post : count >= amount .
+               inv : count > 0 .              
+             };
+            void withdrawal(in long cardnumber, in string password, in long amount);            
+            oneway void locateNetwork();
+       };
+
+       provided interface IAtmService{
+            oneway long locateBank();          
+             void createSession();             
+        };
+};

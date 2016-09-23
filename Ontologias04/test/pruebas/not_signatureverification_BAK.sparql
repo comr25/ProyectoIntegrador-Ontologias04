@@ -1,0 +1,45 @@
+# Autor: Francisco Edgar Castillo Barrera
+#
+# Copyright(c) 05-August-2012
+#
+# C:>pellet consistency --loader jena atmfullonto.n3
+# c:>pellet query -q signatureverification.sparql atmfullonto.n3
+#
+# Uso de funciones anidadas y uso del BIND para CONTRATOS
+
+PREFIX     : <http://www.ejemplo.org/#> 
+PREFIX  rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+PREFIX  owl: <http://www.w3.org/2002/07/owl#> 
+PREFIX  xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX   fn: <http://www.w3.org/2005/xpath-functions#>
+
+SELECT DISTINCT ?Interface1 ?Interface2 ?Parameters ?MatchMethod ?Type ?Position ?Return WHERE    
+{  
+   ?Interface1  :typeInterface :required ;
+                      :hasMethod      ?metod1 .
+    OPTIONAL  { ?metod1 :hasParameter ?par1 ;                                        
+                                        :hasIndexOrder ?pos1 ;   
+                                        :hasDataTypeParameter ?partype1 .
+    }
+    ?metod1  :hasMethodName ?Method1 ;  
+                    :typeReturn ?treturn1 ;
+                    :hasNumParameters ?numpar1.
+                     
+   ?Interface2  :typeInterface :provided .
+
+   ?Interface2  :hasMethod  ?metod2 .
+    OPTIONAL  { ?metod2   :hasParameter  ?par2 ;                                        
+                                          :hasIndexOrder ?pos2 ; 
+                                          :hasDataTypeParameter ?partype2 .
+    } 
+    ?metod2   :hasMethodName ?MatchMethod ;
+                     :typeReturn ?treturn2 ;
+                     :hasNumParameters ?numpar2 .          
+
+   BIND(if( ?treturn1 = ?treturn2, ?treturn1, "No match") AS ?Return)
+   BIND(if( ?pos1 = ?pos2, ?pos1, "Not match") AS ?Position)
+   BIND(if( ?numpar1 = ?numpar2, ?numpar1, "Not match") AS ?Parameters)
+   BIND(if( ?partype1 = ?partype2, ?partype1, "Not match") AS ?Type)
+   FILTER regex( str(?MatchMethod), str(?Method1),"i")
+   FILTER( ?Return = "Not match" || ?Position = "Not match" || ?Parameters = "Not match" || ?Type = "Not match" )
+} order by ?Method1

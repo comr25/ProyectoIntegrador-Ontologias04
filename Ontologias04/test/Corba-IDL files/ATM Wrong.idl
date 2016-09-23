@@ -1,0 +1,13 @@
+ module ATM{
+        domain       Atm;
+        subdomain  Operation;
+         interface IAtmService{
+            long createSession();
+            void locateBank();  
+        };
+        required interface IAtmClient{
+           long deposit(in int amount, in int numclient);
+            withdrawal(in int cardnumber, in string password, in int amount);
+            locateNetwork();
+       };
+};

@@ -1,0 +1,19 @@
+# c:>pellet query -q atmatching.sparql atmfullonto.n3
+
+PREFIX     : <http://www.ejemplo.org/#> 
+PREFIX  rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+PREFIX  owl: <http://www.w3.org/2002/07/owl#> 
+PREFIX  xsd: <http://www.w3.org/2001/XMLSchema#> 
+
+SELECT DISTINCT ?interface1 ?interface2 ?method1 ?method2 ?type1 ?type2 WHERE 
+{ ?interface1 :typeInterface ?type1 .
+  ?interface2 :typeInterface ?type2 .
+  FILTER(?type1 != ?type2)
+  ?interface1 :hasMatch ?interface2 .
+  ?interface1 :hasMethod ?method1 .
+  ?interface2 :hasMethod ?method2 . 
+  FILTER(?method1 != ?method2)
+  ?method1    :hasMethodName ?namemethod1 .
+  ?method2    :hasMethodName ?namemethod2 .
+  FILTER regex(?namemethod2, ?namemethod1, "i") 
+}

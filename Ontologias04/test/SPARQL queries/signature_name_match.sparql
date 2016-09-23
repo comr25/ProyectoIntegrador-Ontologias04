@@ -1,0 +1,36 @@
+# Autor: Francisco Edgar Castillo Barrera
+#
+# Copyright(c) 05-August-2012
+#
+# C:>pellet consistency --loader jena atmfullonto.n3
+# c:>pellet query -q signatu_name_match.sparql atmfullonto.n3
+#
+# Uso de funciones anidadas y uso del BIND para CONTRATOS
+
+PREFIX     : <http://www.ejemplo.org/#> 
+PREFIX  rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+PREFIX  owl: <http://www.w3.org/2002/07/owl#> 
+PREFIX  xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX   fn: <http://www.w3.org/2005/xpath-functions#>
+
+SELECT DISTINCT ?Interface1 ?Interface2 ?Method WHERE    
+{  
+  ?Interface1  :typeInterface :required ;
+                      :hasMethod    _:a .
+  _:a               :hasParameter  ?par1 ;
+                     :hasMethodName ?Method.                       
+
+  ?Interface2  :typeInterface :provided .
+
+
+  # ?Interface2  :hasMatch ?interface1 . 
+
+
+  ?Interface2  :hasMethod     _:b .
+  _:b               :hasParameter  ?par2 ;
+                     :hasMethodName ?name2 .
+
+ 
+  BIND(if( ?name2 = ?Method, "S", "No match name! ") AS ?MethodName)  
+  FILTER( ?MethodName != "S" ) .
+} order by ?Method

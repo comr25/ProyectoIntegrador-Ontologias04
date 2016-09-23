@@ -1,0 +1,13 @@
+@prefix e: <http://ejemplo.org/#> .
+
+e:org1 a e:Organization ;
+       e:x 23 ;
+       e:y 45 .
+	   
+e:org2 a e:Organization ;
+       e:x 3 ;
+       e:y 6 .
+
+e:org3 a e:Organization ;
+       e:x 5 ;
+       e:y 5 .

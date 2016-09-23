@@ -1,0 +1,18 @@
+# c:>pellet query -q atmatching45.sparql atmfullonto.n3
+
+PREFIX        : <http://www.ejemplo.org/#> 
+
+SELECT DISTINCT ?interface1 ?interface2 ?method1 
+                             ?typeinterf1 ?typeinterf2 
+WHERE 
+{   ?interface1 :typeInterface ?typeinterf1 ;
+              :hasMethod ?method1 .
+    ?method1    :hasMethodName ?namemethod1 .
+    ?interface2 :typeInterface ?typeinterf2 ;
+              :hasMethod ?method2 .
+    ?method2    :hasMethodName ?namemethod2 .
+    ?interface1 :hasMatch ?interface2 .
+    FILTER regex(?namemethod2, ?namemethod1, "i") .  
+    MINUS{ ?interface1 :typeInterface :provider } . 
+    MINUS{ ?interface2 :typeInterface :required } . 
+}order by ?method1

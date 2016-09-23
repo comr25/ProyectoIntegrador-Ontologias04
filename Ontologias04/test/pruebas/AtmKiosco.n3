@@ -1,0 +1,72 @@
+:atmkiosco a :ComponentType .
+:atmkiosco :hasDomain :school .
+:atmkiosco :hasSubDomain :atm .
+:iatmkiosco  a :Interface .
+:iatmkiosco  :typeInterface :provided .
+:atmkiosco  :hasInterface :iatmkiosco .
+:iatmkiosco  :hasMethod :inicializa .
+:inicializa  :hasMethodName "inicializa" .
+:inicializa  a :Method .
+:inicializa  :typeReturn :void.
+:inicializa  :hasNumParameters  0 .
+:iatmkiosco  :hasMethod :online .
+:online  :hasMethodName "online" .
+:online  a :Method .
+:online  :typeReturn :void.
+:online  :hasNumParameters  0 .
+:iatmkiosco  :hasMethod :close .
+:close  :hasMethodName "close" .
+:close  a :Method .
+:close  :typeReturn :void.
+:close  :hasNumParameters  0 .
+:iatmkiosco  :hasMethod :collect .
+:collect  :hasMethodName "collect" .
+:collect  a :Method .
+:collect  :typeReturn :void.
+:collect  :hasNumParameters  0 .
+:iatmkiosco  :hasMethod :equipodinero .
+:equipodinero  :hasMethodName "equipodinero" .
+:equipodinero  a :Method .
+:equipodinero  :typeReturn :void.
+:equipodinero  :hasNumParameters  0 .
+:iatmkiosco  :hasMethod :getchange .
+:getchange  :hasMethodName "getchange" .
+:getchange  a :Method .
+:getchange  :typeReturn :void.
+:getchange  :hasParameter  :amount .
+:amount  :hasDirection  :in .
+:double a :Double .
+:amount  :hasDataTypeParameter  :double .
+:amount  :hasIndexOrder  1 .
+:getchange  :hasNumParameters  1 .
+:iatmkiosco  :hasMethod :offline .
+:offline  :hasMethodName "offline" .
+:offline  a :Method .
+:offline  :typeReturn :void.
+:offline  :hasNumParameters  0 .
+:iatmkiosco  :hasMethod :onmoneyrecibe .
+:onmoneyrecibe  :hasMethodName "onmoneyrecibe" .
+:onmoneyrecibe  a :Method .
+:onmoneyrecibe  :typeReturn :void.
+:onmoneyrecibe  :hasNumParameters  0 .
+:iatmkiosco  :hasMethod :open .
+:open  :hasMethodName "open" .
+:open  a :Method .
+:open  :typeReturn :void.
+:open  :hasNumParameters  0 .
+:iatmkiosco  :hasMethod :reset .
+:reset  :hasMethodName "reset" .
+:reset  a :Method .
+:reset  :typeReturn :void.
+:reset  :hasNumParameters  0 .
+:iatmkiosco  :hasMethod :offlinemei .
+:offlinemei  :hasMethodName "offlinemei" .
+:offlinemei  a :Method .
+:offlinemei  :typeReturn :void.
+:offlinemei  :hasNumParameters  0 .
+:iatmkiosco  :hasMethod :validatoneleros .
+:validatoneleros  :hasMethodName "validatoneleros" .
+:validatoneleros  a :Method .
+:validatoneleros  :typeReturn :void.
+:validatoneleros  :hasNumParameters  0 .
+:iatmkiosco  :hasNumMethods 12 .

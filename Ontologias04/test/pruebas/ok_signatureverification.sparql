@@ -1,0 +1,42 @@
+# Autor: Francisco Edgar Castillo Barrera
+#
+# Copyright(c) 05-August-2012
+#
+# C:>pellet consistency --loader jena atmfullonto.n3
+# c:>pellet query -q signatureverification.sparql atmfullonto.n3
+#
+
+PREFIX       : <http://www.ejemplo.org/#> 
+PREFIX  rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+PREFIX  owl: <http://www.w3.org/2002/07/owl#> 
+PREFIX  xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX   fn: <http://www.w3.org/2005/xpath-functions#>
+
+SELECT DISTINCT ?Interface1 ?Interface2 ?Parameters ?MatchMethod ?Type ?Position ?Return WHERE    
+{  
+  ?Interface1  :typeInterface :required ;
+                      :hasMethod    _:a .
+  _:a               :hasParameter  ?par1 ;
+                     :hasMethodName ?Method1 ;  
+                     :typeReturn ?Typeret1 ;
+                     :hasNumParameters ?numpar1 .
+  ?par1          :hasIndexOrder ?pos1 ;
+                     :hasDataTypeParameter ?partype1 .
+
+  ?Interface2  :typeInterface :provided .
+
+  ?Interface2  :hasMethod     _:b .
+  _:b               :hasParameter  ?par2 ;
+                     :hasMethodName ?Method2 ;
+                     :typeReturn ?Typeret2 ;
+                     :hasNumParameters ?numpar2 .
+  ?par2          :hasIndexOrder ?pos2 ; 
+                     :hasDataTypeParameter ?partype2 .
+
+  BIND(if( ?Method1 = ?Method2, fn:substring(?Method1,1,fn:string-length(?Method1)), "No match") AS ?MatchMethod)
+  BIND(if( ?Typeret1 = ?Typeret2, ?Typeret1, "No match return! ") AS ?Return)
+  BIND(if( ?pos1 = ?pos2, ?pos1, "No match position! ") AS ?Position)
+  BIND(if( ?numpar1 = ?numpar2, ?numpar1, "No match number! ") AS ?Parameters)
+  BIND(if( ?partype1 = ?partype2, ?partype1, "No match type! ") AS ?Type)
+  FILTER(  ?Method1 = ?Method2 && ?Typeret1 = ?Typeret2 && ?pos1 = ?pos2 && ?numpar1 = ?numpar2 && ?partype1 = ?partype2 )
+} order by ?Method

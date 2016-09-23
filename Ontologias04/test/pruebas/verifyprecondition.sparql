@@ -1,0 +1,54 @@
+# Consulta para encontrar el Matching considerando las Precondiciones
+# 
+# STRAFTER and STRBEFORE. These are no yet documented in the
+# SPARQL spec. They do the same as XQuery/XPath Functions&Operators
+# fn:substring-after and fn:substring-before
+# STRAFTER(afn:namespace(?x), "http://example/")
+
+PREFIX     : <http://www.ejemplo.org/#> 
+PREFIX  rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+PREFIX  owl: <http://www.w3.org/2002/07/owl#> 
+PREFIX  xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX  afn: <http://jena.hpl.hp.com/ARQ/function#>
+PREFIX   fn: <http://www.w3.org/2005/xpath-functions#>
+
+SELECT DISTINCT ?Interface1 ?Interface2 ?Match_Method 
+                ?Match_Precond    
+{  
+  ?Interface1  :typeInterface        :required ;
+               :hasMethod            ?Method1 .
+  ?Method1     :hasParameter         ?par1 ;
+               :hasMethodName        ?name1 ;  
+               :hasNumParameters     ?numpar1 .
+  ?par1        :hasIndexOrder        ?pos1 ;
+               :hasDataTypeParameter ?partype1 .
+
+  ?Method1     :hasPrecond     ?precond1 .
+  ?precond1    :hasVariable    ?var1 .
+  ?precond1    :hasOperator    ?opr1 .
+  ?precond1    :hasNumber      ?num1 .
+
+   ?Interface2  :typeInterface :provider .
+
+  ?Interface2  :hasMatch     ?interface1 . 
+
+  ?Interface2  :hasMethod            ?Method2 .
+  ?Method2     :hasParameter         ?par2 ;
+               :hasMethodName        ?name2 ;
+               :hasNumParameters     ?numpar2 .
+  ?par2        :hasIndexOrder        ?pos2 ; 
+               :hasDataTypeParameter ?partype2 .
+
+  ?Method2     :hasPrecond ?precond2 .
+  ?precond2    :hasVariable ?var2 .
+  ?precond2    :hasOperator ?opr2 .
+  ?precond1    :hasNumber   ?num2 .
+
+  BIND(if( ?opr1 = ?opr2 && ?num1 = ?num2, 
+           fn:concat(afn:localname(?var1)," ", ?oprname1, " ", ?num1),
+          "Precondition Different" ) AS ?Match_Precond )
+  
+  BIND(if( ?name2 = ?name1, fn:substring(?name1,1,fn:string-length(?name1))
+           , "No match name") AS ?Match_Method )
+
+} order by ?Match_Method

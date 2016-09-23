@@ -1,0 +1,11 @@
+module Card{
+    domain            Card;
+    subdomain       Atm;
+
+    provided interface ICard{
+
+        void readcard();
+        void ejectcard();
+        void consortium();
+    } ;      
+};

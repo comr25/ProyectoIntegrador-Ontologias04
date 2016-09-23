@@ -1,0 +1,20 @@
+PREFIX e: <http://ejemplo.org/#>
+PREFIX afn: <http://jena.hpl.hp.com/ARQ/function#>
+SELECT ?s2 ?dist 
+WHERE 
+{
+?s a e:Organization ;
+   e:x ?x ;
+   e:y ?y .
+BIND( afn:sqrt(?x * ?x + ?y * ?y) as ?dist )
+BIND( afn:localname(?s) as ?s2 )
+FILTER ( ?dist < 10 )
+}
+
+#SELECT ?s2
+#WHERE
+#{
+#  ?s a ub:Organization
+#  FILTER ( aGeo:distance(?axLoc, ?ayLoc, ?bxLoc, ?byLoc) < 10 ) .
+#  BIND( afn:localname(?s) AS ?s2 )
+#}

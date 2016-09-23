@@ -1,0 +1,10 @@
+module UserConsole{
+       domain            Atm;
+       subdomain      Keyboard;
+
+        provided interface IUserConsole{
+               void readPIN(in long cardno, in char password );
+               void setmenu();
+               void setmessages();
+        };
+    };

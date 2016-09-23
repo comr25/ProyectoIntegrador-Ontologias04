@@ -1,0 +1,10 @@
+#sparql --query edad.sparql --graph edad.n3
+
+@prefix    :   <http://www.ejemplo.org/#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+
+:Pepe :edad "23"^^xsd:integer .
+:juan :edad "33"^^xsd:integer .
+:luis :edad "45"^^xsd:integer .
+:jose :edad 34 .
+:manuel :edad 48 .

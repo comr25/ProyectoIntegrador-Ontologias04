@@ -1,0 +1,13 @@
+ module ATM{    
+        domain            Bank;
+        subdomain       Atm;         
+
+        required interface IAtmClient{                               
+           oneway long deposit(in long amount, in long numclient);    
+           void suma();
+       };
+
+        provided interface IAtmService{
+           void withdrawal(in long cardnumber, in string password, in long amount);
+       };
+ };

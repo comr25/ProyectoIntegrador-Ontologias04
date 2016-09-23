@@ -1,0 +1,13 @@
+module CajeroAtm{
+       domain           School;
+       subdomain     Atm;
+
+       required interface ICajeroAtm{
+            void SelPuerto(in short Puerto);
+            boolean OpenConn();
+            void CloseConn();
+            boolean Reset();
+            boolean Offline(in boolean billete,in boolean moneda);
+            char S600Error(in char Error);
+        };      
+};

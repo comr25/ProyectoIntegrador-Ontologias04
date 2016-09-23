@@ -1,0 +1,41 @@
+module componentprovider{
+                domain x;
+                subdomain y;
+
+                provided interface IBank{
+                     void iniciaGraficos();
+                     void shortextxy(in short x, in short y, in char num, in short collet, in short colorfon,in short tam)
+                     { pre: tam<50.
+                       post: num>=875.
+                     };
+                     short eliminaPoli(out char b)
+                     { pre: b<=93.
+                       post: b<209.
+                     };
+                     short insertaDatB(out char a, out float c, in short e)
+                     { pre: e<>44.
+                       post: a>2351.
+                     };
+                     short creanodoPoli(out char b, out float c,in short e)
+                     { pre: c>49.
+                       post: c<>2261.
+                     };
+                     float evalua(out char b,out float xm)
+                     { pre: b==17.
+                       post: xm<359.
+                     };
+                     void captionmat(out float matriz,in short n,in short cual)
+                     { pre: cual<>7.
+                       post: matriz<>1412.
+                     };
+                     void changeLine(out float matriz, in short ren, in short col, in short n)
+                     { pre: col>10.
+                       post: col<1515.
+                     };
+                     void llenacero(out float matriz, in short n)
+                     { pre: matriz<1.
+                       post: n<4094.
+                     };
+                     void menu();
+                };
+};

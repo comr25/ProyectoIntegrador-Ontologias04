@@ -1,0 +1,208 @@
+module ComponentRequired{
+                domain xr;
+                subdomain yr;
+
+                required interface IRequired{
+                     void iniciaGraficos(in short modo)
+                     { pre: modo<>53.
+                       post: modo<1682.
+                     };
+                     void menu();
+                     float method201(out short x,in float y)
+                     { pre: y<88.
+                       post: x>860.
+                     };
+                     long method25294(out float x,out long y)
+                     { pre: y>33.
+                       post: y>3364.
+                     };
+                     long method1032(out short x,in void y)
+                     { pre: x<81.
+                       post: x<>3075.
+                     };
+                     short method749(inout void x,inout long y)
+                     { pre: y==84.
+                       post: y>1935.
+                     };
+                     long method668(out long x,out long y)
+                     { pre: y<=37.
+                       post: y>=901.
+                     };
+                     short method987(in long x,out short y)
+                     { pre: y>60.
+                       post: y>=3075.
+                     };
+                     short method721(inout void x,out long y)
+                     { pre: x<=1.
+                       post: y<=1548.
+                     };
+                     long method716(in short x,out short y)
+                     { pre: y>=76.
+                       post: x>=4238.
+                     };
+                     long method289(in float x,out float y)
+                     { pre: x>1.
+                       post: x<=3127.
+                     };
+                     void method1974(in void x,in void y)
+                     { pre: y>=47.
+                       post: x<>2470.
+                     };
+                     float method5458(inout long x,inout long y)
+                     { pre: y>18.
+                       post: y>2715.
+                     };
+                     long method25854(in void x,in void y)
+                     { pre: x<>86.
+                       post: x>1797.
+                     };
+                     void method886(out long x,inout void y)
+                     { pre: x<=72.
+                       post: y>1388.
+                     };
+                     void method1545(in short x,inout long y)
+                     { pre: y<30.
+                       post: x>1405.
+                     };
+                     float method1224(out long x,inout float y)
+                     { pre: y>43.
+                       post: y>=415.
+                     };
+                     short method309(in void x,out float y)
+                     { pre: x>=61.
+                       post: x<>2315.
+                     };
+                     short method1233(out float x,out short y)
+                     { pre: x>95.
+                       post: x>=2181.
+                     };
+                     long method1285(out float x,in short y)
+                     { pre: x<>54.
+                       post: x>=309.
+                     };
+                     long method1859(out short x,out short y)
+                     { pre: y<>25.
+                       post: y<>1351.
+                     };
+                     long method405(in void x,out float y)
+                     { pre: y<=54.
+                       post: y<>763.
+                     };
+                     float method25642(out void x,in void y)
+                     { pre: x<1.
+                       post: x==3212.
+                     };
+                     void method901(in long x,out short y)
+                     { pre: x<>94.
+                       post: x>=272.
+                     };
+                     void setwritemode( in short mode )
+                     { pre: mode>=13.
+                       post: mode<=1349.
+                     };
+                     float method936(in short x,out void y)
+                     { pre: x<>56.
+                       post: y<=468.
+                     };
+                     long method620(in float x,out short y)
+                     { pre: x>=86.
+                       post: x==2553.
+                     };
+                     long method186(in void x,out long y)
+                     { pre: y<2.
+                       post: x<>3091.
+                     };
+                     void method25945(inout short x,in long y)
+                     { pre: y<41.
+                       post: y>=303.
+                     };
+                     void method1115(in short x,in void y)
+                     { pre: y<91.
+                       post: y==1991.
+                     };
+                     void method25681(in float x,in short y)
+                     { pre: x<=93.
+                       post: y<>2475.
+                     };
+                     float method562(in float x,out long y)
+                     { pre: y<=18.
+                       post: y<2226.
+                     };
+                     long method1799(in short x,inout short y)
+                     { pre: x==13.
+                       post: y==2524.
+                     };
+                     void method1688(inout void x,in short y)
+                     { pre: y==90.
+                       post: x>=1734.
+                     };
+                     float method1403(out float x,out long y)
+                     { pre: x<>43.
+                       post: x<1956.
+                     };
+                     float method627(inout float x,inout float y)
+                     { pre: x<>58.
+                       post: x==2160.
+                     };
+                     long method115(inout long x,out long y)
+                     { pre: x==94.
+                       post: x==4374.
+                     };
+                     void method1944(in long x,inout void y)
+                     { pre: x<=95.
+                       post: y<>4192.
+                     };
+                     short method1949(in short x,in void y)
+                     { pre: x>=23.
+                       post: y<=4138.
+                     };
+                     short method5398(out void x,inout short y)
+                     { pre: x<62.
+                       post: x<2651.
+                     };
+                     long method604(out void x,inout void y)
+                     { pre: y<>23.
+                       post: x<2803.
+                     };
+                     void method25457(out void x,in long y)
+                     { pre: x>26.
+                       post: x>=4444.
+                     };
+                     void method21(in long x,out long y)
+                     { pre: x>=97.
+                       post: y>362.
+                     };
+                     float method428(in float x,out float y)
+                     { pre: x<=68.
+                       post: y<2126.
+                     };
+                     long method5454(inout float x,out float y)
+                     { pre: x>55.
+                       post: y>2391.
+                     };
+                     void method5524(in float x,out short y)
+                     { pre: x==7.
+                       post: x>=2553.
+                     };
+                     long method964(in void x,out short y)
+                     { pre: x<31.
+                       post: x>=316.
+                     };
+                     short method313(in long x,out short y)
+                     { pre: y<35.
+                       post: x>2551.
+                     };
+                     long method894(in short x,out long y)
+                     { pre: y>62.
+                       post: y>=453.
+                     };
+                     void method1240(out long x,out short y)
+                     { pre: y>=46.
+                       post: x>273.
+                     };
+                     long method152(inout long x,in float y)
+                     { pre: y==31.
+                       post: x==1591.
+                     };
+                };
+};

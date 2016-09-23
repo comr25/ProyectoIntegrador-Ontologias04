@@ -1,0 +1,20 @@
+module MeasuringAtmosfericTools {
+       domain         Atmosferic;
+       subdomain   MeasuringTools; 
+
+       provided interface IToolsAtmosferic{
+                void Medicion(out char fecha, out float temperatura, out float presionAtmosferica, out char pluviosidad){
+                 pre: temperatura > 24 .
+                 };
+                string getFecha() ;    
+                float   getTemperatura();
+                float   getPluviosidad() ;        
+                float   getPresionAtmosferica() ;               
+       };
+       required interface IAtmosferic{
+                 void setFecha(in char fecha) ;      
+                 void setPluviosidad(in float pluviosidad) ;
+                 void setPresionAtmosferica(in float presionAtmosferica);
+                 void setTemperatura(in float temperatura);
+       }; 
+};

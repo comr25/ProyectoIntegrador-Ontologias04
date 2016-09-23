@@ -1,0 +1,76 @@
+#  ***************************************************************************************************
+#
+#  A Core Ontology of Logic Gates & Circuits
+#  -----------------------------------------------
+
+@prefix     :  <http://www.ejemplo.org/#> .
+
+@prefix  owl:  <http://www.w3.org/2002/07/owl#> .
+@prefix  xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix  rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+
+:Circuit   a owl:Class .
+:Gate       rdfs:subClassOf :Circuit ;
+              rdfs:label "A logic gate is an device implementig a Boolean function" ;
+              rdfs:comment "It performs a logical operation".
+
+:Bits      a owl:Class ;
+            rdfs:label "Bit means Binary Digit" ;
+            rdfs:comment "1 bit is equal to 0 or 1".
+
+:hasInput1 a owl:ObjectProperty ;
+            rdfs:domain   :Gate ;
+            rdfs:range    :Bits .
+
+:hasInput2 a owl:ObjectProperty ;
+            rdfs:domain   :Gate ;
+            rdfs:range    :Bits .
+
+:hasInput3 a owl:ObjectProperty ;
+            rdfs:domain   :Gate ;
+            rdfs:range    :Bits .
+             
+:isTypeGate a owl:ObjectProperty ;
+             rdfs:domain   :Gate ;
+             rdfs:range    :Gate .         
+
+:andOutput a owl:ObjectProperty ;
+                 rdfs:domain   :Gate ;
+                 rdfs:range    :Bits ;
+                  rdf:type  owl:FunctionalProperty .
+
+:orOutput a owl:ObjectProperty ;
+                 rdfs:domain   :Gate ;
+                 rdfs:range    :Bits ;
+                  rdf:type  owl:FunctionalProperty .
+
+:notOutput a owl:ObjectProperty ;
+                 rdfs:domain   :Gate ;
+                 rdfs:range    :Bits ;
+                  rdf:type  owl:FunctionalProperty .
+
+:nandOutput a owl:ObjectProperty ;
+                 rdfs:domain   :Bits ;
+                 rdfs:range    :Bits ;
+                  rdf:type  owl:FunctionalProperty .
+
+:norOutput a owl:ObjectProperty ;
+                 rdfs:domain   :Gate ;
+                 rdfs:range    :Bits ;
+                  rdf:type  owl:FunctionalProperty .
+
+:xorOutput a owl:ObjectProperty ;
+                 rdfs:domain   :Gate ;
+                 rdfs:range    :Bits ;
+                  rdf:type  owl:FunctionalProperty .
+
+:fullAdderOutput a owl:ObjectProperty ;
+                  rdfs:domain   :Gate ;
+                  rdfs:range    :Bits .                  
+
+:hasName   a owl:DatatypeProperty ;
+            rdfs:domain     :Gate ;
+            rdfs:range   xsd:string . 

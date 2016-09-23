@@ -1,0 +1,23 @@
+# Autor: Francisco Edgar Castillo Barrera
+#
+# Copyright(c) 01-Oct-2012
+#
+# C:>pellet consistency --loader jena atmfullonto.n3
+# c:>pellet query -q signatu_name_match.sparql atmfullonto.n3
+#
+# Uso de funciones anidadas y uso del BIND para CONTRATOS
+
+PREFIX     : <http://www.ejemplo.org/#> 
+PREFIX  rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+PREFIX  owl: <http://www.w3.org/2002/07/owl#> 
+PREFIX  xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX   fn: <http://www.w3.org/2005/xpath-functions#>
+
+SELECT DISTINCT ?Interface  ?Method  ?par1 WHERE    
+{  
+  ?Interface  :typeInterface :required ;
+                      :hasMethod    _:a .
+  _:a               :hasParameter  ?par1 ;
+                     :hasMethodName ?Method.                       
+
+} order by ?Method

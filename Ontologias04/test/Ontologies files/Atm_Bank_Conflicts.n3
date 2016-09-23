@@ -1,0 +1,715 @@
+#  ***************************************************************************************************
+#
+#  A Core Ontology of Software Components For Matching
+#  -----------------------------------------------
+#
+#  Original author    Francisco Edgar Castillo Barrera, University of Guadalajara, Mexico
+#  Ontology domain    Software Components
+#  Case Study         ATM (Automatic Teller Machine)
+#  Author email       ecastillo@uaslp.mx
+#  Co-Author          Jose Emilio Labra Gayo, University of Oviedo, Spain
+#  Co-Author email    labra@uionvi.es
+#  Language           RDFS (RDF Schema Resource Description Framework define un modelo=Grafo Dirigido)
+#  Web                http://sourceforge.net/projects/jena/
+#  Created            2-Marzo-2011
+#  Filename           atmcoreonto.n3
+#  Revision             2.0
+#  Release status     revision
+# 
+#  Last modified on   Date: 2/May/2012 03:06:00
+#                        by   Francisco Edgar Castillo Barrera
+# 
+#  Run                       C:>pellet consistency --loader jena atmfullonto.n3
+#  Query in SPARQL    c:>pellet query -q matchpronto.sparql atmfullonto.n3
+#                                C:>sparql --query matchpronto.sparql --graph atmfullonto.n3
+#                     C:>sparql --query matchpronto.sparql --data atmfullonto.n3
+#                     C:>pellet consistency --verbose --loader Jena atmfullonto.n3
+#                     C:>pellet help
+#                     C:>pellet explain --verbose atmfullonto.n3
+#
+#  (c) Copyright 2011, Francisco Edgar Castillo Barrera  
+#  (see footer for full conditions)
+#
+#  :Condition :hasFirstTerm id .
+#  :Condition :hasOperator  :less_than .
+#  :Condition :hasThirdTerm 4 .
+#  :Condition :hasThirTerm   ID .
+#
+#  datatype reasoner pellet (ver pagina de Clark & Persia)
+#  
+#  http://clarkparsia.com/pellet/
+#  http://jena.sourceforge.net/ontology/#creatingModels
+# *****************************************************************************************************
+
+@prefix     : <http://www.ejemplo.org/#> .
+@prefix  owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix  xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix  rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+
+# The current Ontology el ":" significa la actual ontologia se pone vacio
+
+: a owl:Ontology ;
+   rdfs:comment "A ATM Ontology for matching among components in ATM model" .
+
+#-----------------------------------------------------------------------------------------------
+#-- Declaration of Classes ---------------------------------------------------------------------
+#-----------------------------------------------------------------------------------------------
+
+:Author        a owl:Class ;
+                rdfs:label   "Class: Author of the Software Component" ;
+                rdfs:comment "Edgar Castillo".
+
+:Contract      a owl:Class ;
+                rdfs:label   "Class: Contract between 2 software components" ;
+                rdfs:comment "Contract between two components".
+
+:Context       a owl:Class .
+
+:Condition     a owl:Class ;
+                rdfs:label   "Class: Condition used by Pre, Post and Invariant" ;
+                rdfs:comment "Condition".                 
+
+:ComponentType a owl:Class ;
+                rdfs:label   "Class: Instances of Component Type" ;
+                rdfs:comment "Instances of Components";
+                rdfs:subClassOf   
+                     [ a owl:Restriction ;
+                         owl:onProperty :hasInterface ;  # Restriccion sobre el numero de interfases
+                         owl:minCardinality 1 ] .        # Un componente tiene minimo 1 interfaz
+
+:ComponentModel  a owl:Class ;
+                rdfs:label   "Class: Component Model" ;
+                rdfs:comment "CORBA, EJB, NET, COM, etc.".        
+     :COM  rdfs:subClassOf :ComponentModel ;
+           owl:disjointWith :NET .
+     :NET  rdfs:subClassOf :ComponentModel ;
+           owl:disjointWith :COM .
+     :DCOM rdfs:subClassOf :ComponentModel .
+     :CCM  rdfs:subClassOf :ComponentModel .
+
+# Modificar los tipos de la ontologia a los Tipos de CORBA-IDL+
+:DataType        a owl:Class .
+   :BasicType rdfs:subClassOf :DataType .         
+       :Null        rdfs:subClassOf :BasicType .
+       :Void        rdfs:subClassOf :BasicType .
+       :Boolean     rdfs:subClassOf :BasicType .
+       :Double      rdfs:subClassOf :BasicType .       
+          :Float       rdfs:subClassOf :Double .
+       :Long        rdfs:subClassOf :BasicType .
+          :Integer     rdfs:subClassOf :Long .
+          :Short       rdfs:subClassOf :Integer .
+          :Byte        rdfs:subClassOf :Short .
+   :StructuredType rdfs:subClassOf :DataType .
+       :List        rdfs:subClassOf :StructuredType .
+       :Array       rdfs:subClassOf :StructuredType .
+   :AnotherType rdfs:subClassOf :DataType .
+
+:Domain    a owl:Class .
+     :Multimedia    rdfs:subClassOf :Domain .
+
+:Instance  a owl:Class .
+
+:Interface a owl:Class .
+
+:Interface rdfs:subClassOf 
+       [ a owl:Restriction ;
+           owl:onProperty :hasNumMethods ;
+           owl:minCardinality 1 ] .             # Restriccion sobre el numero de interfases   
+     :Provided    rdfs:subClassOf :Interface .
+     :Required    rdfs:subClassOf :Interface .
+     :Provided    owl:disjointWith :Required .
+     :Required    owl:disjointWith :Provided .
+
+:Method          a owl:Class .
+
+:Operator        a owl:Class .
+
+:OperatorLogic   a owl:Class .
+
+:OperatingSystem a owl:Class .
+     :AnotherOS   rdfs:subClassOf :OperatingSystem .
+     :IRIX        rdfs:subClassOf :OperatingSystem . 
+     :Linux       rdfs:subClassOf :OperatingSystem . 
+     :Mac_Os      rdfs:subClassOf :OperatingSystem . 
+     :Solaris     rdfs:subClassOf :OperatingSystem .
+     :Windows     rdfs:subClassOf :OperatingSystem .
+
+:Parameter       a owl:Class .
+
+:ParameterDirection    a owl:Class .
+     :Input       rdfs:subClassOf :ParameterDirection .
+     :OutPut      rdfs:subClassOf :ParameterDirection .
+     :InputOutput rdfs:subClassOf :ParameterDirection .      
+     
+:Pattern         a owl:Class .
+     :ArchitecturalPattern  rdfs:subClassOf :Pattern .
+     :DesignPattern         rdfs:subClassOf :Pattern .
+
+:Return          a owl:Class .
+
+:Requirements    a owl:Class .
+     :FunctionalRequirements        rdfs:subClassOf :Requirements .
+     :NonFunctionalRequirements_QoS rdfs:subClassOf :Requirements .
+     :AnswerTime        rdfs:subClassOf :NonFunctionalRequirements_QoS .
+     :ExecutionTime    rdfs:subClassOf :NonFunctionalRequirements_QoS .
+     :MemoryResource rdfs:subClassOf :NonFunctionalRequirements_QoS .
+     :Performance        rdfs:subClassOf :NonFunctionalRequirements_QoS .
+     :QoSAttribute       rdfs:subClassOf :NonFunctionalRequirements_QoS .
+     :QoSMetric           rdfs:subClassOf :NonFunctionalRequirements_QoS .
+     :Security              rdfs:subClassOf :NonFunctionalRequirements_QoS .
+
+:Variable        a owl:Class .
+
+:Visibility      a owl:Class .
+
+#----------------------------------------------------------------------------------------------
+#-- Data type Properties Declaration ----------------------------------------------------------
+#----------------------------------------------------------------------------------------------
+
+ #-- Component properties ----------------------
+
+  :hasComponentID    a owl:DatatypeProperty .
+     :hasComponentID  rdfs:domain   :ComponentType .
+     :hasComponentID  rdfs:range xsd:string .  
+  :hasNameDomain     a owl:DatatypeProperty .
+     :hasNameDomain   rdfs:domain   :ComponentType .
+     :hasNameDomain   rdfs:range xsd:string .  
+  :hasNameSubDomain    a owl:DatatypeProperty .
+     :hasNameSubDomain rdfs:domain   :ComponentType .
+     :hasNameSubDomain rdfs:range xsd:string .  
+  :hasComponentName    a owl:DatatypeProperty .
+     :hasComponentName  rdfs:domain   :ComponentType .
+     :hasComponentName  rdfs:range xsd:string .  
+  :hasAuthorName       a owl:DatatypeProperty .
+     :hasAuthorName rdfs:domain   :ComponentType .
+     :hasAuthorName rdfs:range xsd:string .  
+  :hasCompanyName      a owl:DatatypeProperty .
+     :hasCompanyName rdfs:domain   :ComponentType .
+     :hasCompanyName rdfs:range xsd:string .  
+  :hasShortDescription a owl:DatatypeProperty .  
+  :hasAddress          a owl:DatatypeProperty .
+  :hasPhone            a owl:DatatypeProperty .
+  :hasFax              a owl:DatatypeProperty .
+  :hasEmail            a owl:DatatypeProperty .
+  :hasWebPage          a owl:DatatypeProperty .
+  :hasVersionDate      a owl:DatatypeProperty .
+  :hasVersionNumber    a owl:DatatypeProperty .
+  :hasRevisionNumber   a owl:DatatypeProperty . 
+  :hasRevisionDate     a owl:DatatypeProperty . 
+  :hasPrice            a owl:DatatypeProperty .
+  :hasNumberOfUsed     a owl:DatatypeProperty .
+
+ #-- Quality of Service (QoS) properties ----------
+
+  :needROM                 a owl:DatatypeProperty .      
+  :needRAM                 a owl:DatatypeProperty .
+  :hasResponseTime    a owl:DatatypeProperty .
+  :hardwarePlataform   a owl:DatatypeProperty .
+  :hasSizeInBytes         a owl:DatatypeProperty .
+
+ #-- Methods and Parameters -----------------------
+
+  :hasMethodName a owl:DatatypeProperty .
+  :hasMethodName  rdfs:domain   :Method .
+  :hasMethodName  rdfs:range xsd:string . 
+
+  :hasNumParameters a owl:DatatypeProperty .
+  :hasNumParameters  rdfs:domain   :Method .
+  :hasNumParameters  rdfs:range xsd:integer .   
+
+  :hasIndexOrder a owl:DatatypeProperty .
+  :hasIndexOrder  rdfs:domain   :Parameter .
+  :hasIndexOrder  rdfs:range xsd:integer .
+
+  :hasOSversion a owl:DatatypeProperty .
+  :hasOSversion  rdfs:domain   :OperatingSystem ;
+                 rdfs:range xsd:integer .
+
+ #-- Contracts, Precondition, Postcondition e Invariant -----------------
+ 
+  :hasPrecond  a owl:ObjectProperty ;
+                rdfs:domain   :Method ;
+                rdfs:range    :Condition ;
+                rdfs:label    "Object Property: :<Method> :hasPostcond :<Condition> ." ;
+                rdfs:comment  ":Deposit :hasPostcond :Condition1 .  ".                                   
+
+  :hasPostcond  a owl:ObjectProperty ;
+                 rdfs:domain   :Method ;
+                 rdfs:range    :Condition ;
+                 rdfs:label    "Object Property: :<Method> :hasPostcond :<Condition> ." ;
+                 rdfs:comment  ":Deposit :hasPostcond :Condition1 .  ".                                      
+
+  :hasInvariant  a owl:ObjectProperty ;     #-- No se puede definir una misma propiedad como Object and Datatype
+                  rdfs:domain   :Method ;                 
+                  rdfs:range    :Condition ;     
+                  rdfs:label    "Object Property: :<Method> :hasInvariant :<Condition> ." ;
+                  rdfs:comment  ":Deposit :hasInvariant :Condition1 .  ".               
+
+  :hasVariable   a owl:ObjectProperty ;        # El Dominio y el Rango pueden ser el mismo, 
+                   rdfs:domain   :Condition ;  # se vuelve recursivo
+                   rdfs:range    :Parameter ;
+                   rdfs:range    :Condition ;
+                   rdfs:range    :Variable .                                         
+
+   :hasNumber   a owl:DatatypeProperty ;
+                 rdfs:domain   :Condition ;
+                 rdfs:range xsd:integer .
+                
+   :hasOperator  a owl:ObjectProperty ;
+                  rdfs:domain   :Condition ;
+                  rdfs:range    :Operator .   
+
+   :symbolOperator a owl:DatatypeProperty ;
+                  rdfs:domain   :OperatorLogic ;
+                  rdfs:range xsd:string .
+
+   :hasConnector a owl:ObjectProperty ;         # Permite unir 2 condiciones por medio de 
+                  rdfs:domain   :Condition ;    # 1 conector logico and o or
+                  rdfs:range    :OperatorLogic . # or o and     
+        
+   :hasText      a owl:DatatypeProperty ;        # Una Invariante o Precondicion puede ser Texto
+                  rdfs:domain    :Condition ;
+                  rdfs:range  xsd:string .   
+
+   :hasVarName a owl:ObjectProperty ;
+                rdfs:domain :Condition ; 
+                rdfs:range  :Variable .      
+
+ #-- Interface ----------------------------------------------------------
+
+  :hasNumMethods   a owl:DatatypeProperty ;
+                    rdfs:domain   :Interface ;
+                    rdfs:range xsd:integer .  
+
+  :hasNumParameters a owl:DatatypeProperty ;
+                     rdfs:domain   :Interface ;
+                     rdfs:range xsd:integer .  
+
+  :hasReturnValue a owl:DatatypeProperty ;
+                   rdfs:domain   :Interface ;
+                   rdfs:range xsd:boolean .  
+
+  :optionalParameter a owl:DatatypeProperty ;  
+                      rdfs:domain   :Method ;
+                      rdfs:range xsd:boolean .
+
+ #-- hasNamePattern & hasTypeNamePattern --------------------------------
+
+  :hasNamePattern a owl:DatatypeProperty ; 
+                   rdfs:domain   :ComponentType .
+
+  :hasNameDomain  a owl:DatatypeProperty ;
+                   rdfs:domain   :ComponentType ;
+                  rdfs:range  xsd:string .
+
+  :hasNameSubDomain a owl:DatatypeProperty ;
+                     rdfs:domain   :ComponentType ;
+                     rdfs:range xsd:string .
+
+  :hasNameSubSubDomain a owl:DatatypeProperty ;
+                     rdfs:domain   :ComponentType ;
+                     rdfs:range xsd:string .
+#----------------------------------------------------------------------------------------------
+#-- Object Property Declaration ---------------------------------------------------------------
+#----------------------------------------------------------------------------------------------
+
+  #-- useInterface ---------------------------------
+
+  :useInterface  rdf:type owl:ObjectProperty ;
+                rdfs:domain :Contract ;
+                rdfs:range  :Interface .
+
+  #-- isInterfaceOf ---------------------------------
+
+  :isInterfaceOf rdf:type owl:ObjectProperty ;
+                rdfs:domain :Interface ;
+                rdfs:range  :Component .
+
+  #-- linkParameter ---------------------------------
+
+  :linkParameter rdfs:domain :Parameter ;
+                 rdfs:range  :Parameter ;
+                  rdf:type owl:ObjectProperty .
+
+  :hasContract rdf:type owl:ObjectProperty ;
+              rdfs:domain :Component ;
+              rdfs:range  :Contract ;
+               rdf:type owl:FunctionalProperty .
+
+  :isInstanceOf rdf:type owl:ObjectProperty .
+  :isInstanceOf rdfs:domain :Instance .
+  :isInstanceOf rdfs:range  :Component .
+
+  #-- Parameters -----------------------------------
+
+  :hasDirection rdf:type  owl:ObjectProperty ;
+               rdfs:domain   :Parameter ;
+               rdfs:range    :ParameterDirection .
+
+  :isInputOf rdf:type  owl:ObjectProperty ;
+            rdfs:domain   :Parameter ;
+            rdfs:range   :Parameter .
+
+  :isOutputOf rdf:type owl:ObjectProperty ;
+             rdfs:domain  :Parameter ;
+             rdfs:range   :Parameter .
+
+  #-- typeReturn -----------------------------------
+
+  :typeReturn  rdf:type owl:ObjectProperty ;
+              rdfs:domain  :Method ;
+              rdfs:range   :DataType .
+
+  :hasDataTypeParameter rdf:type owl:ObjectProperty ;
+                rdfs:domain  :Parameter ;
+                rdfs:range   :DataType .
+
+  :typeInterface rdf:type owl:ObjectProperty ;
+                rdfs:domain  :Interface ;
+                rdfs:range   :DataType .
+
+  #-- hasMethod ----------------------------------
+
+  :hasMethod a owl:ObjectProperty ;
+              rdfs:domain :Interface ;
+              rdfs:range  :Method .      
+
+  :hasReturn a owl:ObjectProperty ;
+              rdfs:domain :Method ;
+              rdfs:range  :DataType .             
+
+  :hasVisibility  rdf:type owl:ObjectProperty .
+  :hasVisibility rdfs:domain  :Method .
+  :hasVisibility rdfs:domain  :Interface .
+  :hasVisibility rdfs:range   :Visibility .
+
+  :hasMatch  rdf:type owl:ObjectProperty .    #-- It is a Object Property. FunctionalProperty only 1 value accept
+  :hasMatch rdfs:domain :Interface .          #-- Its domain is an Interface
+  :hasMatch rdfs:range  :Interface .          #-- Its range is an Interface
+  :hasMatch rdf:type owl:TransitiveProperty . #-- A match B and B match C => A match C
+  :hasMatch rdf:type owl:SymmetricProperty .  #-- A match B => B match A
+  
+  :hasInstance a owl:ObjectProperty .
+  :hasInstance  rdfs:domain :Component .
+  :hasInstance  rdfs:range  :Instance .
+
+  :hasInterface a owl:ObjectProperty .
+  :hasInterface  rdfs:domain :Component .
+  :hasInterface  rdfs:range  :Interface .
+
+  :hasParameter a owl:ObjectProperty .
+  :hasParameter  rdfs:domain :Method .
+  :hasParameter  rdfs:range  :Parameter .
+
+  :hasTypePattern a owl:ObjectProperty .
+  :hasTypePattern rdfs:domain :ComponentType .
+  :hasTypePattern rdfs:range  :Pattern .
+
+  :invokeMethod a owl:ObjectProperty .
+  :invokeMethod rdfs:domain   :Instance .
+  :invokeMethod rdfs:range    :Method .
+
+
+ 
+
+############################## Codigo del Archivo Ontologia: Bank.n3 #######################
+
+:bank a :ComponentType .
+:bank :hasDomain :bank .
+:bank :hasSubDomain :atm .
+:ibank  a :provided .
+:bank  :hasInterface :ibank .
+:condition9  a :Condition .
+:null  :hasInvariant :condition9 .
+:condition9   :hasOperator :greater_than .
+:condition9   :hasNumber :0 .
+:consortium  a :Method .
+:consortium  :typeReturn :void.
+:consortium  :hasNumParameters  0 .
+:withdrawalbank  a :Method .
+:withdrawalbank  :typeReturn :void.
+:withdrawalbank  :hasParameter  :cardno .
+:cardno  :hasDirection  :in .
+:cardno  :hasDataTypeParameter  :long .
+:cardno  :hasIndexOrder  1 .
+:withdrawalbank  :hasParameter  :password .
+:password  :hasDirection  :in .
+:password  :hasDataTypeParameter  :char .
+:password  :hasIndexOrder  2 .
+:withdrawalbank  :hasParameter  :amount .
+:amount  :hasDirection  :in .
+:amount  :hasDataTypeParameter  :double .
+:amount  :hasIndexOrder  3 .
+:withdrawalbank  :hasNumParameters  3 .
+:condition10  a :Condition .
+:withdrawalbank  :hasPrecond :condition10 .
+:condition10   :hasOperator :greater_than .
+:amount   a :Variable .
+:condition10   :hasVariable :amount .
+:condition11  a :Condition .
+:withdrawalbank  :hasPrecond :condition11 .
+:condition11  :hasOperator :not_equal_to .
+:condition11   :hasText :empty .
+:condition12  a :Condition .
+:withdrawalbank  :hasPrecond :condition12 .
+:condition12  :hasOperator :equals .
+:condition13  a :Condition .
+:withdrawalbank  :hasPostcond :condition13 .
+:amount   a :Variable .
+:condition13   :hasVariable :amount .
+:withdrawaluser  a :Method .
+:withdrawaluser  :typeReturn :void.
+:withdrawaluser  :hasParameter  :cardno .
+:cardno  :hasDirection  :in .
+:cardno  :hasDataTypeParameter  :long .
+:cardno  :hasIndexOrder  1 .
+:withdrawaluser  :hasParameter  :password .
+:password  :hasDirection  :in .
+:password  :hasDataTypeParameter  :char .
+:password  :hasIndexOrder  2 .
+:withdrawaluser  :hasParameter  :amount .
+:amount  :hasDirection  :in .
+:amount  :hasDataTypeParameter  :double .
+:amount  :hasIndexOrder  3 .
+:withdrawaluser  :hasNumParameters  3 .
+:condition14  a :Condition .
+:withdrawaluser  :hasPrecond :condition14 .
+:condition14   :hasOperator :greater_than .
+:amount   a :Variable .
+:condition14   :hasVariable :amount .
+:condition15  a :Condition .
+:withdrawaluser  :hasPrecond :condition15 .
+:condition15  :hasOperator :not_equal_to .
+:condition15   :hasText :empty .
+:condition16  a :Condition .
+:withdrawaluser  :hasPrecond :condition16 .
+:condition16  :hasOperator :equals .
+:condition17  a :Condition .
+:withdrawaluser  :hasPostcond :condition17 .
+:amount   a :Variable .
+:condition17   :hasVariable :amount .
+:condition18  a :Condition .
+:withdrawaluser  :hasInvariant :condition18 .
+:condition18   :hasOperator :greater_than .
+:condition18   :hasNumber :7 .
+:withdrawalclient  a :Method .
+:withdrawalclient  :typeReturn :void.
+:withdrawalclient  :hasParameter  :cardno .
+:cardno  :hasDirection  :in .
+:cardno  :hasDataTypeParameter  :long .
+:cardno  :hasIndexOrder  1 .
+:withdrawalclient  :hasParameter  :password .
+:password  :hasDirection  :in .
+:password  :hasDataTypeParameter  :char .
+:password  :hasIndexOrder  2 .
+:withdrawalclient  :hasParameter  :amount .
+:amount  :hasDirection  :in .
+:amount  :hasDataTypeParameter  :double .
+:amount  :hasIndexOrder  3 .
+:withdrawalclient  :hasNumParameters  3 .
+:condition19  a :Condition .
+:withdrawalclient  :hasPrecond :condition19 .
+:condition19   :hasOperator :greater_than .
+:amount   a :Variable .
+:condition19   :hasVariable :amount .
+:condition20  a :Condition .
+:withdrawalclient  :hasPrecond :condition20 .
+:condition20  :hasOperator :not_equal_to .
+:condition20   :hasText :empty .
+:condition21  a :Condition .
+:withdrawalclient  :hasPrecond :condition21 .
+:condition21  :hasOperator :equals .
+:condition22  a :Condition .
+:withdrawalclient  :hasPostcond :condition22 .
+:amount   a :Variable .
+:condition22   :hasVariable :amount .
+:condition23  a :Condition .
+:withdrawalclient  :hasInvariant :condition23 .
+:condition23   :hasOperator :greater_than .
+:condition23   :hasNumber :7 .
+:depositbank  a :Method .
+:depositbank  :typeReturn :void.
+:depositbank  :hasParameter  :amount .
+:amount  :hasDirection  :in .
+:amount  :hasDataTypeParameter  :double .
+:amount  :hasIndexOrder  1 .
+:depositbank  :hasParameter  :numclient .
+:numclient  :hasDirection  :in .
+:numclient  :hasDataTypeParameter  :long .
+:numclient  :hasIndexOrder  2 .
+:depositbank  :hasNumParameters  2 .
+:condition24  a :Condition .
+:depositbank  :hasPrecond :condition24 .
+:condition24   :hasOperator :greater_than .
+:condition24   :hasNumber :0 .
+:condition25  a :Condition .
+:depositbank  :hasPrecond :condition25 .
+:condition25  :hasOperator :equals .
+:condition26  a :Condition .
+:depositbank  :hasPostcond :condition26 .
+:amount   a :Variable .
+:condition26   :hasVariable :amount .
+:deposituser  a :Method .
+:deposituser  :typeReturn :void.
+:deposituser  :hasParameter  :amount .
+:amount  :hasDirection  :in .
+:amount  :hasDataTypeParameter  :double .
+:amount  :hasIndexOrder  1 .
+:deposituser  :hasParameter  :numclient .
+:numclient  :hasDirection  :in .
+:numclient  :hasDataTypeParameter  :long .
+:numclient  :hasIndexOrder  2 .
+:deposituser  :hasNumParameters  2 .
+:condition27  a :Condition .
+:deposituser  :hasPrecond :condition27 .
+:condition27   :hasOperator :greater_than .
+:condition27   :hasNumber :0 .
+:condition28  a :Condition .
+:deposituser  :hasPrecond :condition28 .
+:condition28  :hasOperator :equals .
+:condition29  a :Condition .
+:deposituser  :hasPostcond :condition29 .
+:amount   a :Variable .
+:condition29   :hasVariable :amount .
+:depositclient  a :Method .
+:depositclient  :typeReturn :void.
+:depositclient  :hasParameter  :amount .
+:amount  :hasDirection  :in .
+:amount  :hasDataTypeParameter  :double .
+:amount  :hasIndexOrder  1 .
+:depositclient  :hasParameter  :numclient .
+:numclient  :hasDirection  :in .
+:numclient  :hasDataTypeParameter  :long .
+:numclient  :hasIndexOrder  2 .
+:depositclient  :hasNumParameters  2 .
+:condition30  a :Condition .
+:depositclient  :hasPrecond :condition30 .
+:condition30   :hasOperator :greater_than .
+:condition30   :hasNumber :0 .
+:condition31  a :Condition .
+:depositclient  :hasPrecond :condition31 .
+:condition31  :hasOperator :equals .
+:condition32  a :Condition .
+:depositclient  :hasPostcond :condition32 .
+:amount   a :Variable .
+:condition32   :hasVariable :amount .
+:depositcompany  a :Method .
+:depositcompany  :typeReturn :void.
+:depositcompany  :hasParameter  :amount .
+:amount  :hasDirection  :in .
+:amount  :hasDataTypeParameter  :double .
+:amount  :hasIndexOrder  1 .
+:depositcompany  :hasParameter  :numclient .
+:numclient  :hasDirection  :in .
+:numclient  :hasDataTypeParameter  :long .
+:numclient  :hasIndexOrder  2 .
+:depositcompany  :hasNumParameters  2 .
+:condition33  a :Condition .
+:depositcompany  :hasPrecond :condition33 .
+:condition33   :hasOperator :greater_than .
+:condition33   :hasNumber :0 .
+:condition34  a :Condition .
+:depositcompany  :hasPrecond :condition34 .
+:condition34  :hasOperator :equals .
+:condition35  a :Condition .
+:depositcompany  :hasPostcond :condition35 .
+:amount   a :Variable .
+:condition35   :hasVariable :amount .
+:setoverdraftlimit  a :Method .
+:setoverdraftlimit  :typeReturn :boolean.
+:setoverdraftlimit  :hasParameter  :amount .
+:amount  :hasDirection  :in .
+:amount  :hasDataTypeParameter  :double .
+:amount  :hasIndexOrder  1 .
+:setoverdraftlimit  :hasParameter  :numclient .
+:numclient  :hasDirection  :in .
+:numclient  :hasDataTypeParameter  :long .
+:numclient  :hasIndexOrder  2 .
+:setoverdraftlimit  :hasNumParameters  2 .
+:setoverdraftlimitbank  a :Method .
+:setoverdraftlimitbank  :typeReturn :boolean.
+:setoverdraftlimitbank  :hasParameter  :numclient .
+:numclient  :hasDirection  :in .
+:numclient  :hasDataTypeParameter  :long .
+:numclient  :hasIndexOrder  1 .
+:setoverdraftlimitbank  :hasNumParameters  1 .
+:ibank  :hasNumMethods 10 .
+
+############################## Codigo del Archivo Ontologia: Atm.n3 #######################
+
+:atm a :ComponentType .
+:atm :hasDomain :bank .
+:atm :hasSubDomain :atm .
+:iatmservice  a :provided .
+:atm  :hasInterface :iatmservice .
+:createsession  a :Method .
+:createsession  :typeReturn :long.
+:createsession  :hasNumParameters  0 .
+:locatebank  a :Method .
+:locatebank  :typeReturn :void.
+:locatebank  :hasNumParameters  0 .
+:iatmservice  :hasNumMethods 2 .
+:iatmclient  a :required .
+:atm  :hasInterface :iatmclient .
+:condition1  a :Condition .
+:locatebank  :hasInvariant :condition1 .
+:condition1  :hasOperator :greater_than_or_equal_to .
+:deposit  a :Method .
+:deposit  :typeReturn :long.
+:deposit  :hasParameter  :amount .
+:amount  :hasDirection  :in .
+:amount  :hasDataTypeParameter  :double .
+:amount  :hasIndexOrder  1 .
+:deposit  :hasParameter  :numclient .
+:numclient  :hasDirection  :in .
+:numclient  :hasDataTypeParameter  :long .
+:numclient  :hasIndexOrder  2 .
+:deposit  :hasNumParameters  2 .
+:condition2  a :Condition .
+:deposit  :hasPrecond :condition2 .
+:condition2   :hasOperator :greater_than .
+:condition2   :hasNumber :0 .
+:condition3  a :Condition .
+:deposit  :hasPostcond :condition3 .
+:amount   a :Variable .
+:condition3   :hasVariable :amount .
+:withdrawal  a :Method .
+:withdrawal  :typeReturn :void.
+:withdrawal  :hasParameter  :cardnumber .
+:cardnumber  :hasDirection  :in .
+:cardnumber  :hasDataTypeParameter  :long .
+:cardnumber  :hasIndexOrder  1 .
+:withdrawal  :hasParameter  :password .
+:password  :hasDirection  :in .
+:password  :hasDataTypeParameter  :char .
+:password  :hasIndexOrder  2 .
+:withdrawal  :hasParameter  :amount .
+:amount  :hasDirection  :in .
+:amount  :hasDataTypeParameter  :double .
+:amount  :hasIndexOrder  3 .
+:withdrawal  :hasNumParameters  3 .
+:condition4  a :Condition .
+:withdrawal  :hasPrecond :condition4 .
+:condition4   :hasOperator :greater_than .
+:amount   a :Variable .
+:condition4   :hasVariable :amount .
+:condition5  a :Condition .
+:withdrawal  :hasPrecond :condition5 .
+:condition5  :hasOperator :not_equal_to .
+:condition5   :hasText :empty .
+:condition6  a :Condition .
+:withdrawal  :hasPrecond :condition6 .
+:condition6  :hasOperator :equals .
+:condition7  a :Condition .
+:withdrawal  :hasPostcond :condition7 .
+:amount   a :Variable .
+:condition7   :hasVariable :amount .
+:condition8  a :Condition .
+:withdrawal  :hasInvariant :condition8 .
+:condition8   :hasOperator :greater_than .
+:condition8   :hasNumber :7 .
+:locatenetwork  a :Method .
+:locatenetwork  :typeReturn :void.
+:locatenetwork  :hasNumParameters  0 .
+:iatmclient  :hasNumMethods 3 .

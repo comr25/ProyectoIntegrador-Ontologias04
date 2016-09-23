@@ -1,0 +1,23 @@
+module ComponentProvider{
+                domain xp;
+                subdomain yp;
+
+                provided interface IProvider{
+                     void iniciaGraficos(in short modo)
+                     { pre: modo==27.
+                       post: modo>=4314.
+                     };
+                     void shortextxy(in short x, in short y, in char num, in short collet, in short colorfon,in short tam)
+                     { pre: tam==77.
+                       post: collet>=3599.
+                     };
+                     short eliminaPoli(out char b)
+                     { pre: b<=92.
+                       post: b==1753.
+                     };
+                     short insertaDatB(out char a, out float c, in double e)
+                     { pre: a>35.
+                       post: e<>128.
+                     };
+                };
+};

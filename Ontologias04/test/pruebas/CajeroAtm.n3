@@ -1,0 +1,57 @@
+:cajeroatm a :ComponentType .
+:cajeroatm :hasDomain :school .
+:cajeroatm :hasSubDomain :atm .
+:icajeroatm  a :Interface .
+:icajeroatm  :typeInterface :required .
+:cajeroatm  :hasInterface :icajeroatm .
+:icajeroatm  :hasMethod :selpuerto .
+:selpuerto  :hasMethodName "selpuerto" .
+:selpuerto  a :Method .
+:selpuerto  :typeReturn :void.
+:selpuerto  :hasParameter  :puerto .
+:puerto  :hasDirection  :in .
+:short a :Short .
+:puerto  :hasDataTypeParameter  :short .
+:puerto  :hasIndexOrder  1 .
+:selpuerto  :hasNumParameters  1 .
+:icajeroatm  :hasMethod :openconn .
+:openconn  :hasMethodName "openconn" .
+:openconn  a :Method .
+:openconn  :typeReturn :boolean.
+:openconn  :hasNumParameters  0 .
+:icajeroatm  :hasMethod :closeconn .
+:closeconn  :hasMethodName "closeconn" .
+:closeconn  a :Method .
+:closeconn  :typeReturn :void.
+:closeconn  :hasNumParameters  0 .
+:icajeroatm  :hasMethod :reset .
+:reset  :hasMethodName "reset" .
+:reset  a :Method .
+:reset  :typeReturn :boolean.
+:reset  :hasNumParameters  0 .
+:icajeroatm  :hasMethod :offline .
+:offline  :hasMethodName "offline" .
+:offline  a :Method .
+:offline  :typeReturn :boolean.
+:offline  :hasParameter  :billete .
+:billete  :hasDirection  :in .
+:boolean a :Boolean .
+:billete  :hasDataTypeParameter  :boolean .
+:billete  :hasIndexOrder  1 .
+:offline  :hasParameter  :moneda .
+:moneda  :hasDirection  :in .
+:boolean a :Boolean .
+:moneda  :hasDataTypeParameter  :boolean .
+:moneda  :hasIndexOrder  2 .
+:offline  :hasNumParameters  2 .
+:icajeroatm  :hasMethod :s600error .
+:s600error  :hasMethodName "s600error" .
+:s600error  a :Method .
+:s600error  :typeReturn :char.
+:s600error  :hasParameter  :error .
+:error  :hasDirection  :in .
+:char a :Char .
+:error  :hasDataTypeParameter  :char .
+:error  :hasIndexOrder  1 .
+:s600error  :hasNumParameters  1 .
+:icajeroatm  :hasNumMethods 6 .

@@ -1,0 +1,13 @@
+module BasicLogicGates
+{    
+        domain          Circuits;
+        subdomain     LogicGates;     
+
+        post: and == 1.
+      
+        provided interface ILogicGates{
+             void and(in short A, in short B, out short F);			
+             void or(in short A, in short B, out short F);			
+             void xor(in short A, in short B, out short F);				
+        };        
+};

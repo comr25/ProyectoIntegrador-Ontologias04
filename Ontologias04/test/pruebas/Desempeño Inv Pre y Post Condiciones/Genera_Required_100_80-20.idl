@@ -1,0 +1,347 @@
+module ComponentRequired{
+                domain xr;
+                subdomain yr;
+
+                required interface IRequired{
+                     void iniciaGraficos(in short modo)
+                     { pre: modo<>13.
+                       post: modo>=1454.
+                     };
+                     void shortextxy(in short x, in short y, in char num, in short collet, in short colorfon,in short tam)
+                     { pre: x<>6.
+                       post: num>3070.
+                     };
+                     short eliminaPoli(out char b)
+                     { pre: b==5.
+                       post: b==782.
+                     };
+                     short insertaDatB(out char a, out float c, in double e)
+                     { pre: e==29.
+                       post: a<3265.
+                     };
+                     short creanodoPoli(out char b, out double c,in short e)
+                     { pre: b<=27.
+                       post: e<>1731.
+                     };
+                     float evalua(out char b,out double xm)
+                     { pre: xm>=71.
+                       post: b==1060.
+                     };
+                     void captionmat(out double matriz,in short n,in short cual)
+                     { pre: n<=11.
+                       post: n>=3610.
+                     };
+                     void changeLine(out double matriz, in short ren, in short col, in short n)
+                     { pre: n>89.
+                       post: matriz==88.
+                     };
+                     void llenacero(out double matriz, in short n)
+                     { pre: matriz==5.
+                       post: matriz<4405.
+                     };
+                     void menu();
+                     void ventMenu();
+                     void ventanaCaptura(in short x1,in short y1,in short x2,in short y2)
+                     { pre: x1==77.
+                       post: y1<933.
+                     };
+                     long calculaFactorial(in short n)
+                     { pre: n<>11.
+                       post: n<3310.
+                     };
+                     void factorial();
+                     void captDatB(out char a,in short cual)
+                     { pre: a>72.
+                       post: cual<177.
+                     };
+                     void captDatBiseccion(out char a)
+                     { pre: a>72.
+                       post: a<>2624.
+                     };
+                     float biseccion(out char i,out float a,out float b,out float tol,out float ant)
+                     { pre: i>=63.
+                       post: tol<4208.
+                     };
+                     void captDatRegFalsa(out char a)
+                     { pre: a<13.
+                       post: a==567.
+                     };
+                     float regFalsa(out char i,out float a,out float b,out float tol,out float ant)
+                     { pre: b>=80.
+                       post: a>=2770.
+                     };
+                     float gaussJordan(out double matriz, in short n)
+                     { pre: matriz<92.
+                       post: n<3341.
+                     };
+                     void inprimeJordan(out float matriz,out float nuevo,in short n,in short op,in short cual)
+                     { pre: cual<=55.
+                       post: nuevo>=2862.
+                     };
+                     float gaussSeidel(out float matriz,in short n,out float tol)
+                     { pre: n<45.
+                       post: matriz>53.
+                     };
+                     void inprimeSeidel(out double nuevo,in short n)
+                     { pre: n<=30.
+                       post: n>1284.
+                     };
+                     short cumple(out float matriz,in short r, in short ren,in short n )
+                     { pre: matriz>=18.
+                       post: n>=297.
+                     };
+                     short converge(out float matriz,in short n)
+                     { pre: n<>68.
+                       post: matriz<=1123.
+                     };
+                     void sustituyeAtras(out float lu,in short n,out float vector)
+                     { pre: lu<75.
+                       post: vector<=306.
+                     };
+                     float sustituyeade(out float lu, in short n)
+                     { pre: n<=11.
+                       post: lu>713.
+                     };
+                     short crealu(out float lu,out float mat,in short n)
+                     { pre: lu>=77.
+                       post: lu<=2616.
+                     };
+                     void pushatend(out float head,out float addx,out float addxy)
+                     { pre: head==80.
+                       post: addxy<=2347.
+                     };
+                     void freei(out char cab)
+                     { pre: cab>=95.
+                       post: cab==4324.
+                     };
+                     void ajustacurva(out double cab)
+                     { pre: cab<>19.
+                       post: cab>=1474.
+                     };
+                     void minimosCuadrados();
+                     void derivamenu();
+                     float derivacion(out short arre ,in short n)
+                     { pre: arre<=24.
+                       post: n<3879.
+                     };
+                     void simpson();
+                     void lagrange();
+                     void metodoLagrange();
+                     void lagrange(out float punto, in short n)
+                     { pre: n>=4.
+                       post: n==3087.
+                     };
+                     void leedato(in char a,in short x,in short y,in short n)
+                     { pre: n<>88.
+                       post: y>=4026.
+                     };
+                     void shortegracionNumerica();
+                     void iniciaraton();
+                     void encienderaton();
+                     short botonraton();
+                     short botonratonx();
+                     short botonratony();
+                     void limitaratonx(in short x1,in short x2)
+                     { pre: x2<89.
+                       post: x1>2274.
+                     };
+                     void limitaratony(in short y1,in short y2)
+                     { pre: y2>1.
+                       post: y2<>3010.
+                     };
+                     void cierraraton();
+                     short verificaboton(out char cab,in short botomx,in short botomy)
+                     { pre: botomx>63.
+                       post: cab==4260.
+                     };
+                     void botonlista(out float cab, in float datos)
+                     { pre: cab==27.
+                       post: cab<>4397.
+                     };
+                     void arc( in short x, in short y, in short stangle, in short endangle, in short radius )
+                     { pre: x>11.
+                       post: endangle>=2817.
+                     };
+                     void bar( in short left, in short top, in short right, in short bottom )
+                     { pre: bottom<>67.
+                       post: left>420.
+                     };
+                     void bar3d( in short left, in short top, in short right, in short bottom, in short depth, in short topflag )
+                     { pre: depth>=49.
+                       post: bottom>=2392.
+                     };
+                     void circle( in short x, in short y, in short radius )
+                     { pre: y<>12.
+                       post: x<=2743.
+                     };
+                     void cleardevice(in short device )
+                     { pre: device>86.
+                       post: device<3662.
+                     };
+                     void clearviewport(in long port )
+                     { pre: port>68.
+                       post: port>=751.
+                     };
+                     void drawpoly(in short numpoin, in short poin)
+                     { pre: poin<=19.
+                       post: poin<1562.
+                     };
+                     void ellipse( in short x, in short y, in short stangle, in short endangle, in short xradius, in short yradius )
+                     { pre: xradius<0.
+                       post: stangle>=1438.
+                     };
+                     void fillellipse( in short x, in short y, in short xradius, in short yradius )
+                     { pre: yradius==27.
+                       post: xradius<2138.
+                     };
+                     void fillpoly(in short c,in short npoin, in short poin)
+                     { pre: npoin<=48.
+                       post: npoin<>2581.
+                     };
+                     void floodfill( in short x, in short y, in short border )
+                     { pre: x<=14.
+                       post: border<>3994.
+                     };
+                     void line( in short x1, in short y1, in short x2, in short y2 )
+                     { pre: x1<>26.
+                       post: x2>2675.
+                     };
+                     void linerel( in short dx, in short dy )
+                     { pre: dx<89.
+                       post: dx<>3659.
+                     };
+                     void lineto( in short x, in short y )
+                     { pre: x<57.
+                       post: y>2248.
+                     };
+                     void pieslice( in short x, in short y, in short stangle, in short endangle, in short radius )
+                     { pre: y==3.
+                       post: stangle==2665.
+                     };
+                     void putpixel( in short x, in short y, in short color )
+                     { pre: color==57.
+                       post: x<>1960.
+                     };
+                     void rectangle( in short left, in short top, in short right, in short bottom )
+                     { pre: bottom>1.
+                       post: top==654.
+                     };
+                     void sector( in short x, in short y, in short stangle, in short endangle, in short xradius, in short yradius )
+                     { pre: stangle<>91.
+                       post: xradius>=1230.
+                     };
+                     short getdisplaycolor( in short color )
+                     { pre: color>=42.
+                       post: color==2337.
+                     };
+                     short converttorgb( in short color )
+                     { pre: color>=1.
+                       post: color<>1633.
+                     };
+                     void delay( in short msec )
+                     { pre: msec==39.
+                       post: msec<=1150.
+                     };
+                     void getarccoords( inout char arccoords )
+                     { pre: arccoords<=13.
+                       post: arccoords<243.
+                     };
+                     short getbkcolor( );
+                     short getcolor( );
+                     void getfillpattern(out char pattern )
+                     { pre: pattern<=15.
+                       post: pattern>1983.
+                     };
+                     void getfillsettings(out float fillinfo )
+                     { pre: fillinfo<56.
+                       post: fillinfo<>1756.
+                     };
+                     void getlinesettings(out float lineinfo )
+                     { pre: lineinfo==87.
+                       post: lineinfo<=3863.
+                     };
+                     short getmaxcolor( );
+                     short getmaxheight( );
+                     short getmaxwidth( );
+                     float method457(in void x,out short y)
+                     { pre: y<>58.
+                       post: y>=3065.
+                     };
+                     long method1500(inout float x,in void y)
+                     { pre: x>=6.
+                       post: x<1904.
+                     };
+                     float sinIVA(in float total)
+                     { pre: total>=15.
+                       post: total==2351.
+                     };
+                     short checkVerticalKey(in short key, in char excep)
+                     { pre: key>=23.
+                       post: key<=2871.
+                     };
+                     void method1546(out short x,inout void y)
+                     { pre: y==78.
+                       post: y>=258.
+                     };
+                     float method5575(in short x,out short y)
+                     { pre: y<=2.
+                       post: y>119.
+                     };
+                     long method25385(out short x,out long y)
+                     { pre: y>39.
+                       post: y<=2418.
+                     };
+                     void method1092(out short x,inout long y)
+                     { pre: x<=92.
+                       post: y==2659.
+                     };
+                     void method1717(out long x,out void y)
+                     { pre: x<>91.
+                       post: y>=2586.
+                     };
+                     long method1126(out long x,in void y)
+                     { pre: x<=70.
+                       post: x<1290.
+                     };
+                     float method304(in float x,out void y)
+                     { pre: x>11.
+                       post: y<3267.
+                     };
+                     float method25889(inout short x,in float y)
+                     { pre: y>84.
+                       post: y>2542.
+                     };
+                     short method1(in float x,out short y)
+                     { pre: y<>82.
+                       post: x<1313.
+                     };
+                     short method549(in short x,out void y)
+                     { pre: x==41.
+                       post: x>2079.
+                     };
+                     void method5532(out short x,out long y)
+                     { pre: y<>18.
+                       post: y==168.
+                     };
+                     float method398(in float x,out void y)
+                     { pre: y<=31.
+                       post: x<>4195.
+                     };
+                     long method25800(out float x,inout float y)
+                     { pre: x<=87.
+                       post: y>2196.
+                     };
+                     short method785(in float x,in float y)
+                     { pre: x<=45.
+                       post: y>2538.
+                     };
+                     float method495(in long x,out void y)
+                     { pre: x>99.
+                       post: y<3918.
+                     };
+                     float method533(in long x,out long y)
+                     { pre: x>=64.
+                       post: y>=2524.
+                     };
+                };
+};

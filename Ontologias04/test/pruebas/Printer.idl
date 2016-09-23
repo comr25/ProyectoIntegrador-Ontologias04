@@ -1,0 +1,8 @@
+ module Printer{
+     domain            Printer;
+     subdomain       Atm;
+     
+     provided interface IPrinter{
+         void printReceipt();
+     };       
+ };

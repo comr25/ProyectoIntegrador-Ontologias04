@@ -1,0 +1,613 @@
+@prefix       : <http://www.ejemplo.org/#> .
+@prefix  owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix  xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix  rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+
+: a owl:Ontology ;
+   rdfs:comment "A ATM Ontology for matching among components in ATM model" .
+
+#-----------------------------------------------------------------------------------------------
+#-- Declaration of Classes ---------------------------------------------------------------------
+#-----------------------------------------------------------------------------------------------
+
+:Context       a owl:Class .
+
+:Condition     a owl:Class ;
+                rdfs:label   "Class: Condition used by Pre, Post and Invariant" ;
+                rdfs:comment "Condition".                 
+
+:ComponentType a owl:Class ;
+                rdfs:label   "Class: Instances of Component Type" ;
+                rdfs:comment "Instances of Components";
+                rdfs:subClassOf   
+                     [ a owl:Restriction ;
+                         owl:onProperty :hasInterface ;  # Restriccion sobre el numero de interfases
+                         owl:minCardinality 1 ] .             # Un componente tiene minimo 1 interfaz
+
+
+# Modificar los tipos de la ontologia a los Tipos de CORBA-IDL+
+:DataType        a owl:Class .
+   :BasicType rdfs:subClassOf :DataType .         
+       :Null        rdfs:subClassOf :BasicType .
+       :Void        rdfs:subClassOf :BasicType .
+       :Boolean     rdfs:subClassOf :BasicType .
+            :False     rdfs:subClassOf :Boolean .
+            :True     rdfs:subClassOf :Boolean .
+       :Char          rdfs:subClassOf :BasicType .
+       :Double      rdfs:subClassOf :BasicType .       
+          :Float       rdfs:subClassOf :Double .
+       :Long        rdfs:subClassOf :BasicType .
+          :Integer     rdfs:subClassOf :Long .
+          :Short       rdfs:subClassOf :Integer .
+          :Byte        rdfs:subClassOf :Short .
+   :StructuredType rdfs:subClassOf :DataType .
+       :List        rdfs:subClassOf :StructuredType .
+       :Array       rdfs:subClassOf :StructuredType .
+   :AnotherType rdfs:subClassOf :DataType .
+
+:Domain    a owl:Class .
+     :Multimedia    rdfs:subClassOf :Domain .
+
+:Instance  a owl:Class .
+
+:Interface a owl:Class .
+
+:Interface rdfs:subClassOf 
+       [ a owl:Restriction ;
+           owl:onProperty :hasNumMethods ;
+           owl:minCardinality 1 ] .             # Restriccion sobre el numero de interfases   
+     :Provided    rdfs:subClassOf :Interface .
+     :Required    rdfs:subClassOf :Interface .
+     :Provided    owl:disjointWith :Required .
+     :Required    owl:disjointWith :Provided .
+
+:Method          a owl:Class .
+
+:Operator        a owl:Class .
+
+:OperatorLogic   a owl:Class .
+
+:Parameter       a owl:Class .
+
+:ParameterDirection    a owl:Class .
+     :Input       rdfs:subClassOf :ParameterDirection .
+     :OutPut      rdfs:subClassOf :ParameterDirection .
+     :InputOutput rdfs:subClassOf :ParameterDirection .      
+     
+:Pattern         a owl:Class .
+     :ArchitecturalPattern  rdfs:subClassOf :Pattern .
+     :DesignPattern         rdfs:subClassOf :Pattern .
+
+:Return          a owl:Class .
+
+:Requirements    a owl:Class .
+     :FunctionalRequirements        rdfs:subClassOf :Requirements .
+     :NonFunctionalRequirements_QoS rdfs:subClassOf :Requirements .
+     :AnswerTime        rdfs:subClassOf :NonFunctionalRequirements_QoS .
+     :ExecutionTime    rdfs:subClassOf :NonFunctionalRequirements_QoS .
+     :MemoryResource rdfs:subClassOf :NonFunctionalRequirements_QoS .
+     :Performance        rdfs:subClassOf :NonFunctionalRequirements_QoS .
+     :QoSAttribute       rdfs:subClassOf :NonFunctionalRequirements_QoS .
+     :QoSMetric           rdfs:subClassOf :NonFunctionalRequirements_QoS .
+     :Security              rdfs:subClassOf :NonFunctionalRequirements_QoS .
+
+:Variable        a owl:Class .
+
+:Visibility      a owl:Class .
+
+:Vocabulary  a owl:Class .  # Clase para verificar Dominios de Aplicacion
+                                           # Usando el archivo vocabularydomain.n3
+
+ # Quitar del archivo vocabularydomain.n3 los prefijos y el nombre de la clase
+ #   y ponerlos aqui!
+ #  @prefix      :   <http://www.ejemplo.org/#> .
+ #  @prefix owl:  <http://www.w3.org/2002/07/owl#>.
+ #  :Vocabulary  a owl:Class .
+
+#----------------------------------------------------------------------------------------------
+#-- Data type Properties Declaration ----------------------------------------------------------
+#----------------------------------------------------------------------------------------------
+
+ #-- Component properties ----------------------
+
+  :hasComponentID    a owl:DatatypeProperty .
+     :hasComponentID  rdfs:domain   :ComponentType .
+     :hasComponentID  rdfs:range xsd:string .  
+  :hasNameDomain     a owl:DatatypeProperty .
+     :hasNameDomain   rdfs:domain   :ComponentType .
+     :hasNameDomain   rdfs:range xsd:string .  
+  :hasNameSubDomain    a owl:DatatypeProperty .
+     :hasNameSubDomain rdfs:domain   :ComponentType .
+     :hasNameSubDomain rdfs:range xsd:string .  
+  :hasComponentName    a owl:DatatypeProperty .
+     :hasComponentName  rdfs:domain   :ComponentType .
+     :hasComponentName  rdfs:range xsd:string .  
+  :hasAuthorName       a owl:DatatypeProperty .
+     :hasAuthorName rdfs:domain   :ComponentType .
+     :hasAuthorName rdfs:range xsd:string .  
+  :hasCompanyName      a owl:DatatypeProperty .
+     :hasCompanyName rdfs:domain   :ComponentType .
+     :hasCompanyName rdfs:range xsd:string .  
+  :hasShortDescription a owl:DatatypeProperty .  
+  :hasAddress          a owl:DatatypeProperty .
+  :hasPhone            a owl:DatatypeProperty .
+  :hasFax              a owl:DatatypeProperty .
+  :hasEmail            a owl:DatatypeProperty .
+  :hasWebPage          a owl:DatatypeProperty .
+  :hasVersionDate      a owl:DatatypeProperty .
+  :hasVersionNumber    a owl:DatatypeProperty .
+  :hasRevisionNumber   a owl:DatatypeProperty . 
+  :hasRevisionDate     a owl:DatatypeProperty . 
+  :hasPrice            a owl:DatatypeProperty .
+  :hasNumberOfUsed     a owl:DatatypeProperty .
+
+ #-- Quality of Service (QoS) properties ----------
+
+  :needROM                 a owl:DatatypeProperty .      
+  :needRAM                 a owl:DatatypeProperty .
+  :hasResponseTime    a owl:DatatypeProperty .
+  :hardwarePlataform   a owl:DatatypeProperty .
+  :hasSizeInBytes         a owl:DatatypeProperty .
+
+ #-- Methods and Parameters -----------------------
+
+  :hasMethodName a owl:DatatypeProperty .
+  :hasMethodName  rdfs:domain   :Method .
+  :hasMethodName  rdfs:range xsd:string . 
+
+  :hasNumParameters a owl:DatatypeProperty .
+  :hasNumParameters  rdfs:domain   :Method .
+  :hasNumParameters  rdfs:range xsd:integer .   
+
+  :hasIndexOrder a owl:DatatypeProperty .
+  :hasIndexOrder  rdfs:domain   :Parameter .
+  :hasIndexOrder  rdfs:range xsd:integer .
+
+  :hasOSversion a owl:DatatypeProperty .
+  :hasOSversion  rdfs:domain   :OperatingSystem ;
+                 rdfs:range xsd:integer .
+
+ #-- Contracts, Precondition, Postcondition e Invariant -----------------
+ 
+  :hasPrecond  a owl:ObjectProperty ;
+                rdfs:domain   :Method ;
+                rdfs:range    :Condition ;
+                rdfs:label    "Object Property: :<Method> :hasPostcond :<Condition> ." ;
+                rdfs:comment  ":Deposit :hasPostcond :Condition1 .  ".                                   
+
+  :hasPostcond  a owl:ObjectProperty ;
+                 rdfs:domain   :Method ;
+                 rdfs:range    :Condition ;
+                 rdfs:label    "Object Property: :<Method> :hasPostcond :<Condition> ." ;
+                 rdfs:comment  ":Deposit :hasPostcond :Condition1 .  ".                                      
+
+  :hasInvariant  a owl:ObjectProperty ;     #-- No se puede definir una misma propiedad como Object and Datatype
+                  rdfs:domain   :Method ;                 
+                  rdfs:range    :Condition ;     
+                  rdfs:label    "Object Property: :<Method> :hasInvariant :<Condition> ." ;
+                  rdfs:comment  ":Deposit :hasInvariant :Condition1 .  ".               
+
+  :hasVariable   a owl:ObjectProperty ;        # El Dominio y el Rango pueden ser el mismo, 
+                   rdfs:domain   :Condition ;  # se vuelve recursivo
+                   rdfs:range    :Parameter ;
+                   rdfs:range    :Condition ;
+                   rdfs:range    :Variable .        
+                                 
+ :hasVariable2   a owl:ObjectProperty ;        
+                   rdfs:domain   :Condition ;  
+                   rdfs:range    :Parameter ;
+                   rdfs:range    :Condition ;
+                   rdfs:range    :Variable .                      
+
+   :hasNumber   a owl:DatatypeProperty ;
+                 rdfs:domain   :Condition ;
+                 rdfs:range xsd:integer .
+                
+   :hasOperator  a owl:ObjectProperty ;
+                  rdfs:domain   :Condition ;
+                  rdfs:range    :Operator .   
+
+   :hasCallMethod  a owl:ObjectProperty ;
+                  rdfs:domain   :Condition ;
+                  rdfs:range      :Method .   
+
+   :hasCallMethod2  a owl:ObjectProperty ;
+                  rdfs:domain   :Condition ;
+                  rdfs:range      :Method .   
+
+   :symbolOperator a owl:DatatypeProperty ;
+                  rdfs:domain   :OperatorLogic ;
+                  rdfs:range xsd:string .
+
+   :hasConnector a owl:ObjectProperty ;         # Permite unir 2 condiciones por medio de 
+                  rdfs:domain   :Condition ;            # 1 conector logico and o or
+                  rdfs:range    :OperatorLogic .      # or o and     
+        
+   :hasConstant   a owl:ObjectProperty ;        # Una Invariante o Precondicion puede ser Texto
+                  rdfs:domain     :Condition .         # una constante true, false o empty (cadena vacia)
+                  
+ #-----------------------------------------------   rdfs:range  xsd:string .   
+
+   :hasVarName a owl:ObjectProperty ;
+                rdfs:domain :Condition ; 
+                rdfs:range  :Variable .      
+
+ #-- Interface ----------------------------------------------------------
+
+  :hasNumMethods   a owl:DatatypeProperty ;
+                    rdfs:domain   :Interface ;
+                    rdfs:range xsd:integer .  
+
+  :hasNumParameters a owl:DatatypeProperty ;
+                     rdfs:domain   :Interface ;
+                     rdfs:range xsd:integer .  
+
+  :hasReturnValue a owl:DatatypeProperty ;
+                   rdfs:domain   :Interface ;
+                   rdfs:range xsd:boolean .  
+
+  :optionalParameter a owl:DatatypeProperty ;  
+                      rdfs:domain   :Method ;
+                      rdfs:range xsd:boolean .
+
+ #-- hasNamePattern & hasTypeNamePattern --------------------------------
+
+  :hasNamePattern a owl:DatatypeProperty ; 
+                   rdfs:domain   :ComponentType .
+
+  :hasNameDomain  a owl:DatatypeProperty ;
+                   rdfs:domain   :ComponentType ;
+                  rdfs:range  xsd:string .
+
+  :hasNameSubDomain a owl:DatatypeProperty ;
+                     rdfs:domain   :ComponentType ;
+                     rdfs:range xsd:string .
+
+  :hasNameSubSubDomain a owl:DatatypeProperty ;
+                     rdfs:domain   :ComponentType ;
+                     rdfs:range xsd:string .
+#----------------------------------------------------------------------------------------------
+#-- Object Property Declaration ---------------------------------------------------------------
+#----------------------------------------------------------------------------------------------
+
+  #-- useInterface ---------------------------------
+
+  :useInterface  rdf:type owl:ObjectProperty ;
+                rdfs:domain :Contract ;
+                rdfs:range  :Interface .
+
+  #-- isInterfaceOf ---------------------------------
+
+  :isInterfaceOf rdf:type owl:ObjectProperty ;
+                rdfs:domain :Interface ;
+                rdfs:range  :Component .
+
+  #-- linkParameter ---------------------------------
+
+  :linkParameter rdfs:domain :Parameter ;
+                 rdfs:range  :Parameter ;
+                  rdf:type owl:ObjectProperty .
+
+  :hasContract rdf:type owl:ObjectProperty ;
+              rdfs:domain :Component ;
+              rdfs:range  :Contract ;
+               rdf:type owl:FunctionalProperty .
+
+  :isInstanceOf rdf:type owl:ObjectProperty .
+  :isInstanceOf rdfs:domain :Instance .
+  :isInstanceOf rdfs:range  :Component .
+
+  #-- Parameters -----------------------------------
+
+  :hasDirection rdf:type  owl:ObjectProperty ;
+               rdfs:domain   :Parameter ;
+               rdfs:range    :ParameterDirection .
+
+  :isInputOf rdf:type  owl:ObjectProperty ;
+            rdfs:domain   :Parameter ;
+            rdfs:range   :Parameter .
+
+  :isOutputOf rdf:type owl:ObjectProperty ;
+             rdfs:domain  :Parameter ;
+             rdfs:range   :Parameter .
+
+  #-- typeReturn -----------------------------------
+
+  :typeReturn  rdf:type owl:ObjectProperty ;
+              rdfs:domain  :Method ;
+              rdfs:range   :DataType .
+
+  :hasDataTypeParameter rdf:type owl:ObjectProperty ;
+                rdfs:domain  :Parameter ;
+                rdfs:range   :DataType .
+
+  :typeInterface rdf:type owl:ObjectProperty ;
+                rdfs:domain  :Interface ;
+                rdfs:range   :DataType .
+
+  #-- hasMethod ----------------------------------
+
+  :hasMethod a owl:ObjectProperty ;
+              rdfs:domain :Interface ;
+              rdfs:range  :Method .      
+
+  :hasReturn a owl:ObjectProperty ;
+              rdfs:domain :Method ;
+              rdfs:range  :DataType .             
+
+  :hasVisibility  rdf:type owl:ObjectProperty .
+  :hasVisibility rdfs:domain  :Method .
+  :hasVisibility rdfs:domain  :Interface .
+  :hasVisibility rdfs:range   :Visibility .
+
+  :hasMatch  rdf:type owl:ObjectProperty .    #-- It is a Object Property. FunctionalProperty only 1 value accept
+  :hasMatch rdfs:domain :Interface .          #-- Its domain is an Interface
+  :hasMatch rdfs:range  :Interface .          #-- Its range is an Interface
+  :hasMatch rdf:type owl:TransitiveProperty . #-- A match B and B match C => A match C
+  :hasMatch rdf:type owl:SymmetricProperty .  #-- A match B => B match A
+  
+  :hasInstance a owl:ObjectProperty .
+  :hasInstance  rdfs:domain :Component .
+  :hasInstance  rdfs:range  :Instance .
+
+  :hasInterface a owl:ObjectProperty .
+  :hasInterface  rdfs:domain :Component .
+  :hasInterface  rdfs:range  :Interface .
+
+  :hasParameter a owl:ObjectProperty .
+  :hasParameter  rdfs:domain :Method .
+  :hasParameter  rdfs:range  :Parameter .
+
+ 
+ 
+
+############################## Codigo del Archivo Ontologia: Genera_Provider_4-0.n3 #######################
+
+:componentprovider a :ComponentType .
+:componentprovider :hasDomain :xp .
+:componentprovider :hasSubDomain :yp .
+:iprovider  a :Interface .
+:iprovider  :typeInterface :provided .
+:componentprovider  :hasInterface :iprovider .
+:iprovider  :hasMethod :iniciagraficos .
+:iniciagraficos  :hasMethodName "iniciagraficos" .
+:iniciagraficos  a :Method .
+:iniciagraficos  :typeReturn :void.
+:iniciagraficos  :hasParameter  :modo .
+:modo  :hasDirection  :in .
+:short a :Short .
+:modo  :hasDataTypeParameter  :short .
+:modo  :hasIndexOrder  1 .
+:iniciagraficos  :hasNumParameters  1 .
+:condition1  a :Condition .
+:iniciagraficos  :hasPrecond :condition1 .
+:condition1   :hasVariable :modo .
+:condition1  :hasOperator :equals .
+:condition1   :hasNumber 27 .
+:condition2  a :Condition .
+:iniciagraficos  :hasPostcond :condition2 .
+:condition2   :hasVariable :modo .
+:condition2  :hasOperator :greater_than_or_equal_to .
+:condition2   :hasNumber 4314 .
+:iprovider  :hasMethod :shortextxy .
+:shortextxy  :hasMethodName "shortextxy" .
+:shortextxy  a :Method .
+:shortextxy  :typeReturn :void.
+:shortextxy  :hasParameter  :x .
+:x  :hasDirection  :in .
+:short a :Short .
+:x  :hasDataTypeParameter  :short .
+:x  :hasIndexOrder  1 .
+:shortextxy  :hasParameter  :y .
+:y  :hasDirection  :in .
+:short a :Short .
+:y  :hasDataTypeParameter  :short .
+:y  :hasIndexOrder  2 .
+:shortextxy  :hasParameter  :num .
+:num  :hasDirection  :in .
+:char a :Char .
+:num  :hasDataTypeParameter  :char .
+:num  :hasIndexOrder  3 .
+:shortextxy  :hasParameter  :collet .
+:collet  :hasDirection  :in .
+:short a :Short .
+:collet  :hasDataTypeParameter  :short .
+:collet  :hasIndexOrder  4 .
+:shortextxy  :hasParameter  :colorfon .
+:colorfon  :hasDirection  :in .
+:short a :Short .
+:colorfon  :hasDataTypeParameter  :short .
+:colorfon  :hasIndexOrder  5 .
+:shortextxy  :hasParameter  :tam .
+:tam  :hasDirection  :in .
+:short a :Short .
+:tam  :hasDataTypeParameter  :short .
+:tam  :hasIndexOrder  6 .
+:shortextxy  :hasNumParameters  6 .
+:condition3  a :Condition .
+:shortextxy  :hasPrecond :condition3 .
+:condition3   :hasVariable :tam .
+:condition3  :hasOperator :equals .
+:condition3   :hasNumber 77 .
+:condition4  a :Condition .
+:shortextxy  :hasPostcond :condition4 .
+:condition4   :hasVariable :collet .
+:condition4  :hasOperator :greater_than_or_equal_to .
+:condition4   :hasNumber 3599 .
+:iprovider  :hasMethod :eliminapoli .
+:eliminapoli  :hasMethodName "eliminapoli" .
+:eliminapoli  a :Method .
+:eliminapoli  :typeReturn :short.
+:eliminapoli  :hasParameter  :b .
+:b  :hasDirection  :out .
+:char a :Char .
+:b  :hasDataTypeParameter  :char .
+:b  :hasIndexOrder  1 .
+:eliminapoli  :hasNumParameters  1 .
+:condition5  a :Condition .
+:eliminapoli  :hasPrecond :condition5 .
+:condition5   :hasVariable :b .
+:condition5  :hasOperator :less_than_or_equal_to .
+:condition5   :hasNumber 92 .
+:condition6  a :Condition .
+:eliminapoli  :hasPostcond :condition6 .
+:condition6   :hasVariable :b .
+:condition6  :hasOperator :equals .
+:condition6   :hasNumber 1753 .
+:iprovider  :hasMethod :insertadatb .
+:insertadatb  :hasMethodName "insertadatb" .
+:insertadatb  a :Method .
+:insertadatb  :typeReturn :short.
+:insertadatb  :hasParameter  :a .
+:a  :hasDirection  :out .
+:char a :Char .
+:a  :hasDataTypeParameter  :char .
+:a  :hasIndexOrder  1 .
+:insertadatb  :hasParameter  :c .
+:c  :hasDirection  :out .
+:float a :Float .
+:c  :hasDataTypeParameter  :float .
+:c  :hasIndexOrder  2 .
+:insertadatb  :hasParameter  :e .
+:e  :hasDirection  :in .
+:double a :Double .
+:e  :hasDataTypeParameter  :double .
+:e  :hasIndexOrder  3 .
+:insertadatb  :hasNumParameters  3 .
+:condition7  a :Condition .
+:insertadatb  :hasPrecond :condition7 .
+:condition7   :hasVariable :a .
+:condition7   :hasOperator :greater_than .
+:condition7   :hasNumber 35 .
+:condition8  a :Condition .
+:insertadatb  :hasPostcond :condition8 .
+:condition8   :hasVariable :e .
+:condition8  :hasOperator :not_equal_to .
+:condition8   :hasNumber 128 .
+:iprovider  :hasNumMethods 4 .
+
+############################## Codigo del Archivo Ontologia: Genera_Required_4-0.n3 #######################
+
+:componentrequired a :ComponentType .
+:componentrequired :hasDomain :xr .
+:componentrequired :hasSubDomain :yr .
+:irequired  a :Interface .
+:irequired  :typeInterface :required .
+:componentrequired  :hasInterface :irequired .
+:irequired  :hasMethod :iniciagraficos .
+:iniciagraficos  :hasMethodName "iniciagraficos" .
+:iniciagraficos  a :Method .
+:iniciagraficos  :typeReturn :void.
+:iniciagraficos  :hasParameter  :modo .
+:modo  :hasDirection  :in .
+:short a :Short .
+:modo  :hasDataTypeParameter  :short .
+:modo  :hasIndexOrder  1 .
+:iniciagraficos  :hasNumParameters  1 .
+:condition9  a :Condition .
+:iniciagraficos  :hasPrecond :condition9 .
+:condition9   :hasVariable :modo .
+:condition9  :hasOperator :less_than .
+:condition9   :hasNumber 71 .
+:condition10  a :Condition .
+:iniciagraficos  :hasPostcond :condition10 .
+:condition10   :hasVariable :modo .
+:condition10  :hasOperator :not_equal_to .
+:condition10   :hasNumber 2008 .
+:irequired  :hasMethod :shortextxy .
+:shortextxy  :hasMethodName "shortextxy" .
+:shortextxy  a :Method .
+:shortextxy  :typeReturn :void.
+:shortextxy  :hasParameter  :x .
+:x  :hasDirection  :in .
+:short a :Short .
+:x  :hasDataTypeParameter  :short .
+:x  :hasIndexOrder  1 .
+:shortextxy  :hasParameter  :y .
+:y  :hasDirection  :in .
+:short a :Short .
+:y  :hasDataTypeParameter  :short .
+:y  :hasIndexOrder  2 .
+:shortextxy  :hasParameter  :num .
+:num  :hasDirection  :in .
+:char a :Char .
+:num  :hasDataTypeParameter  :char .
+:num  :hasIndexOrder  3 .
+:shortextxy  :hasParameter  :collet .
+:collet  :hasDirection  :in .
+:short a :Short .
+:collet  :hasDataTypeParameter  :short .
+:collet  :hasIndexOrder  4 .
+:shortextxy  :hasParameter  :colorfon .
+:colorfon  :hasDirection  :in .
+:short a :Short .
+:colorfon  :hasDataTypeParameter  :short .
+:colorfon  :hasIndexOrder  5 .
+:shortextxy  :hasParameter  :tam .
+:tam  :hasDirection  :in .
+:short a :Short .
+:tam  :hasDataTypeParameter  :short .
+:tam  :hasIndexOrder  6 .
+:shortextxy  :hasNumParameters  6 .
+:condition11  a :Condition .
+:shortextxy  :hasPrecond :condition11 .
+:condition11   :hasVariable :y .
+:condition11  :hasOperator :equals .
+:condition11   :hasNumber 16 .
+:condition12  a :Condition .
+:shortextxy  :hasPostcond :condition12 .
+:condition12   :hasVariable :num .
+:condition12  :hasOperator :not_equal_to .
+:condition12   :hasNumber 765 .
+:irequired  :hasMethod :eliminapoli .
+:eliminapoli  :hasMethodName "eliminapoli" .
+:eliminapoli  a :Method .
+:eliminapoli  :typeReturn :short.
+:eliminapoli  :hasParameter  :b .
+:b  :hasDirection  :out .
+:char a :Char .
+:b  :hasDataTypeParameter  :char .
+:b  :hasIndexOrder  1 .
+:eliminapoli  :hasNumParameters  1 .
+:condition13  a :Condition .
+:eliminapoli  :hasPrecond :condition13 .
+:condition13   :hasVariable :b .
+:condition13  :hasOperator :equals .
+:condition13   :hasNumber 47 .
+:condition14  a :Condition .
+:eliminapoli  :hasPostcond :condition14 .
+:condition14   :hasVariable :b .
+:condition14  :hasOperator :less_than_or_equal_to .
+:condition14   :hasNumber 178 .
+:irequired  :hasMethod :insertadatb .
+:insertadatb  :hasMethodName "insertadatb" .
+:insertadatb  a :Method .
+:insertadatb  :typeReturn :short.
+:insertadatb  :hasParameter  :a .
+:a  :hasDirection  :out .
+:char a :Char .
+:a  :hasDataTypeParameter  :char .
+:a  :hasIndexOrder  1 .
+:insertadatb  :hasParameter  :c .
+:c  :hasDirection  :out .
+:float a :Float .
+:c  :hasDataTypeParameter  :float .
+:c  :hasIndexOrder  2 .
+:insertadatb  :hasParameter  :e .
+:e  :hasDirection  :in .
+:double a :Double .
+:e  :hasDataTypeParameter  :double .
+:e  :hasIndexOrder  3 .
+:insertadatb  :hasNumParameters  3 .
+:condition15  a :Condition .
+:insertadatb  :hasPrecond :condition15 .
+:condition15   :hasVariable :a .
+:condition15  :hasOperator :less_than_or_equal_to .
+:condition15   :hasNumber 6 .
+:condition16  a :Condition .
+:insertadatb  :hasPostcond :condition16 .
+:condition16   :hasVariable :a .
+:condition16  :hasOperator :less_than .
+:condition16   :hasNumber 1253 .
+:irequired  :hasNumMethods 4 .

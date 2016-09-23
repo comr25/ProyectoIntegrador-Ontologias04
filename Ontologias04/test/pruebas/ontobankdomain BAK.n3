@@ -1,0 +1,190 @@
+#  ***************************************************************************************************
+#
+#  A Domain Bank Core Ontology
+#  --------------------------------------------
+#
+#  Original author    Francisco Edgar Castillo Barrera, University of San Luis Potosi, Mexico
+#  Ontology domain    Banks
+#  Author email       ecastillo@uaslp.mx
+#  Language           RDFS (RDF Schema Resource Description Framework)
+#  Created            03-April-2012
+#  Filename           ontobankdomain.n3
+#  Revision             1.0
+#  Release status     revision
+# 
+#  Last modified on   Date: 07/April/2012 20:52:00
+#                by   Francisco Edgar Castillo Barrera
+# 
+#  Run        C:>pellet consistency --loader jena ontobankdomain.n3
+#
+#  (c) Copyright 2012, Francisco Edgar Castillo Barrera 
+#  (see footer for full conditions)
+#
+#  http://vocab.tv/vocabulario-en-ingles-los-bancos-las-finanzas-y-el-dinero
+#  http://www.economia48.com/spa/d/cajero-automatico/cajero-automatico.htm
+#
+#  Ontologia de Dominio de un banco Rumbaught 91
+#
+# *****************************************************************************************************
+
+
+#bank account 	cuenta bancaria
+#current account 	cuenta corriente
+#savings account 	cuenta de ahorros
+#debtor 	 	deudor
+#creditor 	acreedor
+#loan 	 	préstamo
+#debt 	 	deuda
+#check 	 	cheque
+#bank clerk 	empleado bancario
+#teller 	 	cajero
+#banker 	 	banquero
+#window 	 	ventanilla
+#line 	 	cola (de gente)
+#interests  	intereses
+#credit 		crédito
+#debit 	 	débito
+#cash 	 	dinero en efectivo
+#mortgage 	hipoteca
+#deposit 	 	depósito
+#foreign currency 	moneda extranjera
+#safe 	 	caja fuerte
+#ATM 	 	cajero electrónico
+
+  #  apply for a credit card
+   # buy traveler's checks
+  #  cash a check
+  #  check your account balance
+  #  deposit money
+  #  exchange money
+  #  fill out a withdraw slip           llenar una ficha de retiro
+   # open a checking account
+  #  open a savings account
+  #  order checks
+  #  pay off a loan                         Pagar un prestamo
+  #  pay your bills online              Pagar tus cuentas en linea
+  #  rent a safety deposit box
+  #  review your bank statement
+  #  take out a loan
+  #  talk with a bank teller
+  #  talk with the bank manager
+  #  transfer money
+  #  use a debit card
+  #  withdraw money  
+  #
+  # Take out : Pedir dinero prestado a un banco y retirarlo
+  # loan : Prestamo 
+  #
+  # CLientes, Empleados, Sucursales, Cajeros, Cajeros Automaticos, Operaciones (retiros, depositos, transferencias),
+  # Cuentas Bancarias (Debito, DeCheques, Ahorro), Tarjetas (Credito, Debito, Ahorro, Otras).
+  # Cuenta, Cajero Automático, Banco, Computadora de banco, Tarjeta de Credito, Cajero, Terminal de Cajero, 
+  #  Computadora Central, Consorcio, Cliente, Transacción, Clientes, Empleados un Cajero es un empliado, 
+  #   tiene un gerente. Una Cliente tiene un NumeroCuenta. Creditos, Inversiones, Tarjetas de Crédito, Seguros,
+  #    Servicios. Tipos de cuenta (ahorro,nomina, otras)
+
+
+#------ PREFIX ---------------------------------
+
+@prefix      :   <http://www.ejemplo.org/#> .
+
+@prefix owl:  <http://www.w3.org/2002/07/owl#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+
+
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+#-- Declaration of Classes ----------------------
+# El dominio debe incluir el vocabulario para las tareas permitidas en el
+# y el nombre de las entidades participantes (lugares, objetos, personas,etc)
+
+:BankVocabulary  a owl:Class .
+:Bank                    a owl:Class .
+:Atm                     a owl:Class .
+:BankBranch        a owl:Class .
+:Client                  a owl:Class .
+:Employee            a owl:Class .
+:Count                 a owl:Class .
+           :Check      rdfs:subClassOf :Count .
+:Cashier               a owl:Class .
+:Card                   a owl:Class .
+    :CreditCard   rdfs:subClassOf :Card .
+    :DebitCard    rdfs:subClassOf :Card .
+    :SavingCard  rdfs:subClassOf :Card .
+
+#-- Declaration of Object Properties ------------------
+
+:hasClient a owl:ObjectProperty ;
+                  rdfs:domain   :Bank ;
+                  rdfs:range      :Client .
+       
+:hasCashier a owl:ObjectProperty ;
+                  rdfs:domain   :Bank ;
+                  rdfs:range      :Cashier .    
+
+:hasAtm a owl:ObjectProperty ;
+                  rdfs:domain   :Bank ;
+                  rdfs:range      :Atm .  
+
+:hasEmployee a owl:ObjectProperty ;
+                  rdfs:domain   :Bank ;
+                  rdfs:range      :Employee .  
+
+:hasCard a owl:ObjectProperty ;
+                  rdfs:domain   :Client ;
+                  rdfs:range      :Card .  
+
+:hasCount a owl:ObjectProperty ;
+                  rdfs:domain   :Client ;
+                  rdfs:range      :Count .  
+
+#-- Declaration of Datatype Properties --------------
+
+:hasName   a owl:DatatypeProperty ;
+            rdfs:domain     :Bank ;
+            rdfs:domain     :Client ;
+            rdfs:domain     :Card ;
+            rdfs:range   xsd:string . 
+
+#-- Declaration of Instances ------------------------------------------
+
+:bank            a :BankVocabulary .
+:ATM             a :BankVocabulary .
+:Atm             a :BankVocabulary .
+:cashier        a :BankVocabulary .
+:client           a :BankVocabulary .
+:bankbranch a :BankVocabulary .
+:teller            a :BankVocabulary .
+:card             a :BankVocabulary .
+:money         a :BankVocabulary .
+:balance        a :BankVocabulary .
+
+:banco                    a :BankVocabulary .
+:cliente                   a :BankVocabulary .
+:sucursales            a :BankVocabulary .
+:cajero                   a :BankVocabulary .
+:cajeroautomatico a :BankVocabulary .
+:tarjeta                   a :BankVocabulary .
+:dinero                   a :BankVocabulary .
+:saldo                     a :BankVocabulary .
+
+
+:bankmex a :Bank .
+:mexbank a :Bank .
+:edgar      a :Client .
+:luis         a :Employee .
+:tarjeta1   a :CreditCard .
+:atm1       a :Atm .
+:cuenta1  a  :Count .
+
+#-- Declaration of Roles ------------------------------------------
+
+:bankmex  :hasName "Banco de Mexico"^^xsd:string .
+:mexbank  :hasName "Banco Mexicano"^^xsd:string .
+:mexbank  :hasEmployee :luis .
+:edgar       :hasName "Edgar Castillo Barrera"^^xsd:string .
+:tarjeta1    :hasName "Oro"^^xsd:string .
+
+:bankmex :hasClient :edgar .
+:atm1 :hasScreen
+:atm1 :hasKeyboard
+:atm1 : hasLectureCard

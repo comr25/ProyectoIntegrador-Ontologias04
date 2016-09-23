@@ -1,0 +1,44 @@
+# Autor: Francisco Edgar Castillo Barrera
+#
+# Copyright(c) 05-August-2012
+#
+# C:>pellet consistency --loader jena atmfullonto.n3
+# c:>pellet query -q signatureverification.sparql atmfullonto.n3
+#
+# Uso de funciones anidadas y uso del BIND para CONTRATOS
+
+PREFIX     : <http://www.ejemplo.org/#> 
+PREFIX  rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+PREFIX  owl: <http://www.w3.org/2002/07/owl#> 
+PREFIX  xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX   fn: <http://www.w3.org/2005/xpath-functions#>
+
+SELECT DISTINCT ?Interface1 ?Interface2 ?NumParameters ?MethodName ?TypeMatch ?MatchPosition WHERE    
+{  
+  ?Interface1  :typeInterface :required ;
+                      :hasMethod    _:a .
+  _:a               :hasParameter  ?par1 ;
+                     :hasMethodName ?Method ;  
+                     :hasNumParameters ?numpar1 .
+  ?par1          :hasIndexOrder ?pos1 ;
+                     :hasDataTypeParameter ?partype1 .
+
+  ?Interface2  :typeInterface :provided .
+
+
+  # ?Interface2  :hasMatch ?interface1 . 
+
+
+  ?Interface2  :hasMethod     _:b .
+  _:b               :hasParameter  ?par2 ;
+                     :hasMethodName ?name2 ;
+                     :hasNumParameters ?numpar2 .
+  ?par2          :hasIndexOrder ?pos2 ; 
+                     :hasDataTypeParameter ?partype2 .
+ 
+  BIND(if( ?name2 = ?Method, fn:substring(?name2,1,fn:string-length(?name2)), "No match name! ") AS ?MethodName)  
+  BIND(if( ?pos1 = ?pos2, ?pos1, "No match position! ") AS ?MatchPosition)
+  BIND(if( ?numpar1 = ?numpar2, ?numpar1, "No match number! ") AS ?NumParameters)
+  BIND(if( ?partype1 = ?partype2, ?partype1, "No match type! ") AS ?TypeMatch)
+  
+} order by ?Method

@@ -1,0 +1,2953 @@
+@prefix       : <http://www.ejemplo.org/#> .
+@prefix  owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix  xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix  rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+
+: a owl:Ontology ;
+   rdfs:comment "A ATM Ontology for matching among components in ATM model" .
+
+#-----------------------------------------------------------------------------------------------
+#-- Declaration of Classes ---------------------------------------------------------------------
+#-----------------------------------------------------------------------------------------------
+
+:Context       a owl:Class .
+
+:Condition     a owl:Class ;
+                rdfs:label   "Class: Condition used by Pre, Post and Invariant" ;
+                rdfs:comment "Condition".                 
+
+:ComponentType a owl:Class ;
+                rdfs:label   "Class: Instances of Component Type" ;
+                rdfs:comment "Instances of Components";
+                rdfs:subClassOf   
+                     [ a owl:Restriction ;
+                         owl:onProperty :hasInterface ;  # Restriccion sobre el numero de interfases
+                         owl:minCardinality 1 ] .             # Un componente tiene minimo 1 interfaz
+
+
+# Modificar los tipos de la ontologia a los Tipos de CORBA-IDL+
+:DataType        a owl:Class .
+   :BasicType rdfs:subClassOf :DataType .         
+       :Null        rdfs:subClassOf :BasicType .
+       :Void        rdfs:subClassOf :BasicType .
+       :Boolean     rdfs:subClassOf :BasicType .
+            :False     rdfs:subClassOf :Boolean .
+            :True     rdfs:subClassOf :Boolean .
+       :Char          rdfs:subClassOf :BasicType .
+       :Double      rdfs:subClassOf :BasicType .       
+          :Float       rdfs:subClassOf :Double .
+       :Long        rdfs:subClassOf :BasicType .
+          :Integer     rdfs:subClassOf :Long .
+          :Short       rdfs:subClassOf :Integer .
+          :Byte        rdfs:subClassOf :Short .
+   :StructuredType rdfs:subClassOf :DataType .
+       :List        rdfs:subClassOf :StructuredType .
+       :Array       rdfs:subClassOf :StructuredType .
+   :AnotherType rdfs:subClassOf :DataType .
+
+:Domain    a owl:Class .
+     :Multimedia    rdfs:subClassOf :Domain .
+
+:Instance  a owl:Class .
+
+:Interface a owl:Class .
+
+:Interface rdfs:subClassOf 
+       [ a owl:Restriction ;
+           owl:onProperty :hasNumMethods ;
+           owl:minCardinality 1 ] .             # Restriccion sobre el numero de interfases   
+     :Provided    rdfs:subClassOf :Interface .
+     :Required    rdfs:subClassOf :Interface .
+     :Provided    owl:disjointWith :Required .
+     :Required    owl:disjointWith :Provided .
+
+:Method          a owl:Class .
+
+:Operator        a owl:Class .
+
+:OperatorLogic   a owl:Class .
+
+:Parameter       a owl:Class .
+
+:ParameterDirection    a owl:Class .
+     :Input       rdfs:subClassOf :ParameterDirection .
+     :OutPut      rdfs:subClassOf :ParameterDirection .
+     :InputOutput rdfs:subClassOf :ParameterDirection .      
+     
+:Pattern         a owl:Class .
+     :ArchitecturalPattern  rdfs:subClassOf :Pattern .
+     :DesignPattern         rdfs:subClassOf :Pattern .
+
+:Return          a owl:Class .
+
+:Requirements    a owl:Class .
+     :FunctionalRequirements        rdfs:subClassOf :Requirements .
+     :NonFunctionalRequirements_QoS rdfs:subClassOf :Requirements .
+     :AnswerTime        rdfs:subClassOf :NonFunctionalRequirements_QoS .
+     :ExecutionTime    rdfs:subClassOf :NonFunctionalRequirements_QoS .
+     :MemoryResource rdfs:subClassOf :NonFunctionalRequirements_QoS .
+     :Performance        rdfs:subClassOf :NonFunctionalRequirements_QoS .
+     :QoSAttribute       rdfs:subClassOf :NonFunctionalRequirements_QoS .
+     :QoSMetric           rdfs:subClassOf :NonFunctionalRequirements_QoS .
+     :Security              rdfs:subClassOf :NonFunctionalRequirements_QoS .
+
+:Variable        a owl:Class .
+
+:Visibility      a owl:Class .
+
+:Vocabulary  a owl:Class .  # Clase para verificar Dominios de Aplicacion
+                                           # Usando el archivo vocabularydomain.n3
+
+ # Quitar del archivo vocabularydomain.n3 los prefijos y el nombre de la clase
+ #   y ponerlos aqui!
+ #  @prefix      :   <http://www.ejemplo.org/#> .
+ #  @prefix owl:  <http://www.w3.org/2002/07/owl#>.
+ #  :Vocabulary  a owl:Class .
+
+#----------------------------------------------------------------------------------------------
+#-- Data type Properties Declaration ----------------------------------------------------------
+#----------------------------------------------------------------------------------------------
+
+ #-- Component properties ----------------------
+
+  :hasComponentID    a owl:DatatypeProperty .
+     :hasComponentID  rdfs:domain   :ComponentType .
+     :hasComponentID  rdfs:range xsd:string .  
+  :hasNameDomain     a owl:DatatypeProperty .
+     :hasNameDomain   rdfs:domain   :ComponentType .
+     :hasNameDomain   rdfs:range xsd:string .  
+  :hasNameSubDomain    a owl:DatatypeProperty .
+     :hasNameSubDomain rdfs:domain   :ComponentType .
+     :hasNameSubDomain rdfs:range xsd:string .  
+  :hasComponentName    a owl:DatatypeProperty .
+     :hasComponentName  rdfs:domain   :ComponentType .
+     :hasComponentName  rdfs:range xsd:string .  
+  :hasAuthorName       a owl:DatatypeProperty .
+     :hasAuthorName rdfs:domain   :ComponentType .
+     :hasAuthorName rdfs:range xsd:string .  
+  :hasCompanyName      a owl:DatatypeProperty .
+     :hasCompanyName rdfs:domain   :ComponentType .
+     :hasCompanyName rdfs:range xsd:string .  
+  :hasShortDescription a owl:DatatypeProperty .  
+  :hasAddress          a owl:DatatypeProperty .
+  :hasPhone            a owl:DatatypeProperty .
+  :hasFax              a owl:DatatypeProperty .
+  :hasEmail            a owl:DatatypeProperty .
+  :hasWebPage          a owl:DatatypeProperty .
+  :hasVersionDate      a owl:DatatypeProperty .
+  :hasVersionNumber    a owl:DatatypeProperty .
+  :hasRevisionNumber   a owl:DatatypeProperty . 
+  :hasRevisionDate     a owl:DatatypeProperty . 
+  :hasPrice            a owl:DatatypeProperty .
+  :hasNumberOfUsed     a owl:DatatypeProperty .
+
+ #-- Quality of Service (QoS) properties ----------
+
+  :needROM                 a owl:DatatypeProperty .      
+  :needRAM                 a owl:DatatypeProperty .
+  :hasResponseTime    a owl:DatatypeProperty .
+  :hardwarePlataform   a owl:DatatypeProperty .
+  :hasSizeInBytes         a owl:DatatypeProperty .
+
+ #-- Methods and Parameters -----------------------
+
+  :hasMethodName a owl:DatatypeProperty .
+  :hasMethodName  rdfs:domain   :Method .
+  :hasMethodName  rdfs:range xsd:string . 
+
+  :hasNumParameters a owl:DatatypeProperty .
+  :hasNumParameters  rdfs:domain   :Method .
+  :hasNumParameters  rdfs:range xsd:integer .   
+
+  :hasIndexOrder a owl:DatatypeProperty .
+  :hasIndexOrder  rdfs:domain   :Parameter .
+  :hasIndexOrder  rdfs:range xsd:integer .
+
+  :hasOSversion a owl:DatatypeProperty .
+  :hasOSversion  rdfs:domain   :OperatingSystem ;
+                 rdfs:range xsd:integer .
+
+ #-- Contracts, Precondition, Postcondition e Invariant -----------------
+ 
+  :hasPrecond  a owl:ObjectProperty ;
+                rdfs:domain   :Method ;
+                rdfs:range    :Condition ;
+                rdfs:label    "Object Property: :<Method> :hasPostcond :<Condition> ." ;
+                rdfs:comment  ":Deposit :hasPostcond :Condition1 .  ".                                   
+
+  :hasPostcond  a owl:ObjectProperty ;
+                 rdfs:domain   :Method ;
+                 rdfs:range    :Condition ;
+                 rdfs:label    "Object Property: :<Method> :hasPostcond :<Condition> ." ;
+                 rdfs:comment  ":Deposit :hasPostcond :Condition1 .  ".                                      
+
+  :hasInvariant  a owl:ObjectProperty ;     #-- No se puede definir una misma propiedad como Object and Datatype
+                  rdfs:domain   :Method ;                 
+                  rdfs:range    :Condition ;     
+                  rdfs:label    "Object Property: :<Method> :hasInvariant :<Condition> ." ;
+                  rdfs:comment  ":Deposit :hasInvariant :Condition1 .  ".               
+
+  :hasVariable   a owl:ObjectProperty ;        # El Dominio y el Rango pueden ser el mismo, 
+                   rdfs:domain   :Condition ;  # se vuelve recursivo
+                   rdfs:range    :Parameter ;
+                   rdfs:range    :Condition ;
+                   rdfs:range    :Variable .        
+                                 
+ :hasVariable2   a owl:ObjectProperty ;        
+                   rdfs:domain   :Condition ;  
+                   rdfs:range    :Parameter ;
+                   rdfs:range    :Condition ;
+                   rdfs:range    :Variable .                      
+
+   :hasNumber   a owl:DatatypeProperty ;
+                 rdfs:domain   :Condition ;
+                 rdfs:range xsd:integer .
+                
+   :hasOperator  a owl:ObjectProperty ;
+                  rdfs:domain   :Condition ;
+                  rdfs:range    :Operator .   
+
+   :hasCallMethod  a owl:ObjectProperty ;
+                  rdfs:domain   :Condition ;
+                  rdfs:range      :Method .   
+
+   :hasCallMethod2  a owl:ObjectProperty ;
+                  rdfs:domain   :Condition ;
+                  rdfs:range      :Method .   
+
+   :symbolOperator a owl:DatatypeProperty ;
+                  rdfs:domain   :OperatorLogic ;
+                  rdfs:range xsd:string .
+
+   :hasConnector a owl:ObjectProperty ;         # Permite unir 2 condiciones por medio de 
+                  rdfs:domain   :Condition ;            # 1 conector logico and o or
+                  rdfs:range    :OperatorLogic .      # or o and     
+        
+   :hasConstant   a owl:ObjectProperty ;        # Una Invariante o Precondicion puede ser Texto
+                  rdfs:domain     :Condition .         # una constante true, false o empty (cadena vacia)
+                  
+ #-----------------------------------------------   rdfs:range  xsd:string .   
+
+   :hasVarName a owl:ObjectProperty ;
+                rdfs:domain :Condition ; 
+                rdfs:range  :Variable .      
+
+ #-- Interface ----------------------------------------------------------
+
+  :hasNumMethods   a owl:DatatypeProperty ;
+                    rdfs:domain   :Interface ;
+                    rdfs:range xsd:integer .  
+
+  :hasNumParameters a owl:DatatypeProperty ;
+                     rdfs:domain   :Interface ;
+                     rdfs:range xsd:integer .  
+
+  :hasReturnValue a owl:DatatypeProperty ;
+                   rdfs:domain   :Interface ;
+                   rdfs:range xsd:boolean .  
+
+  :optionalParameter a owl:DatatypeProperty ;  
+                      rdfs:domain   :Method ;
+                      rdfs:range xsd:boolean .
+
+ #-- hasNamePattern & hasTypeNamePattern --------------------------------
+
+  :hasNamePattern a owl:DatatypeProperty ; 
+                   rdfs:domain   :ComponentType .
+
+  :hasNameDomain  a owl:DatatypeProperty ;
+                   rdfs:domain   :ComponentType ;
+                  rdfs:range  xsd:string .
+
+  :hasNameSubDomain a owl:DatatypeProperty ;
+                     rdfs:domain   :ComponentType ;
+                     rdfs:range xsd:string .
+
+  :hasNameSubSubDomain a owl:DatatypeProperty ;
+                     rdfs:domain   :ComponentType ;
+                     rdfs:range xsd:string .
+#----------------------------------------------------------------------------------------------
+#-- Object Property Declaration ---------------------------------------------------------------
+#----------------------------------------------------------------------------------------------
+
+  #-- useInterface ---------------------------------
+
+  :useInterface  rdf:type owl:ObjectProperty ;
+                rdfs:domain :Contract ;
+                rdfs:range  :Interface .
+
+  #-- isInterfaceOf ---------------------------------
+
+  :isInterfaceOf rdf:type owl:ObjectProperty ;
+                rdfs:domain :Interface ;
+                rdfs:range  :Component .
+
+  #-- linkParameter ---------------------------------
+
+  :linkParameter rdfs:domain :Parameter ;
+                 rdfs:range  :Parameter ;
+                  rdf:type owl:ObjectProperty .
+
+  :hasContract rdf:type owl:ObjectProperty ;
+              rdfs:domain :Component ;
+              rdfs:range  :Contract ;
+               rdf:type owl:FunctionalProperty .
+
+  :isInstanceOf rdf:type owl:ObjectProperty .
+  :isInstanceOf rdfs:domain :Instance .
+  :isInstanceOf rdfs:range  :Component .
+
+  #-- Parameters -----------------------------------
+
+  :hasDirection rdf:type  owl:ObjectProperty ;
+               rdfs:domain   :Parameter ;
+               rdfs:range    :ParameterDirection .
+
+  :isInputOf rdf:type  owl:ObjectProperty ;
+            rdfs:domain   :Parameter ;
+            rdfs:range   :Parameter .
+
+  :isOutputOf rdf:type owl:ObjectProperty ;
+             rdfs:domain  :Parameter ;
+             rdfs:range   :Parameter .
+
+  #-- typeReturn -----------------------------------
+
+  :typeReturn  rdf:type owl:ObjectProperty ;
+              rdfs:domain  :Method ;
+              rdfs:range   :DataType .
+
+  :hasDataTypeParameter rdf:type owl:ObjectProperty ;
+                rdfs:domain  :Parameter ;
+                rdfs:range   :DataType .
+
+  :typeInterface rdf:type owl:ObjectProperty ;
+                rdfs:domain  :Interface ;
+                rdfs:range   :DataType .
+
+  #-- hasMethod ----------------------------------
+
+  :hasMethod a owl:ObjectProperty ;
+              rdfs:domain :Interface ;
+              rdfs:range  :Method .      
+
+  :hasReturn a owl:ObjectProperty ;
+              rdfs:domain :Method ;
+              rdfs:range  :DataType .             
+
+  :hasVisibility  rdf:type owl:ObjectProperty .
+  :hasVisibility rdfs:domain  :Method .
+  :hasVisibility rdfs:domain  :Interface .
+  :hasVisibility rdfs:range   :Visibility .
+
+  :hasMatch  rdf:type owl:ObjectProperty .    #-- It is a Object Property. FunctionalProperty only 1 value accept
+  :hasMatch rdfs:domain :Interface .          #-- Its domain is an Interface
+  :hasMatch rdfs:range  :Interface .          #-- Its range is an Interface
+  :hasMatch rdf:type owl:TransitiveProperty . #-- A match B and B match C => A match C
+  :hasMatch rdf:type owl:SymmetricProperty .  #-- A match B => B match A
+  
+  :hasInstance a owl:ObjectProperty .
+  :hasInstance  rdfs:domain :Component .
+  :hasInstance  rdfs:range  :Instance .
+
+  :hasInterface a owl:ObjectProperty .
+  :hasInterface  rdfs:domain :Component .
+  :hasInterface  rdfs:range  :Interface .
+
+  :hasParameter a owl:ObjectProperty .
+  :hasParameter  rdfs:domain :Method .
+  :hasParameter  rdfs:range  :Parameter .
+
+ 
+ 
+
+############################## Codigo del Archivo Ontologia: Genera_Requeried_50_60-40.n3 #######################
+
+:componentrequired a :ComponentType .
+:componentrequired :hasDomain :xr .
+:componentrequired :hasSubDomain :yr .
+:irequired  a :Interface .
+:irequired  :typeInterface :required .
+:componentrequired  :hasInterface :irequired .
+:irequired  :hasMethod :iniciagraficos .
+:iniciagraficos  :hasMethodName "iniciagraficos" .
+:iniciagraficos  a :Method .
+:iniciagraficos  :typeReturn :void.
+:iniciagraficos  :hasParameter  :modo .
+:modo  :hasDirection  :in .
+:short a :Short .
+:modo  :hasDataTypeParameter  :short .
+:modo  :hasIndexOrder  1 .
+:iniciagraficos  :hasNumParameters  1 .
+:condition95  a :Condition .
+:iniciagraficos  :hasPrecond :condition95 .
+:condition95   :hasVariable :modo .
+:condition95  :hasOperator :less_than_or_equal_to .
+:condition95   :hasNumber 57 .
+:condition96  a :Condition .
+:iniciagraficos  :hasPostcond :condition96 .
+:condition96   :hasVariable :modo .
+:condition96  :hasOperator :not_equal_to .
+:condition96   :hasNumber 1606 .
+:irequired  :hasMethod :shortextxy .
+:shortextxy  :hasMethodName "shortextxy" .
+:shortextxy  a :Method .
+:shortextxy  :typeReturn :void.
+:shortextxy  :hasParameter  :x .
+:x  :hasDirection  :in .
+:short a :Short .
+:x  :hasDataTypeParameter  :short .
+:x  :hasIndexOrder  1 .
+:shortextxy  :hasParameter  :y .
+:y  :hasDirection  :in .
+:short a :Short .
+:y  :hasDataTypeParameter  :short .
+:y  :hasIndexOrder  2 .
+:shortextxy  :hasParameter  :num .
+:num  :hasDirection  :in .
+:char a :Char .
+:num  :hasDataTypeParameter  :char .
+:num  :hasIndexOrder  3 .
+:shortextxy  :hasParameter  :collet .
+:collet  :hasDirection  :in .
+:short a :Short .
+:collet  :hasDataTypeParameter  :short .
+:collet  :hasIndexOrder  4 .
+:shortextxy  :hasParameter  :colorfon .
+:colorfon  :hasDirection  :in .
+:short a :Short .
+:colorfon  :hasDataTypeParameter  :short .
+:colorfon  :hasIndexOrder  5 .
+:shortextxy  :hasParameter  :tam .
+:tam  :hasDirection  :in .
+:short a :Short .
+:tam  :hasDataTypeParameter  :short .
+:tam  :hasIndexOrder  6 .
+:shortextxy  :hasNumParameters  6 .
+:condition97  a :Condition .
+:shortextxy  :hasPrecond :condition97 .
+:condition97   :hasVariable :y .
+:condition97   :hasOperator :greater_than .
+:condition97   :hasNumber 47 .
+:condition98  a :Condition .
+:shortextxy  :hasPostcond :condition98 .
+:condition98   :hasVariable :num .
+:condition98  :hasOperator :greater_than_or_equal_to .
+:condition98   :hasNumber 2093 .
+:irequired  :hasMethod :eliminapoli .
+:eliminapoli  :hasMethodName "eliminapoli" .
+:eliminapoli  a :Method .
+:eliminapoli  :typeReturn :short.
+:eliminapoli  :hasParameter  :b .
+:b  :hasDirection  :out .
+:char a :Char .
+:b  :hasDataTypeParameter  :char .
+:b  :hasIndexOrder  1 .
+:eliminapoli  :hasNumParameters  1 .
+:condition99  a :Condition .
+:eliminapoli  :hasPrecond :condition99 .
+:condition99   :hasVariable :b .
+:condition99   :hasOperator :greater_than .
+:condition99   :hasNumber 87 .
+:condition100  a :Condition .
+:eliminapoli  :hasPostcond :condition100 .
+:condition100   :hasVariable :b .
+:condition100  :hasOperator :greater_than_or_equal_to .
+:condition100   :hasNumber 2043 .
+:irequired  :hasMethod :insertadatb .
+:insertadatb  :hasMethodName "insertadatb" .
+:insertadatb  a :Method .
+:insertadatb  :typeReturn :short.
+:insertadatb  :hasParameter  :a .
+:a  :hasDirection  :out .
+:char a :Char .
+:a  :hasDataTypeParameter  :char .
+:a  :hasIndexOrder  1 .
+:insertadatb  :hasParameter  :c .
+:c  :hasDirection  :out .
+:float a :Float .
+:c  :hasDataTypeParameter  :float .
+:c  :hasIndexOrder  2 .
+:insertadatb  :hasParameter  :e .
+:e  :hasDirection  :in .
+:double a :Double .
+:e  :hasDataTypeParameter  :double .
+:e  :hasIndexOrder  3 .
+:insertadatb  :hasNumParameters  3 .
+:condition101  a :Condition .
+:insertadatb  :hasPrecond :condition101 .
+:condition101   :hasVariable :e .
+:condition101   :hasOperator :greater_than .
+:condition101   :hasNumber 18 .
+:condition102  a :Condition .
+:insertadatb  :hasPostcond :condition102 .
+:condition102   :hasVariable :a .
+:condition102  :hasOperator :less_than .
+:condition102   :hasNumber 2219 .
+:irequired  :hasMethod :creanodopoli .
+:creanodopoli  :hasMethodName "creanodopoli" .
+:creanodopoli  a :Method .
+:creanodopoli  :typeReturn :short.
+:creanodopoli  :hasParameter  :b .
+:b  :hasDirection  :out .
+:char a :Char .
+:b  :hasDataTypeParameter  :char .
+:b  :hasIndexOrder  1 .
+:creanodopoli  :hasParameter  :c .
+:c  :hasDirection  :out .
+:double a :Double .
+:c  :hasDataTypeParameter  :double .
+:c  :hasIndexOrder  2 .
+:creanodopoli  :hasParameter  :e .
+:e  :hasDirection  :in .
+:short a :Short .
+:e  :hasDataTypeParameter  :short .
+:e  :hasIndexOrder  3 .
+:creanodopoli  :hasNumParameters  3 .
+:condition103  a :Condition .
+:creanodopoli  :hasPrecond :condition103 .
+:condition103   :hasVariable :b .
+:condition103  :hasOperator :less_than_or_equal_to .
+:condition103   :hasNumber 41 .
+:condition104  a :Condition .
+:creanodopoli  :hasPostcond :condition104 .
+:condition104   :hasVariable :e .
+:condition104  :hasOperator :greater_than_or_equal_to .
+:condition104   :hasNumber 605 .
+:irequired  :hasMethod :evalua .
+:evalua  :hasMethodName "evalua" .
+:evalua  a :Method .
+:evalua  :typeReturn :float.
+:evalua  :hasParameter  :b .
+:b  :hasDirection  :out .
+:char a :Char .
+:b  :hasDataTypeParameter  :char .
+:b  :hasIndexOrder  1 .
+:evalua  :hasParameter  :xm .
+:xm  :hasDirection  :out .
+:double a :Double .
+:xm  :hasDataTypeParameter  :double .
+:xm  :hasIndexOrder  2 .
+:evalua  :hasNumParameters  2 .
+:condition105  a :Condition .
+:evalua  :hasPrecond :condition105 .
+:condition105   :hasVariable :xm .
+:condition105  :hasOperator :less_than .
+:condition105   :hasNumber 94 .
+:condition106  a :Condition .
+:evalua  :hasPostcond :condition106 .
+:condition106   :hasVariable :xm .
+:condition106   :hasOperator :greater_than .
+:condition106   :hasNumber 2367 .
+:irequired  :hasMethod :captionmat .
+:captionmat  :hasMethodName "captionmat" .
+:captionmat  a :Method .
+:captionmat  :typeReturn :void.
+:captionmat  :hasParameter  :matriz .
+:matriz  :hasDirection  :out .
+:double a :Double .
+:matriz  :hasDataTypeParameter  :double .
+:matriz  :hasIndexOrder  1 .
+:captionmat  :hasParameter  :n .
+:n  :hasDirection  :in .
+:short a :Short .
+:n  :hasDataTypeParameter  :short .
+:n  :hasIndexOrder  2 .
+:captionmat  :hasParameter  :cual .
+:cual  :hasDirection  :in .
+:short a :Short .
+:cual  :hasDataTypeParameter  :short .
+:cual  :hasIndexOrder  3 .
+:captionmat  :hasNumParameters  3 .
+:condition107  a :Condition .
+:captionmat  :hasPrecond :condition107 .
+:condition107   :hasVariable :matriz .
+:condition107  :hasOperator :less_than .
+:condition107   :hasNumber 77 .
+:condition108  a :Condition .
+:captionmat  :hasPostcond :condition108 .
+:condition108   :hasVariable :matriz .
+:condition108  :hasOperator :greater_than_or_equal_to .
+:condition108   :hasNumber 3252 .
+:irequired  :hasMethod :changeline .
+:changeline  :hasMethodName "changeline" .
+:changeline  a :Method .
+:changeline  :typeReturn :void.
+:changeline  :hasParameter  :matriz .
+:matriz  :hasDirection  :out .
+:double a :Double .
+:matriz  :hasDataTypeParameter  :double .
+:matriz  :hasIndexOrder  1 .
+:changeline  :hasParameter  :ren .
+:ren  :hasDirection  :in .
+:short a :Short .
+:ren  :hasDataTypeParameter  :short .
+:ren  :hasIndexOrder  2 .
+:changeline  :hasParameter  :col .
+:col  :hasDirection  :in .
+:short a :Short .
+:col  :hasDataTypeParameter  :short .
+:col  :hasIndexOrder  3 .
+:changeline  :hasParameter  :n .
+:n  :hasDirection  :in .
+:short a :Short .
+:n  :hasDataTypeParameter  :short .
+:n  :hasIndexOrder  4 .
+:changeline  :hasNumParameters  4 .
+:condition109  a :Condition .
+:changeline  :hasPrecond :condition109 .
+:condition109   :hasVariable :ren .
+:condition109   :hasOperator :greater_than .
+:condition109   :hasNumber 0 .
+:condition110  a :Condition .
+:changeline  :hasPostcond :condition110 .
+:condition110   :hasVariable :matriz .
+:condition110  :hasOperator :greater_than_or_equal_to .
+:condition110   :hasNumber 1506 .
+:irequired  :hasMethod :llenacero .
+:llenacero  :hasMethodName "llenacero" .
+:llenacero  a :Method .
+:llenacero  :typeReturn :void.
+:llenacero  :hasParameter  :matriz .
+:matriz  :hasDirection  :out .
+:double a :Double .
+:matriz  :hasDataTypeParameter  :double .
+:matriz  :hasIndexOrder  1 .
+:llenacero  :hasParameter  :n .
+:n  :hasDirection  :in .
+:short a :Short .
+:n  :hasDataTypeParameter  :short .
+:n  :hasIndexOrder  2 .
+:llenacero  :hasNumParameters  2 .
+:condition111  a :Condition .
+:llenacero  :hasPrecond :condition111 .
+:condition111   :hasVariable :matriz .
+:condition111  :hasOperator :greater_than_or_equal_to .
+:condition111   :hasNumber 57 .
+:condition112  a :Condition .
+:llenacero  :hasPostcond :condition112 .
+:condition112   :hasVariable :matriz .
+:condition112  :hasOperator :equals .
+:condition112   :hasNumber 3619 .
+:irequired  :hasMethod :menu .
+:menu  :hasMethodName "menu" .
+:menu  a :Method .
+:menu  :typeReturn :void.
+:menu  :hasNumParameters  0 .
+:irequired  :hasMethod :ventmenu .
+:ventmenu  :hasMethodName "ventmenu" .
+:ventmenu  a :Method .
+:ventmenu  :typeReturn :void.
+:ventmenu  :hasNumParameters  0 .
+:irequired  :hasMethod :ventanacaptura .
+:ventanacaptura  :hasMethodName "ventanacaptura" .
+:ventanacaptura  a :Method .
+:ventanacaptura  :typeReturn :void.
+:ventanacaptura  :hasParameter  :x1 .
+:x1  :hasDirection  :in .
+:short a :Short .
+:x1  :hasDataTypeParameter  :short .
+:x1  :hasIndexOrder  1 .
+:ventanacaptura  :hasParameter  :y1 .
+:y1  :hasDirection  :in .
+:short a :Short .
+:y1  :hasDataTypeParameter  :short .
+:y1  :hasIndexOrder  2 .
+:ventanacaptura  :hasParameter  :x2 .
+:x2  :hasDirection  :in .
+:short a :Short .
+:x2  :hasDataTypeParameter  :short .
+:x2  :hasIndexOrder  3 .
+:ventanacaptura  :hasParameter  :y2 .
+:y2  :hasDirection  :in .
+:short a :Short .
+:y2  :hasDataTypeParameter  :short .
+:y2  :hasIndexOrder  4 .
+:ventanacaptura  :hasNumParameters  4 .
+:condition113  a :Condition .
+:ventanacaptura  :hasPrecond :condition113 .
+:condition113   :hasVariable :y2 .
+:condition113  :hasOperator :equals .
+:condition113   :hasNumber 96 .
+:condition114  a :Condition .
+:ventanacaptura  :hasPostcond :condition114 .
+:condition114   :hasVariable :x1 .
+:condition114  :hasOperator :less_than_or_equal_to .
+:condition114   :hasNumber 1475 .
+:irequired  :hasMethod :calculafactorial .
+:calculafactorial  :hasMethodName "calculafactorial" .
+:calculafactorial  a :Method .
+:calculafactorial  :typeReturn :long.
+:calculafactorial  :hasParameter  :n .
+:n  :hasDirection  :in .
+:short a :Short .
+:n  :hasDataTypeParameter  :short .
+:n  :hasIndexOrder  1 .
+:calculafactorial  :hasNumParameters  1 .
+:condition115  a :Condition .
+:calculafactorial  :hasPrecond :condition115 .
+:condition115   :hasVariable :n .
+:condition115  :hasOperator :not_equal_to .
+:condition115   :hasNumber 33 .
+:condition116  a :Condition .
+:calculafactorial  :hasPostcond :condition116 .
+:condition116   :hasVariable :n .
+:condition116   :hasOperator :greater_than .
+:condition116   :hasNumber 1634 .
+:irequired  :hasMethod :factorial .
+:factorial  :hasMethodName "factorial" .
+:factorial  a :Method .
+:factorial  :typeReturn :void.
+:factorial  :hasNumParameters  0 .
+:irequired  :hasMethod :captdatb .
+:captdatb  :hasMethodName "captdatb" .
+:captdatb  a :Method .
+:captdatb  :typeReturn :void.
+:captdatb  :hasParameter  :a .
+:a  :hasDirection  :out .
+:char a :Char .
+:a  :hasDataTypeParameter  :char .
+:a  :hasIndexOrder  1 .
+:captdatb  :hasParameter  :cual .
+:cual  :hasDirection  :in .
+:short a :Short .
+:cual  :hasDataTypeParameter  :short .
+:cual  :hasIndexOrder  2 .
+:captdatb  :hasNumParameters  2 .
+:condition117  a :Condition .
+:captdatb  :hasPrecond :condition117 .
+:condition117   :hasVariable :a .
+:condition117  :hasOperator :less_than .
+:condition117   :hasNumber 45 .
+:condition118  a :Condition .
+:captdatb  :hasPostcond :condition118 .
+:condition118   :hasVariable :a .
+:condition118  :hasOperator :less_than_or_equal_to .
+:condition118   :hasNumber 4239 .
+:irequired  :hasMethod :captdatbiseccion .
+:captdatbiseccion  :hasMethodName "captdatbiseccion" .
+:captdatbiseccion  a :Method .
+:captdatbiseccion  :typeReturn :void.
+:captdatbiseccion  :hasParameter  :a .
+:a  :hasDirection  :out .
+:char a :Char .
+:a  :hasDataTypeParameter  :char .
+:a  :hasIndexOrder  1 .
+:captdatbiseccion  :hasNumParameters  1 .
+:condition119  a :Condition .
+:captdatbiseccion  :hasPrecond :condition119 .
+:condition119   :hasVariable :a .
+:condition119  :hasOperator :greater_than_or_equal_to .
+:condition119   :hasNumber 39 .
+:condition120  a :Condition .
+:captdatbiseccion  :hasPostcond :condition120 .
+:condition120   :hasVariable :a .
+:condition120  :hasOperator :not_equal_to .
+:condition120   :hasNumber 1984 .
+:irequired  :hasMethod :biseccion .
+:biseccion  :hasMethodName "biseccion" .
+:biseccion  a :Method .
+:biseccion  :typeReturn :float.
+:biseccion  :hasParameter  :i .
+:i  :hasDirection  :out .
+:char a :Char .
+:i  :hasDataTypeParameter  :char .
+:i  :hasIndexOrder  1 .
+:biseccion  :hasParameter  :a .
+:a  :hasDirection  :out .
+:float a :Float .
+:a  :hasDataTypeParameter  :float .
+:a  :hasIndexOrder  2 .
+:biseccion  :hasParameter  :b .
+:b  :hasDirection  :out .
+:float a :Float .
+:b  :hasDataTypeParameter  :float .
+:b  :hasIndexOrder  3 .
+:biseccion  :hasParameter  :tol .
+:tol  :hasDirection  :out .
+:float a :Float .
+:tol  :hasDataTypeParameter  :float .
+:tol  :hasIndexOrder  4 .
+:biseccion  :hasParameter  :ant .
+:ant  :hasDirection  :out .
+:float a :Float .
+:ant  :hasDataTypeParameter  :float .
+:ant  :hasIndexOrder  5 .
+:biseccion  :hasNumParameters  5 .
+:condition121  a :Condition .
+:biseccion  :hasPrecond :condition121 .
+:condition121   :hasVariable :tol .
+:condition121   :hasOperator :greater_than .
+:condition121   :hasNumber 92 .
+:condition122  a :Condition .
+:biseccion  :hasPostcond :condition122 .
+:condition122   :hasVariable :b .
+:condition122  :hasOperator :less_than_or_equal_to .
+:condition122   :hasNumber 4354 .
+:irequired  :hasMethod :captdatregfalsa .
+:captdatregfalsa  :hasMethodName "captdatregfalsa" .
+:captdatregfalsa  a :Method .
+:captdatregfalsa  :typeReturn :void.
+:captdatregfalsa  :hasParameter  :a .
+:a  :hasDirection  :out .
+:char a :Char .
+:a  :hasDataTypeParameter  :char .
+:a  :hasIndexOrder  1 .
+:captdatregfalsa  :hasNumParameters  1 .
+:condition123  a :Condition .
+:captdatregfalsa  :hasPrecond :condition123 .
+:condition123   :hasVariable :a .
+:condition123  :hasOperator :greater_than_or_equal_to .
+:condition123   :hasNumber 41 .
+:condition124  a :Condition .
+:captdatregfalsa  :hasPostcond :condition124 .
+:condition124   :hasVariable :a .
+:condition124  :hasOperator :greater_than_or_equal_to .
+:condition124   :hasNumber 488 .
+:irequired  :hasMethod :regfalsa .
+:regfalsa  :hasMethodName "regfalsa" .
+:regfalsa  a :Method .
+:regfalsa  :typeReturn :float.
+:regfalsa  :hasParameter  :i .
+:i  :hasDirection  :out .
+:char a :Char .
+:i  :hasDataTypeParameter  :char .
+:i  :hasIndexOrder  1 .
+:regfalsa  :hasParameter  :a .
+:a  :hasDirection  :out .
+:float a :Float .
+:a  :hasDataTypeParameter  :float .
+:a  :hasIndexOrder  2 .
+:regfalsa  :hasParameter  :b .
+:b  :hasDirection  :out .
+:float a :Float .
+:b  :hasDataTypeParameter  :float .
+:b  :hasIndexOrder  3 .
+:regfalsa  :hasParameter  :tol .
+:tol  :hasDirection  :out .
+:float a :Float .
+:tol  :hasDataTypeParameter  :float .
+:tol  :hasIndexOrder  4 .
+:regfalsa  :hasParameter  :ant .
+:ant  :hasDirection  :out .
+:float a :Float .
+:ant  :hasDataTypeParameter  :float .
+:ant  :hasIndexOrder  5 .
+:regfalsa  :hasNumParameters  5 .
+:condition125  a :Condition .
+:regfalsa  :hasPrecond :condition125 .
+:condition125   :hasVariable :tol .
+:condition125  :hasOperator :greater_than_or_equal_to .
+:condition125   :hasNumber 29 .
+:condition126  a :Condition .
+:regfalsa  :hasPostcond :condition126 .
+:condition126   :hasVariable :tol .
+:condition126  :hasOperator :greater_than_or_equal_to .
+:condition126   :hasNumber 37 .
+:irequired  :hasMethod :gaussjordan .
+:gaussjordan  :hasMethodName "gaussjordan" .
+:gaussjordan  a :Method .
+:gaussjordan  :typeReturn :float.
+:gaussjordan  :hasParameter  :matriz .
+:matriz  :hasDirection  :out .
+:double a :Double .
+:matriz  :hasDataTypeParameter  :double .
+:matriz  :hasIndexOrder  1 .
+:gaussjordan  :hasParameter  :n .
+:n  :hasDirection  :in .
+:short a :Short .
+:n  :hasDataTypeParameter  :short .
+:n  :hasIndexOrder  2 .
+:gaussjordan  :hasNumParameters  2 .
+:condition127  a :Condition .
+:gaussjordan  :hasPrecond :condition127 .
+:condition127   :hasVariable :matriz .
+:condition127   :hasOperator :greater_than .
+:condition127   :hasNumber 95 .
+:condition128  a :Condition .
+:gaussjordan  :hasPostcond :condition128 .
+:condition128   :hasVariable :n .
+:condition128  :hasOperator :less_than_or_equal_to .
+:condition128   :hasNumber 3772 .
+:irequired  :hasMethod :inprimejordan .
+:inprimejordan  :hasMethodName "inprimejordan" .
+:inprimejordan  a :Method .
+:inprimejordan  :typeReturn :void.
+:inprimejordan  :hasParameter  :matriz .
+:matriz  :hasDirection  :out .
+:float a :Float .
+:matriz  :hasDataTypeParameter  :float .
+:matriz  :hasIndexOrder  1 .
+:inprimejordan  :hasParameter  :nuevo .
+:nuevo  :hasDirection  :out .
+:float a :Float .
+:nuevo  :hasDataTypeParameter  :float .
+:nuevo  :hasIndexOrder  2 .
+:inprimejordan  :hasParameter  :n .
+:n  :hasDirection  :in .
+:short a :Short .
+:n  :hasDataTypeParameter  :short .
+:n  :hasIndexOrder  3 .
+:inprimejordan  :hasParameter  :op .
+:op  :hasDirection  :in .
+:short a :Short .
+:op  :hasDataTypeParameter  :short .
+:op  :hasIndexOrder  4 .
+:inprimejordan  :hasParameter  :cual .
+:cual  :hasDirection  :in .
+:short a :Short .
+:cual  :hasDataTypeParameter  :short .
+:cual  :hasIndexOrder  5 .
+:inprimejordan  :hasNumParameters  5 .
+:condition129  a :Condition .
+:inprimejordan  :hasPrecond :condition129 .
+:condition129   :hasVariable :cual .
+:condition129  :hasOperator :equals .
+:condition129   :hasNumber 38 .
+:condition130  a :Condition .
+:inprimejordan  :hasPostcond :condition130 .
+:condition130   :hasVariable :matriz .
+:condition130   :hasOperator :greater_than .
+:condition130   :hasNumber 2042 .
+:irequired  :hasMethod :gaussseidel .
+:gaussseidel  :hasMethodName "gaussseidel" .
+:gaussseidel  a :Method .
+:gaussseidel  :typeReturn :float.
+:gaussseidel  :hasParameter  :matriz .
+:matriz  :hasDirection  :out .
+:float a :Float .
+:matriz  :hasDataTypeParameter  :float .
+:matriz  :hasIndexOrder  1 .
+:gaussseidel  :hasParameter  :n .
+:n  :hasDirection  :in .
+:short a :Short .
+:n  :hasDataTypeParameter  :short .
+:n  :hasIndexOrder  2 .
+:gaussseidel  :hasParameter  :tol .
+:tol  :hasDirection  :out .
+:float a :Float .
+:tol  :hasDataTypeParameter  :float .
+:tol  :hasIndexOrder  3 .
+:gaussseidel  :hasNumParameters  3 .
+:condition131  a :Condition .
+:gaussseidel  :hasPrecond :condition131 .
+:condition131   :hasVariable :n .
+:condition131  :hasOperator :less_than .
+:condition131   :hasNumber 99 .
+:condition132  a :Condition .
+:gaussseidel  :hasPostcond :condition132 .
+:condition132   :hasVariable :matriz .
+:condition132   :hasOperator :greater_than .
+:condition132   :hasNumber 4285 .
+:irequired  :hasMethod :inprimeseidel .
+:inprimeseidel  :hasMethodName "inprimeseidel" .
+:inprimeseidel  a :Method .
+:inprimeseidel  :typeReturn :void.
+:inprimeseidel  :hasParameter  :nuevo .
+:nuevo  :hasDirection  :out .
+:double a :Double .
+:nuevo  :hasDataTypeParameter  :double .
+:nuevo  :hasIndexOrder  1 .
+:inprimeseidel  :hasParameter  :n .
+:n  :hasDirection  :in .
+:short a :Short .
+:n  :hasDataTypeParameter  :short .
+:n  :hasIndexOrder  2 .
+:inprimeseidel  :hasNumParameters  2 .
+:condition133  a :Condition .
+:inprimeseidel  :hasPrecond :condition133 .
+:condition133   :hasVariable :nuevo .
+:condition133   :hasOperator :greater_than .
+:condition133   :hasNumber 39 .
+:condition134  a :Condition .
+:inprimeseidel  :hasPostcond :condition134 .
+:condition134   :hasVariable :nuevo .
+:condition134  :hasOperator :greater_than_or_equal_to .
+:condition134   :hasNumber 1188 .
+:irequired  :hasMethod :cumple .
+:cumple  :hasMethodName "cumple" .
+:cumple  a :Method .
+:cumple  :typeReturn :short.
+:cumple  :hasParameter  :matriz .
+:matriz  :hasDirection  :out .
+:float a :Float .
+:matriz  :hasDataTypeParameter  :float .
+:matriz  :hasIndexOrder  1 .
+:cumple  :hasParameter  :r .
+:r  :hasDirection  :in .
+:short a :Short .
+:r  :hasDataTypeParameter  :short .
+:r  :hasIndexOrder  2 .
+:cumple  :hasParameter  :ren .
+:ren  :hasDirection  :in .
+:short a :Short .
+:ren  :hasDataTypeParameter  :short .
+:ren  :hasIndexOrder  3 .
+:cumple  :hasParameter  :n .
+:n  :hasDirection  :in .
+:short a :Short .
+:n  :hasDataTypeParameter  :short .
+:n  :hasIndexOrder  4 .
+:cumple  :hasNumParameters  4 .
+:condition135  a :Condition .
+:cumple  :hasPrecond :condition135 .
+:condition135   :hasVariable :ren .
+:condition135   :hasOperator :greater_than .
+:condition135   :hasNumber 79 .
+:condition136  a :Condition .
+:cumple  :hasPostcond :condition136 .
+:condition136   :hasVariable :n .
+:condition136  :hasOperator :less_than_or_equal_to .
+:condition136   :hasNumber 4049 .
+:irequired  :hasMethod :converge .
+:converge  :hasMethodName "converge" .
+:converge  a :Method .
+:converge  :typeReturn :short.
+:converge  :hasParameter  :matriz .
+:matriz  :hasDirection  :out .
+:float a :Float .
+:matriz  :hasDataTypeParameter  :float .
+:matriz  :hasIndexOrder  1 .
+:converge  :hasParameter  :n .
+:n  :hasDirection  :in .
+:short a :Short .
+:n  :hasDataTypeParameter  :short .
+:n  :hasIndexOrder  2 .
+:converge  :hasNumParameters  2 .
+:condition137  a :Condition .
+:converge  :hasPrecond :condition137 .
+:condition137   :hasVariable :n .
+:condition137  :hasOperator :not_equal_to .
+:condition137   :hasNumber 8 .
+:condition138  a :Condition .
+:converge  :hasPostcond :condition138 .
+:condition138   :hasVariable :n .
+:condition138  :hasOperator :less_than_or_equal_to .
+:condition138   :hasNumber 1170 .
+:irequired  :hasMethod :sustituyeatras .
+:sustituyeatras  :hasMethodName "sustituyeatras" .
+:sustituyeatras  a :Method .
+:sustituyeatras  :typeReturn :void.
+:sustituyeatras  :hasParameter  :lu .
+:lu  :hasDirection  :out .
+:float a :Float .
+:lu  :hasDataTypeParameter  :float .
+:lu  :hasIndexOrder  1 .
+:sustituyeatras  :hasParameter  :n .
+:n  :hasDirection  :in .
+:short a :Short .
+:n  :hasDataTypeParameter  :short .
+:n  :hasIndexOrder  2 .
+:sustituyeatras  :hasParameter  :vector .
+:vector  :hasDirection  :out .
+:float a :Float .
+:vector  :hasDataTypeParameter  :float .
+:vector  :hasIndexOrder  3 .
+:sustituyeatras  :hasNumParameters  3 .
+:condition139  a :Condition .
+:sustituyeatras  :hasPrecond :condition139 .
+:condition139   :hasVariable :vector .
+:condition139  :hasOperator :equals .
+:condition139   :hasNumber 70 .
+:condition140  a :Condition .
+:sustituyeatras  :hasPostcond :condition140 .
+:condition140   :hasVariable :vector .
+:condition140  :hasOperator :less_than .
+:condition140   :hasNumber 3850 .
+:irequired  :hasMethod :sustituyeade .
+:sustituyeade  :hasMethodName "sustituyeade" .
+:sustituyeade  a :Method .
+:sustituyeade  :typeReturn :float.
+:sustituyeade  :hasParameter  :lu .
+:lu  :hasDirection  :out .
+:float a :Float .
+:lu  :hasDataTypeParameter  :float .
+:lu  :hasIndexOrder  1 .
+:sustituyeade  :hasParameter  :n .
+:n  :hasDirection  :in .
+:short a :Short .
+:n  :hasDataTypeParameter  :short .
+:n  :hasIndexOrder  2 .
+:sustituyeade  :hasNumParameters  2 .
+:condition141  a :Condition .
+:sustituyeade  :hasPrecond :condition141 .
+:condition141   :hasVariable :n .
+:condition141  :hasOperator :less_than .
+:condition141   :hasNumber 3 .
+:condition142  a :Condition .
+:sustituyeade  :hasPostcond :condition142 .
+:condition142   :hasVariable :n .
+:condition142  :hasOperator :equals .
+:condition142   :hasNumber 3245 .
+:irequired  :hasMethod :crealu .
+:crealu  :hasMethodName "crealu" .
+:crealu  a :Method .
+:crealu  :typeReturn :short.
+:crealu  :hasParameter  :lu .
+:lu  :hasDirection  :out .
+:float a :Float .
+:lu  :hasDataTypeParameter  :float .
+:lu  :hasIndexOrder  1 .
+:crealu  :hasParameter  :mat .
+:mat  :hasDirection  :out .
+:float a :Float .
+:mat  :hasDataTypeParameter  :float .
+:mat  :hasIndexOrder  2 .
+:crealu  :hasParameter  :n .
+:n  :hasDirection  :in .
+:short a :Short .
+:n  :hasDataTypeParameter  :short .
+:n  :hasIndexOrder  3 .
+:crealu  :hasNumParameters  3 .
+:condition143  a :Condition .
+:crealu  :hasPrecond :condition143 .
+:condition143   :hasVariable :lu .
+:condition143  :hasOperator :not_equal_to .
+:condition143   :hasNumber 70 .
+:condition144  a :Condition .
+:crealu  :hasPostcond :condition144 .
+:condition144   :hasVariable :mat .
+:condition144  :hasOperator :less_than_or_equal_to .
+:condition144   :hasNumber 2261 .
+:irequired  :hasMethod :pushatend .
+:pushatend  :hasMethodName "pushatend" .
+:pushatend  a :Method .
+:pushatend  :typeReturn :void.
+:pushatend  :hasParameter  :head .
+:head  :hasDirection  :out .
+:float a :Float .
+:head  :hasDataTypeParameter  :float .
+:head  :hasIndexOrder  1 .
+:pushatend  :hasParameter  :addx .
+:addx  :hasDirection  :out .
+:float a :Float .
+:addx  :hasDataTypeParameter  :float .
+:addx  :hasIndexOrder  2 .
+:pushatend  :hasParameter  :addxy .
+:addxy  :hasDirection  :out .
+:float a :Float .
+:addxy  :hasDataTypeParameter  :float .
+:addxy  :hasIndexOrder  3 .
+:pushatend  :hasNumParameters  3 .
+:condition145  a :Condition .
+:pushatend  :hasPrecond :condition145 .
+:condition145   :hasVariable :addxy .
+:condition145  :hasOperator :not_equal_to .
+:condition145   :hasNumber 97 .
+:condition146  a :Condition .
+:pushatend  :hasPostcond :condition146 .
+:condition146   :hasVariable :addx .
+:condition146  :hasOperator :greater_than_or_equal_to .
+:condition146   :hasNumber 3566 .
+:irequired  :hasMethod :freei .
+:freei  :hasMethodName "freei" .
+:freei  a :Method .
+:freei  :typeReturn :void.
+:freei  :hasParameter  :cab .
+:cab  :hasDirection  :out .
+:char a :Char .
+:cab  :hasDataTypeParameter  :char .
+:cab  :hasIndexOrder  1 .
+:freei  :hasNumParameters  1 .
+:condition147  a :Condition .
+:freei  :hasPrecond :condition147 .
+:condition147   :hasVariable :cab .
+:condition147  :hasOperator :not_equal_to .
+:condition147   :hasNumber 60 .
+:condition148  a :Condition .
+:freei  :hasPostcond :condition148 .
+:condition148   :hasVariable :cab .
+:condition148  :hasOperator :less_than_or_equal_to .
+:condition148   :hasNumber 1258 .
+:irequired  :hasMethod :method1785 .
+:method1785  :hasMethodName "method1785" .
+:method1785  a :Method .
+:method1785  :typeReturn :float.
+:method1785  :hasParameter  :x .
+:x  :hasDirection  :inout .
+:short a :Short .
+:x  :hasDataTypeParameter  :short .
+:x  :hasIndexOrder  1 .
+:method1785  :hasParameter  :y .
+:y  :hasDirection  :in .
+:void a :Void .
+:y  :hasDataTypeParameter  :void .
+:y  :hasIndexOrder  2 .
+:method1785  :hasNumParameters  2 .
+:condition149  a :Condition .
+:method1785  :hasPrecond :condition149 .
+:condition149   :hasVariable :y .
+:condition149   :hasOperator :greater_than .
+:condition149   :hasNumber 92 .
+:condition150  a :Condition .
+:method1785  :hasPostcond :condition150 .
+:condition150   :hasVariable :y .
+:condition150  :hasOperator :less_than_or_equal_to .
+:condition150   :hasNumber 1187 .
+:irequired  :hasMethod :method766 .
+:method766  :hasMethodName "method766" .
+:method766  a :Method .
+:method766  :typeReturn :float.
+:method766  :hasParameter  :x .
+:x  :hasDirection  :in .
+:short a :Short .
+:x  :hasDataTypeParameter  :short .
+:x  :hasIndexOrder  1 .
+:method766  :hasParameter  :y .
+:y  :hasDirection  :out .
+:float a :Float .
+:y  :hasDataTypeParameter  :float .
+:y  :hasIndexOrder  2 .
+:method766  :hasNumParameters  2 .
+:condition151  a :Condition .
+:method766  :hasPrecond :condition151 .
+:condition151   :hasVariable :y .
+:condition151  :hasOperator :not_equal_to .
+:condition151   :hasNumber 67 .
+:condition152  a :Condition .
+:method766  :hasPostcond :condition152 .
+:condition152   :hasVariable :y .
+:condition152   :hasOperator :greater_than .
+:condition152   :hasNumber 4163 .
+:irequired  :hasMethod :method25485 .
+:method25485  :hasMethodName "method25485" .
+:method25485  a :Method .
+:method25485  :typeReturn :void.
+:method25485  :hasParameter  :x .
+:x  :hasDirection  :in .
+:void a :Void .
+:x  :hasDataTypeParameter  :void .
+:x  :hasIndexOrder  1 .
+:method25485  :hasParameter  :y .
+:y  :hasDirection  :in .
+:short a :Short .
+:y  :hasDataTypeParameter  :short .
+:y  :hasIndexOrder  2 .
+:method25485  :hasNumParameters  2 .
+:condition153  a :Condition .
+:method25485  :hasPrecond :condition153 .
+:condition153   :hasVariable :x .
+:condition153  :hasOperator :greater_than_or_equal_to .
+:condition153   :hasNumber 84 .
+:condition154  a :Condition .
+:method25485  :hasPostcond :condition154 .
+:condition154   :hasVariable :x .
+:condition154  :hasOperator :not_equal_to .
+:condition154   :hasNumber 722 .
+:irequired  :hasMethod :method1614 .
+:method1614  :hasMethodName "method1614" .
+:method1614  a :Method .
+:method1614  :typeReturn :void.
+:method1614  :hasParameter  :x .
+:x  :hasDirection  :out .
+:short a :Short .
+:x  :hasDataTypeParameter  :short .
+:x  :hasIndexOrder  1 .
+:method1614  :hasParameter  :y .
+:y  :hasDirection  :in .
+:float a :Float .
+:y  :hasDataTypeParameter  :float .
+:y  :hasIndexOrder  2 .
+:method1614  :hasNumParameters  2 .
+:condition155  a :Condition .
+:method1614  :hasPrecond :condition155 .
+:condition155   :hasVariable :x .
+:condition155   :hasOperator :greater_than .
+:condition155   :hasNumber 32 .
+:condition156  a :Condition .
+:method1614  :hasPostcond :condition156 .
+:condition156   :hasVariable :y .
+:condition156  :hasOperator :equals .
+:condition156   :hasNumber 342 .
+:irequired  :hasMethod :method25846 .
+:method25846  :hasMethodName "method25846" .
+:method25846  a :Method .
+:method25846  :typeReturn :short.
+:method25846  :hasParameter  :x .
+:x  :hasDirection  :in .
+:float a :Float .
+:x  :hasDataTypeParameter  :float .
+:x  :hasIndexOrder  1 .
+:method25846  :hasParameter  :y .
+:y  :hasDirection  :inout .
+:long a :Long .
+:y  :hasDataTypeParameter  :long .
+:y  :hasIndexOrder  2 .
+:method25846  :hasNumParameters  2 .
+:condition157  a :Condition .
+:method25846  :hasPrecond :condition157 .
+:condition157   :hasVariable :y .
+:condition157  :hasOperator :greater_than_or_equal_to .
+:condition157   :hasNumber 33 .
+:condition158  a :Condition .
+:method25846  :hasPostcond :condition158 .
+:condition158   :hasVariable :x .
+:condition158  :hasOperator :less_than .
+:condition158   :hasNumber 3855 .
+:irequired  :hasMethod :method357 .
+:method357  :hasMethodName "method357" .
+:method357  a :Method .
+:method357  :typeReturn :void.
+:method357  :hasParameter  :x .
+:x  :hasDirection  :out .
+:void a :Void .
+:x  :hasDataTypeParameter  :void .
+:x  :hasIndexOrder  1 .
+:method357  :hasParameter  :y .
+:y  :hasDirection  :in .
+:float a :Float .
+:y  :hasDataTypeParameter  :float .
+:y  :hasIndexOrder  2 .
+:method357  :hasNumParameters  2 .
+:condition159  a :Condition .
+:method357  :hasPrecond :condition159 .
+:condition159   :hasVariable :x .
+:condition159   :hasOperator :greater_than .
+:condition159   :hasNumber 73 .
+:condition160  a :Condition .
+:method357  :hasPostcond :condition160 .
+:condition160   :hasVariable :y .
+:condition160  :hasOperator :greater_than_or_equal_to .
+:condition160   :hasNumber 479 .
+:irequired  :hasMethod :method1419 .
+:method1419  :hasMethodName "method1419" .
+:method1419  a :Method .
+:method1419  :typeReturn :long.
+:method1419  :hasParameter  :x .
+:x  :hasDirection  :inout .
+:short a :Short .
+:x  :hasDataTypeParameter  :short .
+:x  :hasIndexOrder  1 .
+:method1419  :hasParameter  :y .
+:y  :hasDirection  :inout .
+:long a :Long .
+:y  :hasDataTypeParameter  :long .
+:y  :hasIndexOrder  2 .
+:method1419  :hasNumParameters  2 .
+:condition161  a :Condition .
+:method1419  :hasPrecond :condition161 .
+:condition161   :hasVariable :x .
+:condition161  :hasOperator :equals .
+:condition161   :hasNumber 40 .
+:condition162  a :Condition .
+:method1419  :hasPostcond :condition162 .
+:condition162   :hasVariable :x .
+:condition162  :hasOperator :not_equal_to .
+:condition162   :hasNumber 2474 .
+:irequired  :hasMethod :getarccoords .
+:getarccoords  :hasMethodName "getarccoords" .
+:getarccoords  a :Method .
+:getarccoords  :typeReturn :void.
+:getarccoords  :hasParameter  :arccoords .
+:arccoords  :hasDirection  :inout .
+:char a :Char .
+:arccoords  :hasDataTypeParameter  :char .
+:arccoords  :hasIndexOrder  1 .
+:getarccoords  :hasNumParameters  1 .
+:condition163  a :Condition .
+:getarccoords  :hasPrecond :condition163 .
+:condition163   :hasVariable :arccoords .
+:condition163  :hasOperator :not_equal_to .
+:condition163   :hasNumber 12 .
+:condition164  a :Condition .
+:getarccoords  :hasPostcond :condition164 .
+:condition164   :hasVariable :arccoords .
+:condition164  :hasOperator :equals .
+:condition164   :hasNumber 1161 .
+:irequired  :hasMethod :method794 .
+:method794  :hasMethodName "method794" .
+:method794  a :Method .
+:method794  :typeReturn :float.
+:method794  :hasParameter  :x .
+:x  :hasDirection  :in .
+:void a :Void .
+:x  :hasDataTypeParameter  :void .
+:x  :hasIndexOrder  1 .
+:method794  :hasParameter  :y .
+:y  :hasDirection  :out .
+:void a :Void .
+:y  :hasDataTypeParameter  :void .
+:y  :hasIndexOrder  2 .
+:method794  :hasNumParameters  2 .
+:condition165  a :Condition .
+:method794  :hasPrecond :condition165 .
+:condition165   :hasVariable :y .
+:condition165   :hasOperator :greater_than .
+:condition165   :hasNumber 60 .
+:condition166  a :Condition .
+:method794  :hasPostcond :condition166 .
+:condition166   :hasVariable :y .
+:condition166   :hasOperator :greater_than .
+:condition166   :hasNumber 2092 .
+:irequired  :hasMethod :method1973 .
+:method1973  :hasMethodName "method1973" .
+:method1973  a :Method .
+:method1973  :typeReturn :float.
+:method1973  :hasParameter  :x .
+:x  :hasDirection  :in .
+:short a :Short .
+:x  :hasDataTypeParameter  :short .
+:x  :hasIndexOrder  1 .
+:method1973  :hasParameter  :y .
+:y  :hasDirection  :inout .
+:void a :Void .
+:y  :hasDataTypeParameter  :void .
+:y  :hasIndexOrder  2 .
+:method1973  :hasNumParameters  2 .
+:condition167  a :Condition .
+:method1973  :hasPrecond :condition167 .
+:condition167   :hasVariable :y .
+:condition167  :hasOperator :less_than .
+:condition167   :hasNumber 66 .
+:condition168  a :Condition .
+:method1973  :hasPostcond :condition168 .
+:condition168   :hasVariable :x .
+:condition168  :hasOperator :less_than_or_equal_to .
+:condition168   :hasNumber 3090 .
+:irequired  :hasMethod :method1077 .
+:method1077  :hasMethodName "method1077" .
+:method1077  a :Method .
+:method1077  :typeReturn :long.
+:method1077  :hasParameter  :x .
+:x  :hasDirection  :out .
+:void a :Void .
+:x  :hasDataTypeParameter  :void .
+:x  :hasIndexOrder  1 .
+:method1077  :hasParameter  :y .
+:y  :hasDirection  :in .
+:void a :Void .
+:y  :hasDataTypeParameter  :void .
+:y  :hasIndexOrder  2 .
+:method1077  :hasNumParameters  2 .
+:condition169  a :Condition .
+:method1077  :hasPrecond :condition169 .
+:condition169   :hasVariable :x .
+:condition169  :hasOperator :less_than .
+:condition169   :hasNumber 90 .
+:condition170  a :Condition .
+:method1077  :hasPostcond :condition170 .
+:condition170   :hasVariable :x .
+:condition170  :hasOperator :greater_than_or_equal_to .
+:condition170   :hasNumber 697 .
+:irequired  :hasMethod :method302 .
+:method302  :hasMethodName "method302" .
+:method302  a :Method .
+:method302  :typeReturn :float.
+:method302  :hasParameter  :x .
+:x  :hasDirection  :in .
+:float a :Float .
+:x  :hasDataTypeParameter  :float .
+:x  :hasIndexOrder  1 .
+:method302  :hasParameter  :y .
+:y  :hasDirection  :out .
+:float a :Float .
+:y  :hasDataTypeParameter  :float .
+:y  :hasIndexOrder  2 .
+:method302  :hasNumParameters  2 .
+:condition171  a :Condition .
+:method302  :hasPrecond :condition171 .
+:condition171   :hasVariable :x .
+:condition171  :hasOperator :equals .
+:condition171   :hasNumber 63 .
+:condition172  a :Condition .
+:method302  :hasPostcond :condition172 .
+:condition172   :hasVariable :y .
+:condition172  :hasOperator :less_than_or_equal_to .
+:condition172   :hasNumber 62 .
+:irequired  :hasMethod :method25630 .
+:method25630  :hasMethodName "method25630" .
+:method25630  a :Method .
+:method25630  :typeReturn :float.
+:method25630  :hasParameter  :x .
+:x  :hasDirection  :in .
+:void a :Void .
+:x  :hasDataTypeParameter  :void .
+:x  :hasIndexOrder  1 .
+:method25630  :hasParameter  :y .
+:y  :hasDirection  :in .
+:void a :Void .
+:y  :hasDataTypeParameter  :void .
+:y  :hasIndexOrder  2 .
+:method25630  :hasNumParameters  2 .
+:condition173  a :Condition .
+:method25630  :hasPrecond :condition173 .
+:condition173   :hasVariable :x .
+:condition173  :hasOperator :equals .
+:condition173   :hasNumber 9 .
+:condition174  a :Condition .
+:method25630  :hasPostcond :condition174 .
+:condition174   :hasVariable :y .
+:condition174  :hasOperator :less_than_or_equal_to .
+:condition174   :hasNumber 3007 .
+:irequired  :hasMethod :method323 .
+:method323  :hasMethodName "method323" .
+:method323  a :Method .
+:method323  :typeReturn :long.
+:method323  :hasParameter  :x .
+:x  :hasDirection  :inout .
+:float a :Float .
+:x  :hasDataTypeParameter  :float .
+:x  :hasIndexOrder  1 .
+:method323  :hasParameter  :y .
+:y  :hasDirection  :in .
+:short a :Short .
+:y  :hasDataTypeParameter  :short .
+:y  :hasIndexOrder  2 .
+:method323  :hasNumParameters  2 .
+:condition175  a :Condition .
+:method323  :hasPrecond :condition175 .
+:condition175   :hasVariable :x .
+:condition175  :hasOperator :greater_than_or_equal_to .
+:condition175   :hasNumber 23 .
+:condition176  a :Condition .
+:method323  :hasPostcond :condition176 .
+:condition176   :hasVariable :x .
+:condition176  :hasOperator :less_than .
+:condition176   :hasNumber 1283 .
+:irequired  :hasMethod :method1566 .
+:method1566  :hasMethodName "method1566" .
+:method1566  a :Method .
+:method1566  :typeReturn :long.
+:method1566  :hasParameter  :x .
+:x  :hasDirection  :out .
+:long a :Long .
+:x  :hasDataTypeParameter  :long .
+:x  :hasIndexOrder  1 .
+:method1566  :hasParameter  :y .
+:y  :hasDirection  :out .
+:long a :Long .
+:y  :hasDataTypeParameter  :long .
+:y  :hasIndexOrder  2 .
+:method1566  :hasNumParameters  2 .
+:condition177  a :Condition .
+:method1566  :hasPrecond :condition177 .
+:condition177   :hasVariable :x .
+:condition177  :hasOperator :greater_than_or_equal_to .
+:condition177   :hasNumber 2 .
+:condition178  a :Condition .
+:method1566  :hasPostcond :condition178 .
+:condition178   :hasVariable :y .
+:condition178  :hasOperator :greater_than_or_equal_to .
+:condition178   :hasNumber 3170 .
+:irequired  :hasMethod :method126 .
+:method126  :hasMethodName "method126" .
+:method126  a :Method .
+:method126  :typeReturn :short.
+:method126  :hasParameter  :x .
+:x  :hasDirection  :in .
+:void a :Void .
+:x  :hasDataTypeParameter  :void .
+:x  :hasIndexOrder  1 .
+:method126  :hasParameter  :y .
+:y  :hasDirection  :out .
+:float a :Float .
+:y  :hasDataTypeParameter  :float .
+:y  :hasIndexOrder  2 .
+:method126  :hasNumParameters  2 .
+:condition179  a :Condition .
+:method126  :hasPrecond :condition179 .
+:condition179   :hasVariable :x .
+:condition179  :hasOperator :not_equal_to .
+:condition179   :hasNumber 81 .
+:condition180  a :Condition .
+:method126  :hasPostcond :condition180 .
+:condition180   :hasVariable :y .
+:condition180  :hasOperator :equals .
+:condition180   :hasNumber 1935 .
+:irequired  :hasMethod :method1823 .
+:method1823  :hasMethodName "method1823" .
+:method1823  a :Method .
+:method1823  :typeReturn :short.
+:method1823  :hasParameter  :x .
+:x  :hasDirection  :out .
+:float a :Float .
+:x  :hasDataTypeParameter  :float .
+:x  :hasIndexOrder  1 .
+:method1823  :hasParameter  :y .
+:y  :hasDirection  :inout .
+:void a :Void .
+:y  :hasDataTypeParameter  :void .
+:y  :hasIndexOrder  2 .
+:method1823  :hasNumParameters  2 .
+:condition181  a :Condition .
+:method1823  :hasPrecond :condition181 .
+:condition181   :hasVariable :y .
+:condition181  :hasOperator :less_than .
+:condition181   :hasNumber 24 .
+:condition182  a :Condition .
+:method1823  :hasPostcond :condition182 .
+:condition182   :hasVariable :y .
+:condition182  :hasOperator :less_than_or_equal_to .
+:condition182   :hasNumber 2840 .
+:irequired  :hasMethod :method1552 .
+:method1552  :hasMethodName "method1552" .
+:method1552  a :Method .
+:method1552  :typeReturn :long.
+:method1552  :hasParameter  :x .
+:x  :hasDirection  :in .
+:void a :Void .
+:x  :hasDataTypeParameter  :void .
+:x  :hasIndexOrder  1 .
+:method1552  :hasParameter  :y .
+:y  :hasDirection  :out .
+:long a :Long .
+:y  :hasDataTypeParameter  :long .
+:y  :hasIndexOrder  2 .
+:method1552  :hasNumParameters  2 .
+:condition183  a :Condition .
+:method1552  :hasPrecond :condition183 .
+:condition183   :hasVariable :x .
+:condition183  :hasOperator :not_equal_to .
+:condition183   :hasNumber 35 .
+:condition184  a :Condition .
+:method1552  :hasPostcond :condition184 .
+:condition184   :hasVariable :x .
+:condition184  :hasOperator :not_equal_to .
+:condition184   :hasNumber 2696 .
+:irequired  :hasMethod :method25710 .
+:method25710  :hasMethodName "method25710" .
+:method25710  a :Method .
+:method25710  :typeReturn :void.
+:method25710  :hasParameter  :x .
+:x  :hasDirection  :out .
+:void a :Void .
+:x  :hasDataTypeParameter  :void .
+:x  :hasIndexOrder  1 .
+:method25710  :hasParameter  :y .
+:y  :hasDirection  :in .
+:long a :Long .
+:y  :hasDataTypeParameter  :long .
+:y  :hasIndexOrder  2 .
+:method25710  :hasNumParameters  2 .
+:condition185  a :Condition .
+:method25710  :hasPrecond :condition185 .
+:condition185   :hasVariable :x .
+:condition185  :hasOperator :less_than_or_equal_to .
+:condition185   :hasNumber 91 .
+:condition186  a :Condition .
+:method25710  :hasPostcond :condition186 .
+:condition186   :hasVariable :y .
+:condition186  :hasOperator :greater_than_or_equal_to .
+:condition186   :hasNumber 1236 .
+:irequired  :hasMethod :method1511 .
+:method1511  :hasMethodName "method1511" .
+:method1511  a :Method .
+:method1511  :typeReturn :long.
+:method1511  :hasParameter  :x .
+:x  :hasDirection  :inout .
+:void a :Void .
+:x  :hasDataTypeParameter  :void .
+:x  :hasIndexOrder  1 .
+:method1511  :hasParameter  :y .
+:y  :hasDirection  :in .
+:float a :Float .
+:y  :hasDataTypeParameter  :float .
+:y  :hasIndexOrder  2 .
+:method1511  :hasNumParameters  2 .
+:condition187  a :Condition .
+:method1511  :hasPrecond :condition187 .
+:condition187   :hasVariable :x .
+:condition187  :hasOperator :equals .
+:condition187   :hasNumber 43 .
+:condition188  a :Condition .
+:method1511  :hasPostcond :condition188 .
+:condition188   :hasVariable :y .
+:condition188  :hasOperator :greater_than_or_equal_to .
+:condition188   :hasNumber 3592 .
+:irequired  :hasNumMethods 50 .
+
+############################## Codigo del Archivo Ontologia: Genera_Provided_50_60-40.n3 #######################
+
+:componentprovider a :ComponentType .
+:componentprovider :hasDomain :xp .
+:componentprovider :hasSubDomain :yp .
+:iprovider  a :Interface .
+:iprovider  :typeInterface :provided .
+:componentprovider  :hasInterface :iprovider .
+:iprovider  :hasMethod :iniciagraficos .
+:iniciagraficos  :hasMethodName "iniciagraficos" .
+:iniciagraficos  a :Method .
+:iniciagraficos  :typeReturn :void.
+:iniciagraficos  :hasParameter  :modo .
+:modo  :hasDirection  :in .
+:short a :Short .
+:modo  :hasDataTypeParameter  :short .
+:modo  :hasIndexOrder  1 .
+:iniciagraficos  :hasNumParameters  1 .
+:condition1  a :Condition .
+:iniciagraficos  :hasPrecond :condition1 .
+:condition1   :hasVariable :modo .
+:condition1   :hasOperator :greater_than .
+:condition1   :hasNumber 90 .
+:condition2  a :Condition .
+:iniciagraficos  :hasPostcond :condition2 .
+:condition2   :hasVariable :modo .
+:condition2  :hasOperator :equals .
+:condition2   :hasNumber 3528 .
+:iprovider  :hasMethod :shortextxy .
+:shortextxy  :hasMethodName "shortextxy" .
+:shortextxy  a :Method .
+:shortextxy  :typeReturn :void.
+:shortextxy  :hasParameter  :x .
+:x  :hasDirection  :in .
+:short a :Short .
+:x  :hasDataTypeParameter  :short .
+:x  :hasIndexOrder  1 .
+:shortextxy  :hasParameter  :y .
+:y  :hasDirection  :in .
+:short a :Short .
+:y  :hasDataTypeParameter  :short .
+:y  :hasIndexOrder  2 .
+:shortextxy  :hasParameter  :num .
+:num  :hasDirection  :in .
+:char a :Char .
+:num  :hasDataTypeParameter  :char .
+:num  :hasIndexOrder  3 .
+:shortextxy  :hasParameter  :collet .
+:collet  :hasDirection  :in .
+:short a :Short .
+:collet  :hasDataTypeParameter  :short .
+:collet  :hasIndexOrder  4 .
+:shortextxy  :hasParameter  :colorfon .
+:colorfon  :hasDirection  :in .
+:short a :Short .
+:colorfon  :hasDataTypeParameter  :short .
+:colorfon  :hasIndexOrder  5 .
+:shortextxy  :hasParameter  :tam .
+:tam  :hasDirection  :in .
+:short a :Short .
+:tam  :hasDataTypeParameter  :short .
+:tam  :hasIndexOrder  6 .
+:shortextxy  :hasNumParameters  6 .
+:condition3  a :Condition .
+:shortextxy  :hasPrecond :condition3 .
+:condition3   :hasVariable :num .
+:condition3  :hasOperator :equals .
+:condition3   :hasNumber 9 .
+:condition4  a :Condition .
+:shortextxy  :hasPostcond :condition4 .
+:condition4   :hasVariable :y .
+:condition4  :hasOperator :not_equal_to .
+:condition4   :hasNumber 4024 .
+:iprovider  :hasMethod :eliminapoli .
+:eliminapoli  :hasMethodName "eliminapoli" .
+:eliminapoli  a :Method .
+:eliminapoli  :typeReturn :short.
+:eliminapoli  :hasParameter  :b .
+:b  :hasDirection  :out .
+:char a :Char .
+:b  :hasDataTypeParameter  :char .
+:b  :hasIndexOrder  1 .
+:eliminapoli  :hasNumParameters  1 .
+:condition5  a :Condition .
+:eliminapoli  :hasPrecond :condition5 .
+:condition5   :hasVariable :b .
+:condition5  :hasOperator :not_equal_to .
+:condition5   :hasNumber 10 .
+:condition6  a :Condition .
+:eliminapoli  :hasPostcond :condition6 .
+:condition6   :hasVariable :b .
+:condition6  :hasOperator :equals .
+:condition6   :hasNumber 1862 .
+:iprovider  :hasMethod :insertadatb .
+:insertadatb  :hasMethodName "insertadatb" .
+:insertadatb  a :Method .
+:insertadatb  :typeReturn :short.
+:insertadatb  :hasParameter  :a .
+:a  :hasDirection  :out .
+:char a :Char .
+:a  :hasDataTypeParameter  :char .
+:a  :hasIndexOrder  1 .
+:insertadatb  :hasParameter  :c .
+:c  :hasDirection  :out .
+:float a :Float .
+:c  :hasDataTypeParameter  :float .
+:c  :hasIndexOrder  2 .
+:insertadatb  :hasParameter  :e .
+:e  :hasDirection  :in .
+:double a :Double .
+:e  :hasDataTypeParameter  :double .
+:e  :hasIndexOrder  3 .
+:insertadatb  :hasNumParameters  3 .
+:condition7  a :Condition .
+:insertadatb  :hasPrecond :condition7 .
+:condition7   :hasVariable :a .
+:condition7  :hasOperator :equals .
+:condition7   :hasNumber 79 .
+:condition8  a :Condition .
+:insertadatb  :hasPostcond :condition8 .
+:condition8   :hasVariable :c .
+:condition8   :hasOperator :greater_than .
+:condition8   :hasNumber 538 .
+:iprovider  :hasMethod :creanodopoli .
+:creanodopoli  :hasMethodName "creanodopoli" .
+:creanodopoli  a :Method .
+:creanodopoli  :typeReturn :short.
+:creanodopoli  :hasParameter  :b .
+:b  :hasDirection  :out .
+:char a :Char .
+:b  :hasDataTypeParameter  :char .
+:b  :hasIndexOrder  1 .
+:creanodopoli  :hasParameter  :c .
+:c  :hasDirection  :out .
+:double a :Double .
+:c  :hasDataTypeParameter  :double .
+:c  :hasIndexOrder  2 .
+:creanodopoli  :hasParameter  :e .
+:e  :hasDirection  :in .
+:short a :Short .
+:e  :hasDataTypeParameter  :short .
+:e  :hasIndexOrder  3 .
+:creanodopoli  :hasNumParameters  3 .
+:condition9  a :Condition .
+:creanodopoli  :hasPrecond :condition9 .
+:condition9   :hasVariable :c .
+:condition9  :hasOperator :less_than .
+:condition9   :hasNumber 58 .
+:condition10  a :Condition .
+:creanodopoli  :hasPostcond :condition10 .
+:condition10   :hasVariable :e .
+:condition10  :hasOperator :less_than .
+:condition10   :hasNumber 1418 .
+:iprovider  :hasMethod :evalua .
+:evalua  :hasMethodName "evalua" .
+:evalua  a :Method .
+:evalua  :typeReturn :float.
+:evalua  :hasParameter  :b .
+:b  :hasDirection  :out .
+:char a :Char .
+:b  :hasDataTypeParameter  :char .
+:b  :hasIndexOrder  1 .
+:evalua  :hasParameter  :xm .
+:xm  :hasDirection  :out .
+:double a :Double .
+:xm  :hasDataTypeParameter  :double .
+:xm  :hasIndexOrder  2 .
+:evalua  :hasNumParameters  2 .
+:condition11  a :Condition .
+:evalua  :hasPrecond :condition11 .
+:condition11   :hasVariable :xm .
+:condition11  :hasOperator :equals .
+:condition11   :hasNumber 30 .
+:condition12  a :Condition .
+:evalua  :hasPostcond :condition12 .
+:condition12   :hasVariable :xm .
+:condition12  :hasOperator :less_than .
+:condition12   :hasNumber 1805 .
+:iprovider  :hasMethod :captionmat .
+:captionmat  :hasMethodName "captionmat" .
+:captionmat  a :Method .
+:captionmat  :typeReturn :void.
+:captionmat  :hasParameter  :matriz .
+:matriz  :hasDirection  :out .
+:double a :Double .
+:matriz  :hasDataTypeParameter  :double .
+:matriz  :hasIndexOrder  1 .
+:captionmat  :hasParameter  :n .
+:n  :hasDirection  :in .
+:short a :Short .
+:n  :hasDataTypeParameter  :short .
+:n  :hasIndexOrder  2 .
+:captionmat  :hasParameter  :cual .
+:cual  :hasDirection  :in .
+:short a :Short .
+:cual  :hasDataTypeParameter  :short .
+:cual  :hasIndexOrder  3 .
+:captionmat  :hasNumParameters  3 .
+:condition13  a :Condition .
+:captionmat  :hasPrecond :condition13 .
+:condition13   :hasVariable :n .
+:condition13  :hasOperator :less_than_or_equal_to .
+:condition13   :hasNumber 33 .
+:condition14  a :Condition .
+:captionmat  :hasPostcond :condition14 .
+:condition14   :hasVariable :cual .
+:condition14  :hasOperator :greater_than_or_equal_to .
+:condition14   :hasNumber 3257 .
+:iprovider  :hasMethod :changeline .
+:changeline  :hasMethodName "changeline" .
+:changeline  a :Method .
+:changeline  :typeReturn :void.
+:changeline  :hasParameter  :matriz .
+:matriz  :hasDirection  :out .
+:double a :Double .
+:matriz  :hasDataTypeParameter  :double .
+:matriz  :hasIndexOrder  1 .
+:changeline  :hasParameter  :ren .
+:ren  :hasDirection  :in .
+:short a :Short .
+:ren  :hasDataTypeParameter  :short .
+:ren  :hasIndexOrder  2 .
+:changeline  :hasParameter  :col .
+:col  :hasDirection  :in .
+:short a :Short .
+:col  :hasDataTypeParameter  :short .
+:col  :hasIndexOrder  3 .
+:changeline  :hasParameter  :n .
+:n  :hasDirection  :in .
+:short a :Short .
+:n  :hasDataTypeParameter  :short .
+:n  :hasIndexOrder  4 .
+:changeline  :hasNumParameters  4 .
+:condition15  a :Condition .
+:changeline  :hasPrecond :condition15 .
+:condition15   :hasVariable :n .
+:condition15   :hasOperator :greater_than .
+:condition15   :hasNumber 77 .
+:condition16  a :Condition .
+:changeline  :hasPostcond :condition16 .
+:condition16   :hasVariable :ren .
+:condition16  :hasOperator :greater_than_or_equal_to .
+:condition16   :hasNumber 759 .
+:iprovider  :hasMethod :llenacero .
+:llenacero  :hasMethodName "llenacero" .
+:llenacero  a :Method .
+:llenacero  :typeReturn :void.
+:llenacero  :hasParameter  :matriz .
+:matriz  :hasDirection  :out .
+:double a :Double .
+:matriz  :hasDataTypeParameter  :double .
+:matriz  :hasIndexOrder  1 .
+:llenacero  :hasParameter  :n .
+:n  :hasDirection  :in .
+:short a :Short .
+:n  :hasDataTypeParameter  :short .
+:n  :hasIndexOrder  2 .
+:llenacero  :hasNumParameters  2 .
+:condition17  a :Condition .
+:llenacero  :hasPrecond :condition17 .
+:condition17   :hasVariable :n .
+:condition17  :hasOperator :greater_than_or_equal_to .
+:condition17   :hasNumber 6 .
+:condition18  a :Condition .
+:llenacero  :hasPostcond :condition18 .
+:condition18   :hasVariable :matriz .
+:condition18  :hasOperator :less_than .
+:condition18   :hasNumber 3791 .
+:iprovider  :hasMethod :menu .
+:menu  :hasMethodName "menu" .
+:menu  a :Method .
+:menu  :typeReturn :void.
+:menu  :hasNumParameters  0 .
+:iprovider  :hasMethod :ventmenu .
+:ventmenu  :hasMethodName "ventmenu" .
+:ventmenu  a :Method .
+:ventmenu  :typeReturn :void.
+:ventmenu  :hasNumParameters  0 .
+:iprovider  :hasMethod :ventanacaptura .
+:ventanacaptura  :hasMethodName "ventanacaptura" .
+:ventanacaptura  a :Method .
+:ventanacaptura  :typeReturn :void.
+:ventanacaptura  :hasParameter  :x1 .
+:x1  :hasDirection  :in .
+:short a :Short .
+:x1  :hasDataTypeParameter  :short .
+:x1  :hasIndexOrder  1 .
+:ventanacaptura  :hasParameter  :y1 .
+:y1  :hasDirection  :in .
+:short a :Short .
+:y1  :hasDataTypeParameter  :short .
+:y1  :hasIndexOrder  2 .
+:ventanacaptura  :hasParameter  :x2 .
+:x2  :hasDirection  :in .
+:short a :Short .
+:x2  :hasDataTypeParameter  :short .
+:x2  :hasIndexOrder  3 .
+:ventanacaptura  :hasParameter  :y2 .
+:y2  :hasDirection  :in .
+:short a :Short .
+:y2  :hasDataTypeParameter  :short .
+:y2  :hasIndexOrder  4 .
+:ventanacaptura  :hasNumParameters  4 .
+:condition19  a :Condition .
+:ventanacaptura  :hasPrecond :condition19 .
+:condition19   :hasVariable :x2 .
+:condition19  :hasOperator :less_than_or_equal_to .
+:condition19   :hasNumber 67 .
+:condition20  a :Condition .
+:ventanacaptura  :hasPostcond :condition20 .
+:condition20   :hasVariable :y1 .
+:condition20   :hasOperator :greater_than .
+:condition20   :hasNumber 1081 .
+:iprovider  :hasMethod :calculafactorial .
+:calculafactorial  :hasMethodName "calculafactorial" .
+:calculafactorial  a :Method .
+:calculafactorial  :typeReturn :long.
+:calculafactorial  :hasParameter  :n .
+:n  :hasDirection  :in .
+:short a :Short .
+:n  :hasDataTypeParameter  :short .
+:n  :hasIndexOrder  1 .
+:calculafactorial  :hasNumParameters  1 .
+:condition21  a :Condition .
+:calculafactorial  :hasPrecond :condition21 .
+:condition21   :hasVariable :n .
+:condition21  :hasOperator :less_than_or_equal_to .
+:condition21   :hasNumber 95 .
+:condition22  a :Condition .
+:calculafactorial  :hasPostcond :condition22 .
+:condition22   :hasVariable :n .
+:condition22  :hasOperator :not_equal_to .
+:condition22   :hasNumber 2906 .
+:iprovider  :hasMethod :factorial .
+:factorial  :hasMethodName "factorial" .
+:factorial  a :Method .
+:factorial  :typeReturn :void.
+:factorial  :hasNumParameters  0 .
+:iprovider  :hasMethod :captdatb .
+:captdatb  :hasMethodName "captdatb" .
+:captdatb  a :Method .
+:captdatb  :typeReturn :void.
+:captdatb  :hasParameter  :a .
+:a  :hasDirection  :out .
+:char a :Char .
+:a  :hasDataTypeParameter  :char .
+:a  :hasIndexOrder  1 .
+:captdatb  :hasParameter  :cual .
+:cual  :hasDirection  :in .
+:short a :Short .
+:cual  :hasDataTypeParameter  :short .
+:cual  :hasIndexOrder  2 .
+:captdatb  :hasNumParameters  2 .
+:condition23  a :Condition .
+:captdatb  :hasPrecond :condition23 .
+:condition23   :hasVariable :cual .
+:condition23  :hasOperator :not_equal_to .
+:condition23   :hasNumber 18 .
+:condition24  a :Condition .
+:captdatb  :hasPostcond :condition24 .
+:condition24   :hasVariable :a .
+:condition24   :hasOperator :greater_than .
+:condition24   :hasNumber 42 .
+:iprovider  :hasMethod :captdatbiseccion .
+:captdatbiseccion  :hasMethodName "captdatbiseccion" .
+:captdatbiseccion  a :Method .
+:captdatbiseccion  :typeReturn :void.
+:captdatbiseccion  :hasParameter  :a .
+:a  :hasDirection  :out .
+:char a :Char .
+:a  :hasDataTypeParameter  :char .
+:a  :hasIndexOrder  1 .
+:captdatbiseccion  :hasNumParameters  1 .
+:condition25  a :Condition .
+:captdatbiseccion  :hasPrecond :condition25 .
+:condition25   :hasVariable :a .
+:condition25  :hasOperator :equals .
+:condition25   :hasNumber 63 .
+:condition26  a :Condition .
+:captdatbiseccion  :hasPostcond :condition26 .
+:condition26   :hasVariable :a .
+:condition26  :hasOperator :less_than_or_equal_to .
+:condition26   :hasNumber 3074 .
+:iprovider  :hasMethod :biseccion .
+:biseccion  :hasMethodName "biseccion" .
+:biseccion  a :Method .
+:biseccion  :typeReturn :float.
+:biseccion  :hasParameter  :i .
+:i  :hasDirection  :out .
+:char a :Char .
+:i  :hasDataTypeParameter  :char .
+:i  :hasIndexOrder  1 .
+:biseccion  :hasParameter  :a .
+:a  :hasDirection  :out .
+:float a :Float .
+:a  :hasDataTypeParameter  :float .
+:a  :hasIndexOrder  2 .
+:biseccion  :hasParameter  :b .
+:b  :hasDirection  :out .
+:float a :Float .
+:b  :hasDataTypeParameter  :float .
+:b  :hasIndexOrder  3 .
+:biseccion  :hasParameter  :tol .
+:tol  :hasDirection  :out .
+:float a :Float .
+:tol  :hasDataTypeParameter  :float .
+:tol  :hasIndexOrder  4 .
+:biseccion  :hasParameter  :ant .
+:ant  :hasDirection  :out .
+:float a :Float .
+:ant  :hasDataTypeParameter  :float .
+:ant  :hasIndexOrder  5 .
+:biseccion  :hasNumParameters  5 .
+:condition27  a :Condition .
+:biseccion  :hasPrecond :condition27 .
+:condition27   :hasVariable :i .
+:condition27  :hasOperator :greater_than_or_equal_to .
+:condition27   :hasNumber 37 .
+:condition28  a :Condition .
+:biseccion  :hasPostcond :condition28 .
+:condition28   :hasVariable :i .
+:condition28  :hasOperator :less_than_or_equal_to .
+:condition28   :hasNumber 531 .
+:iprovider  :hasMethod :captdatregfalsa .
+:captdatregfalsa  :hasMethodName "captdatregfalsa" .
+:captdatregfalsa  a :Method .
+:captdatregfalsa  :typeReturn :void.
+:captdatregfalsa  :hasParameter  :a .
+:a  :hasDirection  :out .
+:char a :Char .
+:a  :hasDataTypeParameter  :char .
+:a  :hasIndexOrder  1 .
+:captdatregfalsa  :hasNumParameters  1 .
+:condition29  a :Condition .
+:captdatregfalsa  :hasPrecond :condition29 .
+:condition29   :hasVariable :a .
+:condition29  :hasOperator :equals .
+:condition29   :hasNumber 25 .
+:condition30  a :Condition .
+:captdatregfalsa  :hasPostcond :condition30 .
+:condition30   :hasVariable :a .
+:condition30  :hasOperator :greater_than_or_equal_to .
+:condition30   :hasNumber 3786 .
+:iprovider  :hasMethod :regfalsa .
+:regfalsa  :hasMethodName "regfalsa" .
+:regfalsa  a :Method .
+:regfalsa  :typeReturn :float.
+:regfalsa  :hasParameter  :i .
+:i  :hasDirection  :out .
+:char a :Char .
+:i  :hasDataTypeParameter  :char .
+:i  :hasIndexOrder  1 .
+:regfalsa  :hasParameter  :a .
+:a  :hasDirection  :out .
+:float a :Float .
+:a  :hasDataTypeParameter  :float .
+:a  :hasIndexOrder  2 .
+:regfalsa  :hasParameter  :b .
+:b  :hasDirection  :out .
+:float a :Float .
+:b  :hasDataTypeParameter  :float .
+:b  :hasIndexOrder  3 .
+:regfalsa  :hasParameter  :tol .
+:tol  :hasDirection  :out .
+:float a :Float .
+:tol  :hasDataTypeParameter  :float .
+:tol  :hasIndexOrder  4 .
+:regfalsa  :hasParameter  :ant .
+:ant  :hasDirection  :out .
+:float a :Float .
+:ant  :hasDataTypeParameter  :float .
+:ant  :hasIndexOrder  5 .
+:regfalsa  :hasNumParameters  5 .
+:condition31  a :Condition .
+:regfalsa  :hasPrecond :condition31 .
+:condition31   :hasVariable :b .
+:condition31  :hasOperator :greater_than_or_equal_to .
+:condition31   :hasNumber 48 .
+:condition32  a :Condition .
+:regfalsa  :hasPostcond :condition32 .
+:condition32   :hasVariable :i .
+:condition32  :hasOperator :greater_than_or_equal_to .
+:condition32   :hasNumber 302 .
+:iprovider  :hasMethod :gaussjordan .
+:gaussjordan  :hasMethodName "gaussjordan" .
+:gaussjordan  a :Method .
+:gaussjordan  :typeReturn :float.
+:gaussjordan  :hasParameter  :matriz .
+:matriz  :hasDirection  :out .
+:double a :Double .
+:matriz  :hasDataTypeParameter  :double .
+:matriz  :hasIndexOrder  1 .
+:gaussjordan  :hasParameter  :n .
+:n  :hasDirection  :in .
+:short a :Short .
+:n  :hasDataTypeParameter  :short .
+:n  :hasIndexOrder  2 .
+:gaussjordan  :hasNumParameters  2 .
+:condition33  a :Condition .
+:gaussjordan  :hasPrecond :condition33 .
+:condition33   :hasVariable :matriz .
+:condition33  :hasOperator :equals .
+:condition33   :hasNumber 27 .
+:condition34  a :Condition .
+:gaussjordan  :hasPostcond :condition34 .
+:condition34   :hasVariable :n .
+:condition34  :hasOperator :less_than_or_equal_to .
+:condition34   :hasNumber 2318 .
+:iprovider  :hasMethod :inprimejordan .
+:inprimejordan  :hasMethodName "inprimejordan" .
+:inprimejordan  a :Method .
+:inprimejordan  :typeReturn :void.
+:inprimejordan  :hasParameter  :matriz .
+:matriz  :hasDirection  :out .
+:float a :Float .
+:matriz  :hasDataTypeParameter  :float .
+:matriz  :hasIndexOrder  1 .
+:inprimejordan  :hasParameter  :nuevo .
+:nuevo  :hasDirection  :out .
+:float a :Float .
+:nuevo  :hasDataTypeParameter  :float .
+:nuevo  :hasIndexOrder  2 .
+:inprimejordan  :hasParameter  :n .
+:n  :hasDirection  :in .
+:short a :Short .
+:n  :hasDataTypeParameter  :short .
+:n  :hasIndexOrder  3 .
+:inprimejordan  :hasParameter  :op .
+:op  :hasDirection  :in .
+:short a :Short .
+:op  :hasDataTypeParameter  :short .
+:op  :hasIndexOrder  4 .
+:inprimejordan  :hasParameter  :cual .
+:cual  :hasDirection  :in .
+:short a :Short .
+:cual  :hasDataTypeParameter  :short .
+:cual  :hasIndexOrder  5 .
+:inprimejordan  :hasNumParameters  5 .
+:condition35  a :Condition .
+:inprimejordan  :hasPrecond :condition35 .
+:condition35   :hasVariable :op .
+:condition35  :hasOperator :greater_than_or_equal_to .
+:condition35   :hasNumber 81 .
+:condition36  a :Condition .
+:inprimejordan  :hasPostcond :condition36 .
+:condition36   :hasVariable :nuevo .
+:condition36  :hasOperator :less_than_or_equal_to .
+:condition36   :hasNumber 4146 .
+:iprovider  :hasMethod :gaussseidel .
+:gaussseidel  :hasMethodName "gaussseidel" .
+:gaussseidel  a :Method .
+:gaussseidel  :typeReturn :float.
+:gaussseidel  :hasParameter  :matriz .
+:matriz  :hasDirection  :out .
+:float a :Float .
+:matriz  :hasDataTypeParameter  :float .
+:matriz  :hasIndexOrder  1 .
+:gaussseidel  :hasParameter  :n .
+:n  :hasDirection  :in .
+:short a :Short .
+:n  :hasDataTypeParameter  :short .
+:n  :hasIndexOrder  2 .
+:gaussseidel  :hasParameter  :tol .
+:tol  :hasDirection  :out .
+:float a :Float .
+:tol  :hasDataTypeParameter  :float .
+:tol  :hasIndexOrder  3 .
+:gaussseidel  :hasNumParameters  3 .
+:condition37  a :Condition .
+:gaussseidel  :hasPrecond :condition37 .
+:condition37   :hasVariable :matriz .
+:condition37  :hasOperator :greater_than_or_equal_to .
+:condition37   :hasNumber 79 .
+:condition38  a :Condition .
+:gaussseidel  :hasPostcond :condition38 .
+:condition38   :hasVariable :matriz .
+:condition38  :hasOperator :greater_than_or_equal_to .
+:condition38   :hasNumber 2764 .
+:iprovider  :hasMethod :inprimeseidel .
+:inprimeseidel  :hasMethodName "inprimeseidel" .
+:inprimeseidel  a :Method .
+:inprimeseidel  :typeReturn :void.
+:inprimeseidel  :hasParameter  :nuevo .
+:nuevo  :hasDirection  :out .
+:double a :Double .
+:nuevo  :hasDataTypeParameter  :double .
+:nuevo  :hasIndexOrder  1 .
+:inprimeseidel  :hasParameter  :n .
+:n  :hasDirection  :in .
+:short a :Short .
+:n  :hasDataTypeParameter  :short .
+:n  :hasIndexOrder  2 .
+:inprimeseidel  :hasNumParameters  2 .
+:condition39  a :Condition .
+:inprimeseidel  :hasPrecond :condition39 .
+:condition39   :hasVariable :n .
+:condition39  :hasOperator :greater_than_or_equal_to .
+:condition39   :hasNumber 68 .
+:condition40  a :Condition .
+:inprimeseidel  :hasPostcond :condition40 .
+:condition40   :hasVariable :n .
+:condition40  :hasOperator :not_equal_to .
+:condition40   :hasNumber 1981 .
+:iprovider  :hasMethod :cumple .
+:cumple  :hasMethodName "cumple" .
+:cumple  a :Method .
+:cumple  :typeReturn :short.
+:cumple  :hasParameter  :matriz .
+:matriz  :hasDirection  :out .
+:float a :Float .
+:matriz  :hasDataTypeParameter  :float .
+:matriz  :hasIndexOrder  1 .
+:cumple  :hasParameter  :r .
+:r  :hasDirection  :in .
+:short a :Short .
+:r  :hasDataTypeParameter  :short .
+:r  :hasIndexOrder  2 .
+:cumple  :hasParameter  :ren .
+:ren  :hasDirection  :in .
+:short a :Short .
+:ren  :hasDataTypeParameter  :short .
+:ren  :hasIndexOrder  3 .
+:cumple  :hasParameter  :n .
+:n  :hasDirection  :in .
+:short a :Short .
+:n  :hasDataTypeParameter  :short .
+:n  :hasIndexOrder  4 .
+:cumple  :hasNumParameters  4 .
+:condition41  a :Condition .
+:cumple  :hasPrecond :condition41 .
+:condition41   :hasVariable :r .
+:condition41  :hasOperator :not_equal_to .
+:condition41   :hasNumber 61 .
+:condition42  a :Condition .
+:cumple  :hasPostcond :condition42 .
+:condition42   :hasVariable :n .
+:condition42   :hasOperator :greater_than .
+:condition42   :hasNumber 2301 .
+:iprovider  :hasMethod :converge .
+:converge  :hasMethodName "converge" .
+:converge  a :Method .
+:converge  :typeReturn :short.
+:converge  :hasParameter  :matriz .
+:matriz  :hasDirection  :out .
+:float a :Float .
+:matriz  :hasDataTypeParameter  :float .
+:matriz  :hasIndexOrder  1 .
+:converge  :hasParameter  :n .
+:n  :hasDirection  :in .
+:short a :Short .
+:n  :hasDataTypeParameter  :short .
+:n  :hasIndexOrder  2 .
+:converge  :hasNumParameters  2 .
+:condition43  a :Condition .
+:converge  :hasPrecond :condition43 .
+:condition43   :hasVariable :matriz .
+:condition43  :hasOperator :less_than .
+:condition43   :hasNumber 42 .
+:condition44  a :Condition .
+:converge  :hasPostcond :condition44 .
+:condition44   :hasVariable :n .
+:condition44  :hasOperator :not_equal_to .
+:condition44   :hasNumber 542 .
+:iprovider  :hasMethod :sustituyeatras .
+:sustituyeatras  :hasMethodName "sustituyeatras" .
+:sustituyeatras  a :Method .
+:sustituyeatras  :typeReturn :void.
+:sustituyeatras  :hasParameter  :lu .
+:lu  :hasDirection  :out .
+:float a :Float .
+:lu  :hasDataTypeParameter  :float .
+:lu  :hasIndexOrder  1 .
+:sustituyeatras  :hasParameter  :n .
+:n  :hasDirection  :in .
+:short a :Short .
+:n  :hasDataTypeParameter  :short .
+:n  :hasIndexOrder  2 .
+:sustituyeatras  :hasParameter  :vector .
+:vector  :hasDirection  :out .
+:float a :Float .
+:vector  :hasDataTypeParameter  :float .
+:vector  :hasIndexOrder  3 .
+:sustituyeatras  :hasNumParameters  3 .
+:condition45  a :Condition .
+:sustituyeatras  :hasPrecond :condition45 .
+:condition45   :hasVariable :lu .
+:condition45  :hasOperator :less_than_or_equal_to .
+:condition45   :hasNumber 66 .
+:condition46  a :Condition .
+:sustituyeatras  :hasPostcond :condition46 .
+:condition46   :hasVariable :vector .
+:condition46  :hasOperator :less_than_or_equal_to .
+:condition46   :hasNumber 3602 .
+:iprovider  :hasMethod :sustituyeade .
+:sustituyeade  :hasMethodName "sustituyeade" .
+:sustituyeade  a :Method .
+:sustituyeade  :typeReturn :float.
+:sustituyeade  :hasParameter  :lu .
+:lu  :hasDirection  :out .
+:float a :Float .
+:lu  :hasDataTypeParameter  :float .
+:lu  :hasIndexOrder  1 .
+:sustituyeade  :hasParameter  :n .
+:n  :hasDirection  :in .
+:short a :Short .
+:n  :hasDataTypeParameter  :short .
+:n  :hasIndexOrder  2 .
+:sustituyeade  :hasNumParameters  2 .
+:condition47  a :Condition .
+:sustituyeade  :hasPrecond :condition47 .
+:condition47   :hasVariable :lu .
+:condition47  :hasOperator :less_than .
+:condition47   :hasNumber 6 .
+:condition48  a :Condition .
+:sustituyeade  :hasPostcond :condition48 .
+:condition48   :hasVariable :lu .
+:condition48  :hasOperator :less_than .
+:condition48   :hasNumber 789 .
+:iprovider  :hasMethod :crealu .
+:crealu  :hasMethodName "crealu" .
+:crealu  a :Method .
+:crealu  :typeReturn :short.
+:crealu  :hasParameter  :lu .
+:lu  :hasDirection  :out .
+:float a :Float .
+:lu  :hasDataTypeParameter  :float .
+:lu  :hasIndexOrder  1 .
+:crealu  :hasParameter  :mat .
+:mat  :hasDirection  :out .
+:float a :Float .
+:mat  :hasDataTypeParameter  :float .
+:mat  :hasIndexOrder  2 .
+:crealu  :hasParameter  :n .
+:n  :hasDirection  :in .
+:short a :Short .
+:n  :hasDataTypeParameter  :short .
+:n  :hasIndexOrder  3 .
+:crealu  :hasNumParameters  3 .
+:condition49  a :Condition .
+:crealu  :hasPrecond :condition49 .
+:condition49   :hasVariable :n .
+:condition49  :hasOperator :less_than_or_equal_to .
+:condition49   :hasNumber 46 .
+:condition50  a :Condition .
+:crealu  :hasPostcond :condition50 .
+:condition50   :hasVariable :mat .
+:condition50  :hasOperator :equals .
+:condition50   :hasNumber 1927 .
+:iprovider  :hasMethod :pushatend .
+:pushatend  :hasMethodName "pushatend" .
+:pushatend  a :Method .
+:pushatend  :typeReturn :void.
+:pushatend  :hasParameter  :head .
+:head  :hasDirection  :out .
+:float a :Float .
+:head  :hasDataTypeParameter  :float .
+:head  :hasIndexOrder  1 .
+:pushatend  :hasParameter  :addx .
+:addx  :hasDirection  :out .
+:float a :Float .
+:addx  :hasDataTypeParameter  :float .
+:addx  :hasIndexOrder  2 .
+:pushatend  :hasParameter  :addxy .
+:addxy  :hasDirection  :out .
+:float a :Float .
+:addxy  :hasDataTypeParameter  :float .
+:addxy  :hasIndexOrder  3 .
+:pushatend  :hasNumParameters  3 .
+:condition51  a :Condition .
+:pushatend  :hasPrecond :condition51 .
+:condition51   :hasVariable :addx .
+:condition51  :hasOperator :less_than_or_equal_to .
+:condition51   :hasNumber 66 .
+:condition52  a :Condition .
+:pushatend  :hasPostcond :condition52 .
+:condition52   :hasVariable :addx .
+:condition52   :hasOperator :greater_than .
+:condition52   :hasNumber 3345 .
+:iprovider  :hasMethod :freei .
+:freei  :hasMethodName "freei" .
+:freei  a :Method .
+:freei  :typeReturn :void.
+:freei  :hasParameter  :cab .
+:cab  :hasDirection  :out .
+:char a :Char .
+:cab  :hasDataTypeParameter  :char .
+:cab  :hasIndexOrder  1 .
+:freei  :hasNumParameters  1 .
+:condition53  a :Condition .
+:freei  :hasPrecond :condition53 .
+:condition53   :hasVariable :cab .
+:condition53  :hasOperator :less_than_or_equal_to .
+:condition53   :hasNumber 14 .
+:condition54  a :Condition .
+:freei  :hasPostcond :condition54 .
+:condition54   :hasVariable :cab .
+:condition54  :hasOperator :equals .
+:condition54   :hasNumber 366 .
+:iprovider  :hasMethod :method337 .
+:method337  :hasMethodName "method337" .
+:method337  a :Method .
+:method337  :typeReturn :short.
+:method337  :hasParameter  :x .
+:x  :hasDirection  :inout .
+:short a :Short .
+:x  :hasDataTypeParameter  :short .
+:x  :hasIndexOrder  1 .
+:method337  :hasParameter  :y .
+:y  :hasDirection  :inout .
+:short a :Short .
+:y  :hasDataTypeParameter  :short .
+:y  :hasIndexOrder  2 .
+:method337  :hasNumParameters  2 .
+:condition55  a :Condition .
+:method337  :hasPrecond :condition55 .
+:condition55   :hasVariable :y .
+:condition55  :hasOperator :less_than .
+:condition55   :hasNumber 69 .
+:condition56  a :Condition .
+:method337  :hasPostcond :condition56 .
+:condition56   :hasVariable :x .
+:condition56  :hasOperator :equals .
+:condition56   :hasNumber 36 .
+:iprovider  :hasMethod :setmousequeuestatus .
+:setmousequeuestatus  :hasMethodName "setmousequeuestatus" .
+:setmousequeuestatus  a :Method .
+:setmousequeuestatus  :typeReturn :void.
+:setmousequeuestatus  :hasParameter  :kind .
+:kind  :hasDirection  :in .
+:short a :Short .
+:kind  :hasDataTypeParameter  :short .
+:kind  :hasIndexOrder  1 .
+:setmousequeuestatus  :hasParameter  :status .
+:status  :hasDirection  :in .
+:boolean a :Boolean .
+:status  :hasDataTypeParameter  :boolean .
+:status  :hasIndexOrder  2 .
+:setmousequeuestatus  :hasNumParameters  2 .
+:condition57  a :Condition .
+:setmousequeuestatus  :hasPrecond :condition57 .
+:condition57   :hasVariable :kind .
+:condition57  :hasOperator :less_than_or_equal_to .
+:condition57   :hasNumber 45 .
+:condition58  a :Condition .
+:setmousequeuestatus  :hasPostcond :condition58 .
+:condition58   :hasVariable :status .
+:condition58  :hasOperator :not_equal_to .
+:condition58   :hasNumber 3379 .
+:iprovider  :hasMethod :method464 .
+:method464  :hasMethodName "method464" .
+:method464  a :Method .
+:method464  :typeReturn :short.
+:method464  :hasParameter  :x .
+:x  :hasDirection  :inout .
+:short a :Short .
+:x  :hasDataTypeParameter  :short .
+:x  :hasIndexOrder  1 .
+:method464  :hasParameter  :y .
+:y  :hasDirection  :in .
+:long a :Long .
+:y  :hasDataTypeParameter  :long .
+:y  :hasIndexOrder  2 .
+:method464  :hasNumParameters  2 .
+:condition59  a :Condition .
+:method464  :hasPrecond :condition59 .
+:condition59   :hasVariable :x .
+:condition59  :hasOperator :less_than .
+:condition59   :hasNumber 86 .
+:condition60  a :Condition .
+:method464  :hasPostcond :condition60 .
+:condition60   :hasVariable :y .
+:condition60  :hasOperator :greater_than_or_equal_to .
+:condition60   :hasNumber 806 .
+:iprovider  :hasMethod :method730 .
+:method730  :hasMethodName "method730" .
+:method730  a :Method .
+:method730  :typeReturn :long.
+:method730  :hasParameter  :x .
+:x  :hasDirection  :inout .
+:short a :Short .
+:x  :hasDataTypeParameter  :short .
+:x  :hasIndexOrder  1 .
+:method730  :hasParameter  :y .
+:y  :hasDirection  :inout .
+:long a :Long .
+:y  :hasDataTypeParameter  :long .
+:y  :hasIndexOrder  2 .
+:method730  :hasNumParameters  2 .
+:condition61  a :Condition .
+:method730  :hasPrecond :condition61 .
+:condition61   :hasVariable :x .
+:condition61  :hasOperator :equals .
+:condition61   :hasNumber 0 .
+:condition62  a :Condition .
+:method730  :hasPostcond :condition62 .
+:condition62   :hasVariable :x .
+:condition62  :hasOperator :not_equal_to .
+:condition62   :hasNumber 23 .
+:iprovider  :hasMethod :method577 .
+:method577  :hasMethodName "method577" .
+:method577  a :Method .
+:method577  :typeReturn :float.
+:method577  :hasParameter  :x .
+:x  :hasDirection  :in .
+:float a :Float .
+:x  :hasDataTypeParameter  :float .
+:x  :hasIndexOrder  1 .
+:method577  :hasParameter  :y .
+:y  :hasDirection  :out .
+:float a :Float .
+:y  :hasDataTypeParameter  :float .
+:y  :hasIndexOrder  2 .
+:method577  :hasNumParameters  2 .
+:condition63  a :Condition .
+:method577  :hasPrecond :condition63 .
+:condition63   :hasVariable :x .
+:condition63  :hasOperator :less_than_or_equal_to .
+:condition63   :hasNumber 0 .
+:condition64  a :Condition .
+:method577  :hasPostcond :condition64 .
+:condition64   :hasVariable :y .
+:condition64  :hasOperator :less_than_or_equal_to .
+:condition64   :hasNumber 1535 .
+:iprovider  :hasMethod :method893 .
+:method893  :hasMethodName "method893" .
+:method893  a :Method .
+:method893  :typeReturn :float.
+:method893  :hasParameter  :x .
+:x  :hasDirection  :out .
+:void a :Void .
+:x  :hasDataTypeParameter  :void .
+:x  :hasIndexOrder  1 .
+:method893  :hasParameter  :y .
+:y  :hasDirection  :out .
+:void a :Void .
+:y  :hasDataTypeParameter  :void .
+:y  :hasIndexOrder  2 .
+:method893  :hasNumParameters  2 .
+:condition65  a :Condition .
+:method893  :hasPrecond :condition65 .
+:condition65   :hasVariable :x .
+:condition65  :hasOperator :equals .
+:condition65   :hasNumber 15 .
+:condition66  a :Condition .
+:method893  :hasPostcond :condition66 .
+:condition66   :hasVariable :x .
+:condition66  :hasOperator :not_equal_to .
+:condition66   :hasNumber 4157 .
+:iprovider  :hasMethod :tan .
+:tan  :hasMethodName "tan" .
+:tan  a :Method .
+:tan  :typeReturn :float.
+:tan  :hasParameter  :r .
+:r  :hasDirection  :in .
+:float a :Float .
+:r  :hasDataTypeParameter  :float .
+:r  :hasIndexOrder  1 .
+:tan  :hasNumParameters  1 .
+:condition67  a :Condition .
+:tan  :hasPrecond :condition67 .
+:condition67   :hasVariable :r .
+:condition67  :hasOperator :greater_than_or_equal_to .
+:condition67   :hasNumber 36 .
+:condition68  a :Condition .
+:tan  :hasPostcond :condition68 .
+:condition68   :hasVariable :r .
+:condition68  :hasOperator :less_than_or_equal_to .
+:condition68   :hasNumber 1121 .
+:iprovider  :hasMethod :method603 .
+:method603  :hasMethodName "method603" .
+:method603  a :Method .
+:method603  :typeReturn :float.
+:method603  :hasParameter  :x .
+:x  :hasDirection  :in .
+:void a :Void .
+:x  :hasDataTypeParameter  :void .
+:x  :hasIndexOrder  1 .
+:method603  :hasParameter  :y .
+:y  :hasDirection  :out .
+:void a :Void .
+:y  :hasDataTypeParameter  :void .
+:y  :hasIndexOrder  2 .
+:method603  :hasNumParameters  2 .
+:condition69  a :Condition .
+:method603  :hasPrecond :condition69 .
+:condition69   :hasVariable :y .
+:condition69  :hasOperator :less_than_or_equal_to .
+:condition69   :hasNumber 22 .
+:condition70  a :Condition .
+:method603  :hasPostcond :condition70 .
+:condition70   :hasVariable :y .
+:condition70  :hasOperator :equals .
+:condition70   :hasNumber 1841 .
+:iprovider  :hasMethod :method975 .
+:method975  :hasMethodName "method975" .
+:method975  a :Method .
+:method975  :typeReturn :float.
+:method975  :hasParameter  :x .
+:x  :hasDirection  :inout .
+:short a :Short .
+:x  :hasDataTypeParameter  :short .
+:x  :hasIndexOrder  1 .
+:method975  :hasParameter  :y .
+:y  :hasDirection  :in .
+:short a :Short .
+:y  :hasDataTypeParameter  :short .
+:y  :hasIndexOrder  2 .
+:method975  :hasNumParameters  2 .
+:condition71  a :Condition .
+:method975  :hasPrecond :condition71 .
+:condition71   :hasVariable :y .
+:condition71  :hasOperator :not_equal_to .
+:condition71   :hasNumber 98 .
+:condition72  a :Condition .
+:method975  :hasPostcond :condition72 .
+:condition72   :hasVariable :x .
+:condition72  :hasOperator :less_than .
+:condition72   :hasNumber 4130 .
+:iprovider  :hasMethod :method902 .
+:method902  :hasMethodName "method902" .
+:method902  a :Method .
+:method902  :typeReturn :long.
+:method902  :hasParameter  :x .
+:x  :hasDirection  :in .
+:void a :Void .
+:x  :hasDataTypeParameter  :void .
+:x  :hasIndexOrder  1 .
+:method902  :hasParameter  :y .
+:y  :hasDirection  :out .
+:float a :Float .
+:y  :hasDataTypeParameter  :float .
+:y  :hasIndexOrder  2 .
+:method902  :hasNumParameters  2 .
+:condition73  a :Condition .
+:method902  :hasPrecond :condition73 .
+:condition73   :hasVariable :y .
+:condition73  :hasOperator :greater_than_or_equal_to .
+:condition73   :hasNumber 94 .
+:condition74  a :Condition .
+:method902  :hasPostcond :condition74 .
+:condition74   :hasVariable :x .
+:condition74  :hasOperator :less_than .
+:condition74   :hasNumber 3503 .
+:iprovider  :hasMethod :circle .
+:circle  :hasMethodName "circle" .
+:circle  a :Method .
+:circle  :typeReturn :void.
+:circle  :hasParameter  :x .
+:x  :hasDirection  :in .
+:short a :Short .
+:x  :hasDataTypeParameter  :short .
+:x  :hasIndexOrder  1 .
+:circle  :hasParameter  :y .
+:y  :hasDirection  :in .
+:short a :Short .
+:y  :hasDataTypeParameter  :short .
+:y  :hasIndexOrder  2 .
+:circle  :hasParameter  :radius .
+:radius  :hasDirection  :in .
+:short a :Short .
+:radius  :hasDataTypeParameter  :short .
+:radius  :hasIndexOrder  3 .
+:circle  :hasNumParameters  3 .
+:condition75  a :Condition .
+:circle  :hasPrecond :condition75 .
+:condition75   :hasVariable :x .
+:condition75  :hasOperator :equals .
+:condition75   :hasNumber 59 .
+:condition76  a :Condition .
+:circle  :hasPostcond :condition76 .
+:condition76   :hasVariable :radius .
+:condition76  :hasOperator :greater_than_or_equal_to .
+:condition76   :hasNumber 2936 .
+:iprovider  :hasMethod :method128 .
+:method128  :hasMethodName "method128" .
+:method128  a :Method .
+:method128  :typeReturn :void.
+:method128  :hasParameter  :x .
+:x  :hasDirection  :inout .
+:long a :Long .
+:x  :hasDataTypeParameter  :long .
+:x  :hasIndexOrder  1 .
+:method128  :hasParameter  :y .
+:y  :hasDirection  :in .
+:float a :Float .
+:y  :hasDataTypeParameter  :float .
+:y  :hasIndexOrder  2 .
+:method128  :hasNumParameters  2 .
+:condition77  a :Condition .
+:method128  :hasPrecond :condition77 .
+:condition77   :hasVariable :y .
+:condition77  :hasOperator :equals .
+:condition77   :hasNumber 17 .
+:condition78  a :Condition .
+:method128  :hasPostcond :condition78 .
+:condition78   :hasVariable :y .
+:condition78  :hasOperator :greater_than_or_equal_to .
+:condition78   :hasNumber 3785 .
+:iprovider  :hasMethod :method901 .
+:method901  :hasMethodName "method901" .
+:method901  a :Method .
+:method901  :typeReturn :float.
+:method901  :hasParameter  :x .
+:x  :hasDirection  :in .
+:long a :Long .
+:x  :hasDataTypeParameter  :long .
+:x  :hasIndexOrder  1 .
+:method901  :hasParameter  :y .
+:y  :hasDirection  :out .
+:long a :Long .
+:y  :hasDataTypeParameter  :long .
+:y  :hasIndexOrder  2 .
+:method901  :hasNumParameters  2 .
+:condition79  a :Condition .
+:method901  :hasPrecond :condition79 .
+:condition79   :hasVariable :y .
+:condition79  :hasOperator :equals .
+:condition79   :hasNumber 5 .
+:condition80  a :Condition .
+:method901  :hasPostcond :condition80 .
+:condition80   :hasVariable :y .
+:condition80  :hasOperator :equals .
+:condition80   :hasNumber 3302 .
+:iprovider  :hasMethod :method53 .
+:method53  :hasMethodName "method53" .
+:method53  a :Method .
+:method53  :typeReturn :void.
+:method53  :hasParameter  :x .
+:x  :hasDirection  :in .
+:void a :Void .
+:x  :hasDataTypeParameter  :void .
+:x  :hasIndexOrder  1 .
+:method53  :hasParameter  :y .
+:y  :hasDirection  :out .
+:short a :Short .
+:y  :hasDataTypeParameter  :short .
+:y  :hasIndexOrder  2 .
+:method53  :hasNumParameters  2 .
+:condition81  a :Condition .
+:method53  :hasPrecond :condition81 .
+:condition81   :hasVariable :x .
+:condition81  :hasOperator :equals .
+:condition81   :hasNumber 76 .
+:condition82  a :Condition .
+:method53  :hasPostcond :condition82 .
+:condition82   :hasVariable :y .
+:condition82   :hasOperator :greater_than .
+:condition82   :hasNumber 3545 .
+:iprovider  :hasMethod :method25875 .
+:method25875  :hasMethodName "method25875" .
+:method25875  a :Method .
+:method25875  :typeReturn :void.
+:method25875  :hasParameter  :x .
+:x  :hasDirection  :out .
+:short a :Short .
+:x  :hasDataTypeParameter  :short .
+:x  :hasIndexOrder  1 .
+:method25875  :hasParameter  :y .
+:y  :hasDirection  :inout .
+:long a :Long .
+:y  :hasDataTypeParameter  :long .
+:y  :hasIndexOrder  2 .
+:method25875  :hasNumParameters  2 .
+:condition83  a :Condition .
+:method25875  :hasPrecond :condition83 .
+:condition83   :hasVariable :y .
+:condition83  :hasOperator :less_than .
+:condition83   :hasNumber 61 .
+:condition84  a :Condition .
+:method25875  :hasPostcond :condition84 .
+:condition84   :hasVariable :x .
+:condition84  :hasOperator :equals .
+:condition84   :hasNumber 2771 .
+:iprovider  :hasMethod :method1545 .
+:method1545  :hasMethodName "method1545" .
+:method1545  a :Method .
+:method1545  :typeReturn :void.
+:method1545  :hasParameter  :x .
+:x  :hasDirection  :in .
+:short a :Short .
+:x  :hasDataTypeParameter  :short .
+:x  :hasIndexOrder  1 .
+:method1545  :hasParameter  :y .
+:y  :hasDirection  :inout .
+:long a :Long .
+:y  :hasDataTypeParameter  :long .
+:y  :hasIndexOrder  2 .
+:method1545  :hasNumParameters  2 .
+:condition85  a :Condition .
+:method1545  :hasPrecond :condition85 .
+:condition85   :hasVariable :y .
+:condition85  :hasOperator :equals .
+:condition85   :hasNumber 1 .
+:condition86  a :Condition .
+:method1545  :hasPostcond :condition86 .
+:condition86   :hasVariable :x .
+:condition86  :hasOperator :not_equal_to .
+:condition86   :hasNumber 1301 .
+:iprovider  :hasMethod :processitemevent .
+:processitemevent  :hasMethodName "processitemevent" .
+:processitemevent  a :Method .
+:processitemevent  :typeReturn :void.
+:processitemevent  :hasParameter  :e .
+:e  :hasDirection  :inout .
+:char a :Char .
+:e  :hasDataTypeParameter  :char .
+:e  :hasIndexOrder  1 .
+:processitemevent  :hasNumParameters  1 .
+:condition87  a :Condition .
+:processitemevent  :hasPrecond :condition87 .
+:condition87   :hasVariable :e .
+:condition87  :hasOperator :equals .
+:condition87   :hasNumber 3 .
+:condition88  a :Condition .
+:processitemevent  :hasPostcond :condition88 .
+:condition88   :hasVariable :e .
+:condition88  :hasOperator :less_than_or_equal_to .
+:condition88   :hasNumber 1509 .
+:iprovider  :hasMethod :method574 .
+:method574  :hasMethodName "method574" .
+:method574  a :Method .
+:method574  :typeReturn :void.
+:method574  :hasParameter  :x .
+:x  :hasDirection  :inout .
+:short a :Short .
+:x  :hasDataTypeParameter  :short .
+:x  :hasIndexOrder  1 .
+:method574  :hasParameter  :y .
+:y  :hasDirection  :out .
+:long a :Long .
+:y  :hasDataTypeParameter  :long .
+:y  :hasIndexOrder  2 .
+:method574  :hasNumParameters  2 .
+:condition89  a :Condition .
+:method574  :hasPrecond :condition89 .
+:condition89   :hasVariable :y .
+:condition89  :hasOperator :greater_than_or_equal_to .
+:condition89   :hasNumber 66 .
+:condition90  a :Condition .
+:method574  :hasPostcond :condition90 .
+:condition90   :hasVariable :x .
+:condition90   :hasOperator :greater_than .
+:condition90   :hasNumber 622 .
+:iprovider  :hasMethod :method940 .
+:method940  :hasMethodName "method940" .
+:method940  a :Method .
+:method940  :typeReturn :short.
+:method940  :hasParameter  :x .
+:x  :hasDirection  :in .
+:short a :Short .
+:x  :hasDataTypeParameter  :short .
+:x  :hasIndexOrder  1 .
+:method940  :hasParameter  :y .
+:y  :hasDirection  :in .
+:long a :Long .
+:y  :hasDataTypeParameter  :long .
+:y  :hasIndexOrder  2 .
+:method940  :hasNumParameters  2 .
+:condition91  a :Condition .
+:method940  :hasPrecond :condition91 .
+:condition91   :hasVariable :y .
+:condition91   :hasOperator :greater_than .
+:condition91   :hasNumber 50 .
+:condition92  a :Condition .
+:method940  :hasPostcond :condition92 .
+:condition92   :hasVariable :x .
+:condition92  :hasOperator :less_than_or_equal_to .
+:condition92   :hasNumber 1010 .
+:iprovider  :hasMethod :method1925 .
+:method1925  :hasMethodName "method1925" .
+:method1925  a :Method .
+:method1925  :typeReturn :short.
+:method1925  :hasParameter  :x .
+:x  :hasDirection  :in .
+:float a :Float .
+:x  :hasDataTypeParameter  :float .
+:x  :hasIndexOrder  1 .
+:method1925  :hasParameter  :y .
+:y  :hasDirection  :inout .
+:long a :Long .
+:y  :hasDataTypeParameter  :long .
+:y  :hasIndexOrder  2 .
+:method1925  :hasNumParameters  2 .
+:condition93  a :Condition .
+:method1925  :hasPrecond :condition93 .
+:condition93   :hasVariable :y .
+:condition93   :hasOperator :greater_than .
+:condition93   :hasNumber 45 .
+:condition94  a :Condition .
+:method1925  :hasPostcond :condition94 .
+:condition94   :hasVariable :y .
+:condition94  :hasOperator :less_than .
+:condition94   :hasNumber 1626 .
+:iprovider  :hasNumMethods 50 .

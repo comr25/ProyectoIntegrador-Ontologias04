@@ -1,0 +1,23 @@
+module ComponentRequired{
+                domain xr;
+                subdomain yr;
+
+                required interface IRequired{
+                     void iniciaGraficos(in short modo)
+                     { pre: modo<71.
+                       post: modo<>2008.
+                     };
+                     void shortextxy(in short x, in short y, in char num, in short collet, in short colorfon,in short tam)
+                     { pre: y==16.
+                       post: num<>765.
+                     };
+                     short eliminaPoli(out char b)
+                     { pre: b==47.
+                       post: b<=178.
+                     };
+                     short insertaDatB(out char a, out float c, in double e)
+                     { pre: a<=6.
+                       post: a<1253.
+                     };
+                };
+};

@@ -1,0 +1,304 @@
+#  ***************************************************************************************************
+#
+#  A Core Ontology of Logic Gates & Circuits
+#  -----------------------------------------------
+#
+#  Original author    Francisco Edgar Castillo Barrera, University of San Luis Potosi, Mexico
+#  Ontology domain    Logic Gates
+#  Case Study         Logic Gates (and, or, not, xor)
+#  Author email       ecastillo@uaslp.mx
+#  Language           RDFS (RDF Schema Resource Description Framework define un modelo=Grafo Dirigido)
+#  Web                http://sourceforge.net/projects/jena/
+#  Created            03-January-2012
+#  Filename           corecircuit.n3
+#  Revision           1.0
+#  Release status     revision
+# 
+#  Last modified on   Date: 08/March/2012 14:25:00
+#                by   Francisco Edgar Castillo Barrera
+# 
+#  Run                       C:>pellet consistency --loader jena ontofullcircuit.n3
+#  Query in SPARQL    C:>pellet query -q circuit.sparql ontofullcircuit.n3
+#                               C:>sparql --query circuit.sparql --graph ontofullcircuit.n3
+#                               C:>sparql --query circuit.sparql --data ontofullcircuit.n3
+#
+#  (c) Copyright 2012, Francisco Edgar Castillo Barrera 
+#  (see footer for full conditions)
+#
+# *****************************************************************************************************
+
+
+#------ PREFIX ---------------------------------
+
+@prefix     :  <http://www.ejemplo.org/#> .
+
+@prefix  owl:  <http://www.w3.org/2002/07/owl#> .
+@prefix  xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix  rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+
+#-- Declaration of Classes ----------------------
+
+:Circuit   a owl:Class .
+:Gate       rdfs:subClassOf :Circuit ;
+              rdfs:label "A logic gate is an device implementig a Boolean function" ;
+              rdfs:comment "It performs a logical operation".
+
+:Bits      a owl:Class ;
+            rdfs:label "Bit means Binary Digit" ;
+            rdfs:comment "1 bit is equal to 0 or 1".
+
+
+#-- Declaration of Instances --------------------
+
+:and1    a :Gate .
+:and2    a :Gate .
+:xor1    a :Gate .
+:xor2    a :Gate .
+
+:and     a :Gate ;
+            rdfs:label "AND gate" ;
+            rdfs:comment "0 0 =  0";
+            rdfs:comment "0 1 =  0";
+            rdfs:comment "1 0 =  0";
+            rdfs:comment "1 1 =  1".
+
+:or      a :Gate ;
+            rdfs:label "OR gate" ;
+            rdfs:comment "0 0 =  0";
+            rdfs:comment "0 1 =  1";
+            rdfs:comment "1 0 =  1";
+            rdfs:comment "1 1 =  1".
+
+:nand    a :Gate .
+
+:nor     a :Gate .
+
+:not     a :Gate ;
+            rdfs:label "NOT gate" ;
+            rdfs:comment "0  =  1";
+            rdfs:comment "1  =  0".
+
+:xor     a :Gate .
+
+:fulladder a :Gate .
+
+:0       a :Bits .
+:1       a :Bits .
+
+:0_0     a :Bits .
+:0_1     a :Bits .
+:1_0     a :Bits .
+:1_1     a :Bits .
+
+:0_0_0   a :Bits .
+:0_0_1   a :Bits .
+:0_1_0   a :Bits .
+:0_1_1   a :Bits .
+:1_0_0   a :Bits .
+:1_0_1   a :Bits .
+:1_1_0   a :Bits .
+:1_1_1   a :Bits .
+
+#-- Declaration of Datatype Properties --------------
+
+:hasInput1 a owl:ObjectProperty ;
+            rdfs:domain   :Gate ;
+            rdfs:range    :Bits .
+
+:hasInput2 a owl:ObjectProperty ;
+            rdfs:domain   :Gate ;
+            rdfs:range    :Bits .
+
+:hasInput3 a owl:ObjectProperty ;
+            rdfs:domain   :Gate ;
+            rdfs:range    :Bits .
+             
+:isTypeGate a owl:ObjectProperty ;
+             rdfs:domain   :Gate ;
+             rdfs:range    :Gate .         
+
+:andOutput a owl:ObjectProperty ;
+                 rdfs:domain   :Gate ;
+                 rdfs:range    :Bits ;
+                  rdf:type  owl:FunctionalProperty .
+
+:orOutput a owl:ObjectProperty ;
+                 rdfs:domain   :Gate ;
+                 rdfs:range    :Bits ;
+                  rdf:type  owl:FunctionalProperty .
+
+:notOutput a owl:ObjectProperty ;
+                 rdfs:domain   :Gate ;
+                 rdfs:range    :Bits ;
+                  rdf:type  owl:FunctionalProperty .
+
+:nandOutput a owl:ObjectProperty ;
+                 rdfs:domain   :Bits ;
+                 rdfs:range    :Bits ;
+                  rdf:type  owl:FunctionalProperty .
+
+:norOutput a owl:ObjectProperty ;
+                 rdfs:domain   :Gate ;
+                 rdfs:range    :Bits ;
+                  rdf:type  owl:FunctionalProperty .
+
+:xorOutput a owl:ObjectProperty ;
+                 rdfs:domain   :Gate ;
+                 rdfs:range    :Bits ;
+                  rdf:type  owl:FunctionalProperty .
+
+:fullAdderOutput a owl:ObjectProperty ;
+                  rdfs:domain   :Gate ;
+                  rdfs:range    :Bits .                  
+
+:hasName   a owl:DatatypeProperty ;
+            rdfs:domain     :Gate ;
+            rdfs:range   xsd:string . 
+
+:not :hasName "not"^^xsd:string . 
+
+:not :hasInput1  :0 .
+:not :hasInput1  :1 .
+
+:0   :notOutput :1 .
+:1   :notOutput :0 .
+
+:and  :hasName "and"^^xsd:string . 
+
+:and  :hasInput1 :0 .
+:and  :hasInput1 :1 .
+:and  :hasInput2 :0_0 .
+:and  :hasInput2 :0_1 .
+:and  :hasInput2 :1_0 .
+:and  :hasInput2 :1_1 .
+
+:0_0  :andOutput :0 .
+:0_1  :andOutput :0 .
+:1_0  :andOutput :0 .
+:1_1  :andOutput :1 .
+
+:or   :hasName "or"^^xsd:string . 
+
+:or   :hasInput1 :0 .
+:or   :hasInput1 :1 .
+:or   :hasInput2 :0_0 .
+:or   :hasInput2 :0_1 .
+:or   :hasInput2 :1_0 .
+:or   :hasInput2 :1_1 .
+
+:0_0  :orOutput :1 .
+:0_1  :orOutput :1 .
+:1_0  :orOutput :1 .
+:1_1  :orOutput :0 .
+
+:nand :hasName "nand"^^xsd:string . 
+
+:nand :hasInput :0 .
+:nand :hasInput :1 .
+:nand :hasInput :0_0 .
+:nand :hasInput :0_1 .
+:nand :hasInput :1_0 .
+:nand :hasInput :1_1 .
+
+:0_0  :nandOutput :1 .
+:0_1  :nandOutput :1 .
+:1_0  :nandOutput :1 .
+:1_1  :nandOutput :0 .
+
+:nor  :hasName "nor"^^xsd:string . 
+
+:nor  :hasInput1 :0 .
+:nor  :hasInput1 :1 .
+
+:nor  :hasInput2 :0_0 .
+:nor  :hasInput2 :0_1 .
+:nor  :hasInput2 :1_0 .
+:nor  :hasInput2 :1_1 .
+
+:0_0  :norOutput :1 .
+:0_1  :norOutput :0 .
+:1_0  :norOutput :0 .
+:1_1  :norOutput :0 .
+
+:xor  :hasName "xor"^^xsd:string . 
+
+:xor  :hasInput1 :0 .
+:xor  :hasInput1 :1 .
+:xor  :hasInput2 :0_0 .
+:xor  :hasInput2 :0_1 .
+:xor  :hasInput2 :1_0 .
+:xor  :hasInput2 :1_1 .
+
+:0_0  :xorOutput :0 .
+:0_1  :xorOutput :1 .
+:1_0  :xorOutput :1 .
+:1_1  :xorOutput :0 .
+
+:xnor  :hasName "XNOR gate"^^xsd:string . 
+
+:xnor  :hasInput1 :0 .
+:xnor  :hasInput1 :1 .
+:xnor  :hasInput2 :0_0 .
+:xnor  :hasInput2 :0_1 .
+:xnor  :hasInput2 :1_0 .
+:xnor  :hasInput2 :1_1 .
+
+:0_0  :xnorOutput :1 .
+:0_1  :xnorOutput :0 .
+:1_0  :xnorOutput :0 .
+:1_1  :xnorOutput :1 .
+
+:and1 :isTypeGate  :and .
+:and2 :isTypeGate  :and .
+:xor1 :isTypeGate   :xor .
+:xor2 :isTypeGate   :xor .
+:xnor1 :isTypeGate :xnor .
+
+:and1  owl:sameAs :and .       # Con la propiedad sameAs no es necesario introducir los datos de la tabla
+:and2  owl:sameAs :and .
+:xnor1 owl:sameAs :xnor .
+:xor1  owl:sameAs :xor .
+:xor2  owl:sameAs :xor .
+
+:fulladder :hasName "1-bit full adder"^^xsd:string . 
+:fulladder :hasInput3       :0_0_0 .
+:fulladder :hasInput3       :0_0_1 .
+:fulladder :hasInput3       :0_1_0 .
+:fulladder :hasInput3       :0_1_1 .
+:fulladder :hasInput3       :1_0_0 .
+:fulladder :hasInput3       :1_0_1 .
+:fulladder :hasInput3       :1_1_0 .
+:fulladder :hasInput3       :1_1_1 .
+
+:0_0_0 :fullAdderOutput :0 .
+:0_0_0 :fullAdderOutput :1 .
+:0_1_0 :fullAdderOutput :0 .
+:0_1_0 :fullAdderOutput :1 .
+:1_0_0 :fullAdderOutput :1 .
+:1_0_0 :fullAdderOutput :0 .
+:1_1_0 :fullAdderOutput :1 .
+:1_1_0 :fullAdderOutput :0 .
+
+:1_bit_Comparator :hasName "1-bit Comparator"^^xsd:string . 
+:1_bit_Comparator :hasInput2  :0_0 .
+:1_bit_Comparator :hasInput2  :0_1 .
+:1_bit_Comparator :hasInput2  :1_0 .
+:1_bit_Comparator :hasInput2  :1_1 .
+
+:0_0 :1_bit_ComparatorOutputGreater :0 .
+:0_0 :1_bit_ComparatorOutputEqual    :1 .
+:0_0 :1_bit_ComparatorOutputLess      :0 .
+:0_1 :1_bit_ComparatorOutputGreater :0 .
+:0_1 :1_bit_ComparatorOutputEqual    :0 .
+:0_1 :1_bit_ComparatorOutputLess      :1 .
+
+:1_0 :1_bit_ComparatorOutputGreater :1 .
+:1_0 :1_bit_ComparatorOutputEqual    :0 .
+:1_0 :1_bit_ComparatorOutputLess      :0 .
+
+:1_1 :1_bit_ComparatorOutputGreater :0 .
+:1_1 :1_bit_ComparatorOutputEqual    :1 .
+:1_1 :1_bit_ComparatorOutputLess     :0 .

@@ -1,0 +1,46 @@
+# Autor: Francisco Edgar Castillo Barrera
+#
+# Copyright(c) 2012
+#
+# c:>pellet query -q atmatching43.sparql atmfullonto.n3
+#
+# Obtiene solo los metodos de la interfaz 1 que pudieron hacer match
+# con el mismo nombre de los metodos de la interfaz 2
+# interfaz 1 es Cliente (required) interfaz 2 es proveedora
+# Verifica que las funciones tambien tengan el mismo numero de parametros
+# Verifica que los tipos de cada paramentro coincidan
+# Verifica que la posicion de cada parametro tambien coincida
+
+PREFIX     : <http://www.ejemplo.org/#> 
+PREFIX  rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+PREFIX  owl: <http://www.w3.org/2002/07/owl#> 
+PREFIX  xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX   fn: <http://www.w3.org/2005/xpath-functions#>
+
+SELECT DISTINCT ?Interface1 ?Interface2 ?MatchName ?MatchPosition ?MatchParameter ?MatchType
+WHERE    
+{  
+  ?Interface1       :typeInterface :required ;
+                    :hasMethod    ?MethodInterface1 .
+  ?MethodInterface1 :hasParameter  ?par1 ;
+                    :hasMethodName ?Method ;  
+               :hasNumParameters ?numpar1 .
+  ?par1        :hasIndexOrder ?pos1 ;
+               :hasDataTypeParameter ?partype1 .
+
+  ?Interface2  :typeInterface :provider .
+  ?Interface2  :hasMatch ?interface1 . 
+  ?Interface2  :hasMethod     ?MethodInterface2 .
+  ?MethodInterface2     :hasParameter  ?par2 ;
+                        :hasMethodName ?name2 ;
+               :hasNumParameters ?numpar2 .
+  ?par2        :hasIndexOrder ?pos2 ; 
+               :hasDataTypeParameter ?partype2 .
+
+  BIND(if( ?name2 = ?Method,fn:substring(?name2,1,fn:string-length(?name2)), "Different name!") AS ?MatchName)
+  BIND(if( ?pos1 = ?pos2, ?pos1, "Wrong pos!") AS ?MatchPosition)
+  BIND(if( ?numpar1 = ?numpar2, ?numpar1, "Different num!") AS ?MatchParameter)
+  BIND(if( ?partype1 = ?partype2, ?partype1, "No match!") AS ?MatchType)
+  #FILTER( ?name2 != ?Method && ?pos1 != ?pos2 && ?numpar1 != ?numpar2 && ?partype1 != ?partype2 )
+
+} order by ?MethodInterface1

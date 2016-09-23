@@ -1,0 +1,9 @@
+ module ATM{
+        domain       Atm;
+        subdomain  Operation;
+
+         provided interface IAtmService{
+            long createSession();
+            void locateBank();  
+        };
+};

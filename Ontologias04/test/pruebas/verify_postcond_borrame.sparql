@@ -1,0 +1,49 @@
+# Consulta para encontrar el Matching considerando las Precondiciones
+
+PREFIX       : <http://www.ejemplo.org/#> 
+PREFIX  rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+PREFIX  owl: <http://www.w3.org/2002/07/owl#> 
+PREFIX  xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX  afn: <http://jena.hpl.hp.com/ARQ/function#>
+PREFIX   fn: <http://www.w3.org/2005/xpath-functions#>
+
+SELECT DISTINCT ?Interface_Required ?Interface_Provided ?Method   ?Match_Postcondition
+{  
+   ?Interface_Required  :typeInterface   :required ;
+                                      :hasMethod       ?Method .
+                     ?Method   :hasPostcond      ?precond1 .
+
+   ?Interface_Provided  :typeInterface :provided ;
+                                     :hasMethod     ?Method2 .
+                     ?Method2     :hasPostcond    ?precond2 .
+
+   OPTIONAL { ?precond1   :hasCallMethod  ?callmethod1 .  ?precond1   :hasOperator  ?opr1 .   ?precond1   :hasConstant  ?cte1 . 
+                       ?precond2   :hasCallMethod  ?callmethod2 .  ?precond2   :hasOperator  ?opr2 .   ?precond2   :hasConstant  ?cte2 . 
+               BIND( if(?callmethod1 = ?callmethod2 &&  ?opr1 = ?opr2   &&  ?cte1 = ?cte2,  fn:concat(afn:localname(?callmethod2)," ",  
+                                  afn:localname(?opr2), " ",  afn:localname(?cte2)  ), "No match" )  AS ?Match_Postcondition )               
+    }   
+
+  OPTIONAL { ?precond1   :hasCallMethod  ?callmethod1 .  ?precond1   :hasOperator  ?opr1 .   ?precond1   :hasCallMethod  ?callfn1 . 
+                       ?precond2   :hasCallMethod  ?callmethod2 .  ?precond2   :hasOperator  ?opr2 .  ?precond2   :hasCallMethod  ?callfn2 . 
+               BIND( if(?callmethod1 = ?callmethod2 &&  ?opr1 = ?opr2   &&  ?callfn1 = ?callfn2,  fn:concat(afn:localname(?callmethod2)," ",  
+                                  afn:localname(?opr2), " ",  afn:localname(?callfn2)  ), "No match" )  AS ?Match_Postcondition )               
+    }  
+
+   OPTIONAL  { ?precond1   :hasVariable      ?var10 .    ?precond1   :hasOperator  ?opr1 .   ?precond1   :hasConstant  ?cte11 . 
+                       ?precond2   :hasVariable      ?var20 .     ?precond2   :hasOperator  ?opr2 .   ?precond2   :hasConstant  ?cte21 . 
+               BIND( if(?var10 = ?var20  &&  ?opr1 = ?opr2   &&  ?cte11 = ?cte21,  fn:concat(afn:localname(?var20)," ",  
+                                  afn:localname(?opr2), " ",  afn:localname(?cte21)  ), "No match" )  AS ?Match_Postcondition )      
+   } 
+
+   OPTIONAL  { ?precond1   :hasVariable      ?var10 .    ?precond1   :hasOperator  ?opr1 .   ?precond1   :hasVariable2  ?var11 . 
+                       ?precond2   :hasVariable      ?var20 .    ?precond2   :hasOperator  ?opr2 .   ?precond2   :hasVariable2  ?var21 . 
+               BIND( if(?var10 = ?var20  &&  ?opr1 = ?opr2   &&  ?var11 = ?var21,  fn:concat(afn:localname(?var20)," ",  
+                                  afn:localname(?opr2), " ",  afn:localname(?var21)  ), "No match" )  AS ?Match_Postcondition )      
+   } 
+
+   OPTIONAL  { ?precond1   :hasVariable      ?var10 .    ?precond1   :hasOperator  ?opr1 .   ?precond1   :hasNumber  ?num1 . 
+                       ?precond2   :hasVariable      ?var20 .    ?precond2   :hasOperator  ?opr2 .   ?precond2   :hasNumber  ?num2 .
+               BIND( if(?var10 = ?var20  &&  ?opr1 = ?opr2   &&  ?num1 = ?num2,  fn:concat(afn:localname(?var20)," ",  
+                                  afn:localname(?opr2), " ",  afn:localname(?num2)  ), "No match" )  AS ?Match_Postcondition )      
+   }
+}

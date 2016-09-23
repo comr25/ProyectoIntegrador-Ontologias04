@@ -1,0 +1,19 @@
+ module AtmKiosco{
+       domain           School;
+       subdomain     Atm;
+
+        provided interface IAtmKiosco{
+             void Inicializa();
+             void Online();
+             void Close();
+             void Collect();
+             void EquipoDinero();
+             void GetChange(in double amount);
+             void Offline();
+             void OnMoneyRecibe();
+             void Open();
+             void Reset();
+             void OfflineMei();
+             void validaToneleros();       
+        };      
+};

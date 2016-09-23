@@ -1,0 +1,116 @@
+#  ***************************************************************************************************
+#
+#  An ATM Instances Ontology of Software Components For Matching
+#  -----------------------------------------------
+#
+#  Original author    Francisco Edgar Castillo Barrera, University of Guadalajara, Mexico
+#  Ontology domain    Software Components
+#  Case Study         ATM (Automatic Teller Machine)
+#  Author email       ecastillo@uaslp.mx
+#  Co-Author          Jose Emilio Labra Gayo, University of Oviedo, Spain
+#  Co-Author email    labra@uionvi.es
+#  Language           RDFS (RDF Schema Resource Description Framework define un modelo=Grafo Dirigido)
+#  Web                http://sourceforge.net/projects/jena/
+#  Created            2-Marzo-2011
+#  Filename           atmpronto.n3
+#  Revision           2.0
+#  Release status     revision
+# 
+#  Last modified on   Date: 03/January/2012 19:01:00
+#                by   Francisco Edgar Castillo Barrera
+# 
+#  Run                C:>pellet consistency --loader jena atminstances.n3
+#  Query in SPARQL    c:>pellet query -q matchpronto.sparql atmpinstances.n3
+#                     C:>sparql --query matchpronto.sparql --graph atminstances.n3
+#                     C:>sparql --query matchpronto.sparql --data atminstances.n3
+#
+#  (c) Copyright 2012, Francisco Edgar Castillo Barrera  
+#  (see footer for full conditions)
+#
+#  datatype reasoner pellet (see web page Clark & Persia)
+# *****************************************************************************************************
+
+@prefix     : <http://www.ejemplo.org/#> .
+@prefix  owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix  xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix  rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+
+# The current Ontology el ":" significa la actual ontologia se pone vacio
+
+: a owl:Ontology ;
+ rdfs:comment "Example of instances ontologia in an ATM machine" .
+
+# All are distinct...
+
+[a owl:AllDifferent;
+   owl:distinctMembers (:printer :atm :bank :card :userConsole :cardNo :cardNumber :pass :password :amount :ATM_Bank :Bank_Consortium :IATM :IBank)
+].   
+
+#-----------------------------------------------------------------------------------------------
+# Declaration of Instances
+#-----------------------------------------------------------------------------------------------
+
+#-- Components ----------------------
+
+:Atm           a :ComponentType .
+:Bank          a :ComponentType .
+:Printer       a :ComponentType .
+:UserConsole   a :ComponentType .
+:Card          a :ComponentType .
+
+#-- Contexts ------------------------
+
+:BankDeposit   a :Context .
+
+:in            a :Input .
+:out           a :OutPut .
+:inout         a :InputOutput .
+:return        a :Return .
+
+#-- Type of Interface ---------------
+
+:provider      a :Provider .
+:required      a :Required .
+
+#-- Methods Visibility --------------
+
+:public        a :Visibility .
+:private       a :Visibility .
+:package       a :Visibility .
+:protected     a :Visibility .
+
+#-- Interfaces ----------------------
+
+:IAtmService       a :Interface .
+:IAtmClient        a :Interface .
+:IUserConsole      a :Interface .
+:ICard             a :Interface .
+:IPrinter          a :Interface .
+:IBank             a :Interface .
+
+#-- Methods --------------------------
+
+:locateBank        a :Method .
+:depositBank       a :Method .
+:withdrawalBank    a :Method .
+:deposit           a :Method .
+:withdrawal        a :Method .
+:setOverdraftLimit a :Method .
+:createSession     a :Method .
+:printReceipt      a :Method .
+:readPIN           a :Method .
+:setMenu           a :Method .
+:ejectCard         a :Method .
+:readCard          a :Method .
+:consortium        a :Method .
+
+#-- Parameters ------------------------
+
+:pass              a :Parameter .
+:passBank          a :Parameter .
+:password          a :Parameter .
+:amount            a :Parameter .
+:cardNo            a :Parameter .
+:cardNum           a :Parameter .
+:cardNumber        a :Parameter .

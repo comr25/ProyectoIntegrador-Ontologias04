@@ -1,0 +1,93 @@
+# Autor: Francisco Edgar Castillo Barrera
+#
+# Copyright(c) 29-Feb-2012
+#
+# C:>pellet consistency --loader jena atmfullonto.n3
+# c:>pellet query -q atmatching42.sparql atmfullonto.n3
+#
+# Consulta para encontrar el Matching considerando las Invariantes, Precondiciones y Postcondiciones
+# 
+# STRAFTER and STRBEFORE. These are no yet documented in the
+# SPARQL spec. They do the same as XQuery/XPath Functions&Operators
+# fn:substring-after and fn:substring-before
+# STRAFTER(afn:namespace(?x), "http://example/")
+
+PREFIX     : <http://www.ejemplo.org/#> 
+PREFIX  rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+PREFIX  owl: <http://www.w3.org/2002/07/owl#> 
+PREFIX  xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX  afn: <http://jena.hpl.hp.com/ARQ/function#>
+PREFIX   fn: <http://www.w3.org/2005/xpath-functions#>
+
+SELECT DISTINCT ?Interface1 ?Interface2 ?Match_Method 
+                ?Match_Precond   ?Match_Postcond 
+                ?Match_Invariant_Method 
+{  
+  ?Interface1  :typeInterface        :required ;
+               :hasMethod            ?Method1 .
+  ?Method1     :hasParameter         ?par1 ;
+               :hasMethodName        ?name1 ;  
+               :hasNumParameters     ?numpar1 .
+  ?par1        :hasIndexOrder        ?pos1 ;
+               :hasDataTypeParameter ?partype1 .
+
+  ?Method1     :hasPrecond     ?precond1 .
+  ?precond1    :hasVariable    ?var1 .
+  ?precond1    :hasOperator    ?opr1 .
+  ?opr1        :symbolOperator ?oprname1 .
+  ?precond1    :hasNumber      ?num1 .
+
+  ?Method1     :hasPostcond    ?postcond1 .
+  ?postcond1   :hasVariable    ?varpos1 .
+  ?postcond1   :hasOperator    ?oprpos1 .
+  ?oprpos1     :symbolOperator ?oprnamepos1 .
+  ?postcond1   :hasNumber      ?numpos1 .
+
+  ?Method1     :hasInvariant  ?invmetod1 .
+  ?invmetod1   :hasText       ?Invariant1 .
+  ?invmetod1   :hasVarName    ?InvariantVar1 .
+
+  ?Interface2  :typeInterface :provider .
+
+  ?Interface2  :hasMatch     ?interface1 . 
+
+  ?Interface2  :hasMethod            ?Method2 .
+  ?Method2     :hasParameter         ?par2 ;
+               :hasMethodName        ?name2 ;
+               :hasNumParameters     ?numpar2 .
+  ?par2        :hasIndexOrder        ?pos2 ; 
+               :hasDataTypeParameter ?partype2 .
+
+  ?Method2     :hasPrecond ?precond2 .
+  ?precond2    :hasVariable ?var2 .
+  ?precond2    :hasOperator ?opr2 .
+  ?opr2        :symbolOperator ?oprname2 .
+  ?precond1    :hasNumber   ?num2 .
+
+  ?Method2     :hasPostcond    ?postcond2 .
+  ?postcond2   :hasVariable    ?varpos2 .
+  ?postcond2   :hasOperator    ?oprpos2 .
+  ?oprpos2     :symbolOperator ?oprnamepos2 .
+  ?postcond2   :hasNumber      ?numpos2 .
+
+  ?Method2     :hasInvariant ?invmetod2 .
+  ?invmetod2   :hasText      ?Invariant2 .
+  ?invmetod2   :hasVarName   ?InvariantVar2 .
+
+  BIND(if( ?opr1 = ?opr2 && ?num1 = ?num2, 
+           fn:concat(afn:localname(?var1)," ", ?oprname1, " ", ?num1),
+          "Precondition Different" ) AS ?Match_Precond )
+  BIND(if( ?oprpos1 = ?oprpos2 && ?numpos1 = ?numpos2, 
+           fn:concat(afn:localname(?varpos1)," ", ?oprnamepos1, 
+        " ", ?numpos1),"Postcondition Different" ) AS ?Match_Postcond )
+  BIND(if( ?name2 = ?name1, fn:substring(?name1,1,fn:string-length(?name1))
+           , "No match name") AS ?Match_Method )
+
+  BIND( fn:concat("Different Invariant! ", "Inv: ", fn:substring(?Invariant2,1,fn:string-length(?Invariant2)) )  AS ?Aux2 )
+
+ BIND( fn:concat("Var: ",afn:localname(?InvariantVar2)," Inv: ", 
+         fn:substring(?Invariant1,1,fn:string-length(?Invariant1))) AS ?Aux1 )
+
+  BIND(if( ?Invariant1 = ?Invariant2, ?Aux1, ?Aux2) AS ?Match_Invariant_Method )
+
+} order by ?Match_Method

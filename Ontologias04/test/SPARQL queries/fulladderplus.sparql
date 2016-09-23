@@ -1,0 +1,39 @@
+# Autor: Francisco Edgar Castillo Barrera
+#
+# Copyright(c) 10-Feb-2012
+#
+# C:>pellet consistency --loader jena ontofullcircuit.n3
+# c:>pellet query -q fulladderplus.sparql ontofullcircuit.n3
+#
+# 1 Bit Full adder
+#
+
+PREFIX    : <http://www.ejemplo.org/#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX  fn: <http://www.w3.org/2005/xpath-functions#> 
+
+SELECT ?Gate1 ?Gate2 ?Gate3 ?AB ?Cin ?Output ?COUT 
+WHERE 
+{
+    :xor1  :hasName      ?xorName . 
+    :xor1  :hasInput2    ?AB .
+    ?AB    :xorOutput    ?XorOutput .
+
+    :xor2  :hasInput1    ?Cin .
+
+    BIND( fn:substring(?xorName,1,fn:string-length(?xorName)) AS ?Gate1 ) 
+    BIND(if(?XorOutput = :0, if(?Cin = :0, :0_0 , :0_1  ) , if(?Cin = :0, :1_0 , :1_1  ) ) AS ?Xor2Input )  
+ 
+    ?Xor2Input  :xorOutput  ?Output .
+    ?Xor2Input  :andOutput  ?And1Output .  # :and1 receive the same input as :xor2
+
+    :and2   :hasName    ?andName .
+    BIND( fn:substring(?andName,1,fn:string-length(?andName)) AS ?Gate2 ) 
+    :and2   :hasInput2  ?AB .
+    ?AB     :andOutput  ?And2Output .   
+
+    :or  :hasName    ?orName .
+    BIND( fn:substring(?orName,1,fn:string-length(?orName)) AS ?Gate3 ) 
+    BIND(if(?And1Output = :0, if(?And2Output = :0, :0_0 , :0_1  ) , if(?And2Output = :0, :1_0 , :1_1  ) ) AS ?OrInput )  
+    ?OrInput  :orOutput  ?COUT .
+}

@@ -1,0 +1,41 @@
+# Consulta para encontrar el Matching considerando las Precondiciones
+# 
+# STRAFTER and STRBEFORE. These are no yet documented in the
+# SPARQL spec. They do the same as XQuery/XPath Functions&Operators
+# fn:substring-after and fn:substring-before
+# STRAFTER(afn:namespace(?x), "http://example/")
+
+PREFIX     : <http://www.ejemplo.org/#> 
+PREFIX  rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+PREFIX  owl: <http://www.w3.org/2002/07/owl#> 
+PREFIX  xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX  afn: <http://jena.hpl.hp.com/ARQ/function#>
+PREFIX   fn: <http://www.w3.org/2005/xpath-functions#>
+
+SELECT DISTINCT ?Interface1 ?Method1 ?Method2  ?Match_Precond
+{  
+  ?Interface1  :typeInterface        :required ;
+                      :hasMethod            ?Method1 .
+   ?Method1   :hasPrecond     ?precond1 .
+  ?precond1    :hasItem    ?var1 .
+  ?precond1    :hasItem    ?opr1 .
+  ?precond1    :hasItem    ?num1 .
+
+  ?Interface2  :typeInterface :provided .
+
+  ?Interface2  :hasMethod  ?Method2 .
+  ?Method2     :hasPrecond      ?precond2 .
+  ?precond2    :hasItem         ?var2 .
+  ?precond2    :hasItem         ?opr2 .
+  ?precond2    :hasItem         ?num2 .
+
+#  BIND(if( ?opr1 = ?opr2 && ?num1 = ?num2, 
+#           fn:concat(afn:localname(?var1)," ", ?oprname1, " ", ?num1),
+#          "Precondition Different" ) AS ?Match_Precond )
+# BIND( fn:concat(afn:localname(?var1)," ", str(?opr1), " ", str(?num1))   AS ?Match_Precond )
+ 
+ BIND( str(?num2) AS ?numero)
+ BIND( fn:concat(afn:localname(?var1)," ",  afn:localname(?opr1), " ",  fn:substring( ?numero ,26,fn:string-length( ?numero))  )  AS ?Match_Precond )
+
+ FILTER( ?var1 = ?var2 && ?opr1 = ?opr2 && ?num1 = ?num2 &&  ?var1 != ?opr1 &&  ?var1 !=  ?num1   &&  ?var1 != ?opr2 &&  ?var1 !=  ?num2  && ?var2 != ?opr1 &&  ?var2 !=  ?num1   &&  ?var2 != ?opr2 &&  ?var2 !=  ?num2  )
+} order by ?Match_Method

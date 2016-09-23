@@ -1,0 +1,29 @@
+ module ATM{    
+        domain            Bank;
+        subdomain       Atm;
+        inv:   balance() >= creditLimit() .       
+   
+        provided interface IAtmService{
+            oneway long createSession();
+                         void locateBank();  
+                         long balance();
+                         long creditLimit();
+        };
+
+        required interface IAtmClient{
+            inv: length(password) > 7 .
+
+            long deposit(in float amount, in short numclient)
+            {  pre: amount > 0 .
+               post: selfamount = selfamount + amount .
+            };
+
+            void withdrawal(in short cardnumber, in char password, in short amount)
+             { pre: selfamount > amount .
+               pre: password <> empty .
+               pre: validCard(cardno) == true .
+               post: selfamount = selfamout - amount .              
+            };
+            void locateNetwork();
+       };
+};

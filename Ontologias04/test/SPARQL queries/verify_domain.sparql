@@ -1,0 +1,15 @@
+# c:>pellet query -q verify_domain_2.sparql Atm_Bank_Domain.n3
+
+PREFIX       : <http://www.ejemplo.org/#> 
+PREFIX  rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+PREFIX  owl: <http://www.w3.org/2002/07/owl#> 
+
+SELECT DISTINCT ?Vocabulary  ?Method  ?Parameter WHERE 
+ {
+   ?Vocabulary  rdf:type  :Vocabulary  .   
+  OPTIONAL { ?I :hasMethod       ?Method .  
+                 FILTER regex(str(?Method), str(?Vocabulary), "i") } 
+  OPTIONAL { ?M :hasParameter ?Parameter . 
+                 FILTER  regex(str(?Parameter), str(?Vocabulary), "i") } 
+  FILTER ( ?Method != rdf:null ||  ?Parameter != rdf:null  )
+}
