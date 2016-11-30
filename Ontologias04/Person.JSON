@@ -1,0 +1,2759 @@
+{ 
+  "Achille_Casanova" : { 
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ { 
+      "type" : "uri" ,
+      "value" : "Person"
+    }
+     ]
+  }
+   ,
+  "Noble" : { 
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ { 
+      "type" : "uri" ,
+      "value" : "http://www.w3.org/2002/07/owl#Class"
+    }
+     ] ,
+    "http://www.w3.org/2000/01/rdf-schema#subClassOf" : [ { 
+      "type" : "uri" ,
+      "value" : "Person"
+    }
+     ]
+  }
+   ,
+  "Billy_Boy_(wrestler)" : { 
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ { 
+      "type" : "uri" ,
+      "value" : "Person"
+    }
+     ]
+  }
+   ,
+  "Bink_(record_producer)" : { 
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ { 
+      "type" : "uri" ,
+      "value" : "Person"
+    }
+     ]
+  }
+   ,
+  "bestLap" : { 
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ { 
+      "type" : "uri" ,
+      "value" : "http://www.w3.org/2002/07/owl#DatatypeProperty"
+    }
+     ] ,
+    "http://www.w3.org/2000/01/rdf-schema#domain" : [ { 
+      "type" : "uri" ,
+      "value" : "Person"
+    }
+     ]
+  }
+   ,
+  "Alastair_Martin" : { 
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ { 
+      "type" : "uri" ,
+      "value" : "Person"
+    }
+     ]
+  }
+   ,
+  "Catherine_King_(radio_broadcaster)" : { 
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ { 
+      "type" : "uri" ,
+      "value" : "Person"
+    }
+     ]
+  }
+   ,
+  "Antonio_Farnese,_Duke_of_Parma" : { 
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ { 
+      "type" : "uri" ,
+      "value" : "Person"
+    }
+     ]
+  }
+   ,
+  "Abel_Ferreira" : { 
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ { 
+      "type" : "uri" ,
+      "value" : "Person"
+    }
+     ]
+  }
+   ,
+  "collaboration" : { 
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ { 
+      "type" : "uri" ,
+      "value" : "http://www.w3.org/2002/07/owl#DatatypeProperty"
+    }
+     ] ,
+    "http://www.w3.org/2000/01/rdf-schema#domain" : [ { 
+      "type" : "uri" ,
+      "value" : "Person"
+    }
+     ]
+  }
+   ,
+  "Abel_Gómez_Moreno" : { 
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ { 
+      "type" : "uri" ,
+      "value" : "Person"
+    }
+     ]
+  }
+   ,
+  "Bernhard_Jensen" : { 
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ { 
+      "type" : "uri" ,
+      "value" : "Person"
+    }
+     ]
+  }
+   ,
+  "freeDanseScore" : { 
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ { 
+      "type" : "uri" ,
+      "value" : "http://www.w3.org/2002/07/owl#DatatypeProperty"
+    }
+     ] ,
+    "http://www.w3.org/2000/01/rdf-schema#domain" : [ { 
+      "type" : "uri" ,
+      "value" : "Person"
+    }
+     ]
+  }
+   ,
+  "Arthur_W._Murray" : { 
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ { 
+      "type" : "uri" ,
+      "value" : "Person"
+    }
+     ]
+  }
+   ,
+  "copilote" : { 
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ { 
+      "type" : "uri" ,
+      "value" : "http://www.w3.org/2002/07/owl#DatatypeProperty"
+    }
+     ] ,
+    "http://www.w3.org/2000/01/rdf-schema#domain" : [ { 
+      "type" : "uri" ,
+      "value" : "Person"
+    }
+     ]
+  }
+   ,
+  "colleague" : { 
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ { 
+      "type" : "uri" ,
+      "value" : "http://www.w3.org/2002/07/owl#DatatypeProperty"
+    }
+     ] ,
+    "http://www.w3.org/2000/01/rdf-schema#domain" : [ { 
+      "type" : "uri" ,
+      "value" : "Person"
+    }
+     ]
+  }
+   ,
+  "gymApparatus" : { 
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ { 
+      "type" : "uri" ,
+      "value" : "http://www.w3.org/2002/07/owl#DatatypeProperty"
+    }
+     ] ,
+    "http://www.w3.org/2000/01/rdf-schema#domain" : [ { 
+      "type" : "uri" ,
+      "value" : "Person"
+    }
+     ]
+  }
+   ,
+  "Ambassador" : { 
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ { 
+      "type" : "uri" ,
+      "value" : "http://www.w3.org/2002/07/owl#Class"
+    }
+     ] ,
+    "http://www.w3.org/2000/01/rdf-schema#subClassOf" : [ { 
+      "type" : "uri" ,
+      "value" : "Person"
+    }
+     ]
+  }
+   ,
+  "Person/weight" : { 
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ { 
+      "type" : "uri" ,
+      "value" : "http://www.w3.org/2002/07/owl#DatatypeProperty"
+    }
+     ] ,
+    "http://www.w3.org/2000/01/rdf-schema#domain" : [ { 
+      "type" : "uri" ,
+      "value" : "Person"
+    }
+     ]
+  }
+   ,
+  "bigPoolRecord" : { 
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ { 
+      "type" : "uri" ,
+      "value" : "http://www.w3.org/2002/07/owl#DatatypeProperty"
+    }
+     ] ,
+    "http://www.w3.org/2000/01/rdf-schema#domain" : [ { 
+      "type" : "uri" ,
+      "value" : "Person"
+    }
+     ]
+  }
+   ,
+  "Royalty" : { 
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ { 
+      "type" : "uri" ,
+      "value" : "http://www.w3.org/2002/07/owl#Class"
+    }
+     ] ,
+    "http://www.w3.org/2000/01/rdf-schema#subClassOf" : [ { 
+      "type" : "uri" ,
+      "value" : "Person"
+    }
+     ]
+  }
+   ,
+  "Farmer" : { 
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ { 
+      "type" : "uri" ,
+      "value" : "http://www.w3.org/2002/07/owl#Class"
+    }
+     ] ,
+    "http://www.w3.org/2000/01/rdf-schema#subClassOf" : [ { 
+      "type" : "uri" ,
+      "value" : "Person"
+    }
+     ]
+  }
+   ,
+  "Agustín_de_Iturbide_y_Green" : { 
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ { 
+      "type" : "uri" ,
+      "value" : "Person"
+    }
+     ]
+  }
+   ,
+  "Ainslie_Roberts" : { 
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ { 
+      "type" : "uri" ,
+      "value" : "Person"
+    }
+     ]
+  }
+   ,
+  "Politician" : { 
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ { 
+      "type" : "uri" ,
+      "value" : "http://www.w3.org/2002/07/owl#Class"
+    }
+     ] ,
+    "http://www.w3.org/2000/01/rdf-schema#subClassOf" : [ { 
+      "type" : "uri" ,
+      "value" : "Person"
+    }
+     ]
+  }
+   ,
+  "Christian_Cage" : { 
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ { 
+      "type" : "uri" ,
+      "value" : "Person"
+    }
+     ]
+  }
+   ,
+  "allegiance" : { 
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ { 
+      "type" : "uri" ,
+      "value" : "http://www.w3.org/2002/07/owl#DatatypeProperty"
+    }
+     ] ,
+    "http://www.w3.org/2000/01/rdf-schema#domain" : [ { 
+      "type" : "uri" ,
+      "value" : "Person"
+    }
+     ]
+  }
+   ,
+  "Art_Smith_(chef)" : { 
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ { 
+      "type" : "uri" ,
+      "value" : "Person"
+    }
+     ]
+  }
+   ,
+  "Dale_Murray_(musician)" : { 
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ { 
+      "type" : "uri" ,
+      "value" : "Person"
+    }
+     ]
+  }
+   ,
+  "Alaina_Johnson" : { 
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ { 
+      "type" : "uri" ,
+      "value" : "Person"
+    }
+     ]
+  }
+   ,
+  "continentalTournament" : { 
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ { 
+      "type" : "uri" ,
+      "value" : "http://www.w3.org/2002/07/owl#DatatypeProperty"
+    }
+     ] ,
+    "http://www.w3.org/2000/01/rdf-schema#domain" : [ { 
+      "type" : "uri" ,
+      "value" : "Person"
+    }
+     ]
+  }
+   ,
+  "bodyDiscovered" : { 
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ { 
+      "type" : "uri" ,
+      "value" : "http://www.w3.org/2002/07/owl#DatatypeProperty"
+    }
+     ] ,
+    "http://www.w3.org/2000/01/rdf-schema#domain" : [ { 
+      "type" : "uri" ,
+      "value" : "Person"
+    }
+     ]
+  }
+   ,
+  "Crowbar_(wrestler)" : { 
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ { 
+      "type" : "uri" ,
+      "value" : "Person"
+    }
+     ]
+  }
+   ,
+  "Aristocrat" : { 
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ { 
+      "type" : "uri" ,
+      "value" : "http://www.w3.org/2002/07/owl#Class"
+    }
+     ] ,
+    "http://www.w3.org/2000/01/rdf-schema#subClassOf" : [ { 
+      "type" : "uri" ,
+      "value" : "Person"
+    }
+     ]
+  }
+   ,
+  "Producer" : { 
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ { 
+      "type" : "uri" ,
+      "value" : "http://www.w3.org/2002/07/owl#Class"
+    }
+     ] ,
+    "http://www.w3.org/2000/01/rdf-schema#subClassOf" : [ { 
+      "type" : "uri" ,
+      "value" : "Person"
+    }
+     ]
+  }
+   ,
+  "Christian,_Prince-Elect_of_Denmark" : { 
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ { 
+      "type" : "uri" ,
+      "value" : "Person"
+    }
+     ]
+  }
+   ,
+  "announcedFrom" : { 
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ { 
+      "type" : "uri" ,
+      "value" : "http://www.w3.org/2002/07/owl#DatatypeProperty"
+    }
+     ] ,
+    "http://www.w3.org/2000/01/rdf-schema#domain" : [ { 
+      "type" : "uri" ,
+      "value" : "Person"
+    }
+     ]
+  }
+   ,
+  "Adonis_(musician)" : { 
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ { 
+      "type" : "uri" ,
+      "value" : "Person"
+    }
+     ]
+  }
+   ,
+  "clothSize" : { 
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ { 
+      "type" : "uri" ,
+      "value" : "http://www.w3.org/2002/07/owl#DatatypeProperty"
+    }
+     ] ,
+    "http://www.w3.org/2000/01/rdf-schema#domain" : [ { 
+      "type" : "uri" ,
+      "value" : "Person"
+    }
+     ]
+  }
+   ,
+  "Psychologist" : { 
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ { 
+      "type" : "uri" ,
+      "value" : "http://www.w3.org/2002/07/owl#Class"
+    }
+     ] ,
+    "http://www.w3.org/2000/01/rdf-schema#subClassOf" : [ { 
+      "type" : "uri" ,
+      "value" : "Person"
+    }
+     ]
+  }
+   ,
+  "ethnicity" : { 
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ { 
+      "type" : "uri" ,
+      "value" : "http://www.w3.org/2002/07/owl#DatatypeProperty"
+    }
+     ] ,
+    "http://www.w3.org/2000/01/rdf-schema#domain" : [ { 
+      "type" : "uri" ,
+      "value" : "Person"
+    }
+     ]
+  }
+   ,
+  "fullCompetition" : { 
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ { 
+      "type" : "uri" ,
+      "value" : "http://www.w3.org/2002/07/owl#DatatypeProperty"
+    }
+     ] ,
+    "http://www.w3.org/2000/01/rdf-schema#domain" : [ { 
+      "type" : "uri" ,
+      "value" : "Person"
+    }
+     ]
+  }
+   ,
+  "federation" : { 
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ { 
+      "type" : "uri" ,
+      "value" : "http://www.w3.org/2002/07/owl#DatatypeProperty"
+    }
+     ] ,
+    "http://www.w3.org/2000/01/rdf-schema#domain" : [ { 
+      "type" : "uri" ,
+      "value" : "Person"
+    }
+     ]
+  }
+   ,
+  "OfficeHolder" : { 
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ { 
+      "type" : "uri" ,
+      "value" : "http://www.w3.org/2002/07/owl#Class"
+    }
+     ] ,
+    "http://www.w3.org/2000/01/rdf-schema#subClassOf" : [ { 
+      "type" : "uri" ,
+      "value" : "Person"
+    }
+     ]
+  }
+   ,
+  "Coach" : { 
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ { 
+      "type" : "uri" ,
+      "value" : "http://www.w3.org/2002/07/owl#Class"
+    }
+     ] ,
+    "http://www.w3.org/2000/01/rdf-schema#subClassOf" : [ { 
+      "type" : "uri" ,
+      "value" : "Person"
+    }
+     ]
+  }
+   ,
+  "agency" : { 
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ { 
+      "type" : "uri" ,
+      "value" : "http://www.w3.org/2002/07/owl#DatatypeProperty"
+    }
+     ] ,
+    "http://www.w3.org/2000/01/rdf-schema#domain" : [ { 
+      "type" : "uri" ,
+      "value" : "Person"
+    }
+     ]
+  }
+   ,
+  "Athlete" : { 
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ { 
+      "type" : "uri" ,
+      "value" : "http://www.w3.org/2002/07/owl#Class"
+    }
+     ] ,
+    "http://www.w3.org/2000/01/rdf-schema#subClassOf" : [ { 
+      "type" : "uri" ,
+      "value" : "Person"
+    }
+     ]
+  }
+   ,
+  "Journalist" : { 
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ { 
+      "type" : "uri" ,
+      "value" : "http://www.w3.org/2002/07/owl#Class"
+    }
+     ] ,
+    "http://www.w3.org/2000/01/rdf-schema#subClassOf" : [ { 
+      "type" : "uri" ,
+      "value" : "Person"
+    }
+     ]
+  }
+   ,
+  "Annie_Lee_Moss" : { 
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ { 
+      "type" : "uri" ,
+      "value" : "Person"
+    }
+     ]
+  }
+   ,
+  "Ariadne_(empress)" : { 
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ { 
+      "type" : "uri" ,
+      "value" : "Person"
+    }
+     ]
+  }
+   ,
+  "Andy_Collins_(artist)" : { 
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ { 
+      "type" : "uri" ,
+      "value" : "Person"
+    }
+     ]
+  }
+   ,
+  "educationPlace" : { 
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ { 
+      "type" : "uri" ,
+      "value" : "http://www.w3.org/2002/07/owl#DatatypeProperty"
+    }
+     ] ,
+    "http://www.w3.org/2000/01/rdf-schema#domain" : [ { 
+      "type" : "uri" ,
+      "value" : "Person"
+    }
+     ]
+  }
+   ,
+  "Capitão_(footballer)" : { 
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ { 
+      "type" : "uri" ,
+      "value" : "Person"
+    }
+     ]
+  }
+   ,
+  "board" : { 
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ { 
+      "type" : "uri" ,
+      "value" : "http://www.w3.org/2002/07/owl#DatatypeProperty"
+    }
+     ] ,
+    "http://www.w3.org/2000/01/rdf-schema#domain" : [ { 
+      "type" : "uri" ,
+      "value" : "Person"
+    }
+     ]
+  }
+   ,
+  "danseCompetition" : { 
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ { 
+      "type" : "uri" ,
+      "value" : "http://www.w3.org/2002/07/owl#DatatypeProperty"
+    }
+     ] ,
+    "http://www.w3.org/2000/01/rdf-schema#domain" : [ { 
+      "type" : "uri" ,
+      "value" : "Person"
+    }
+     ]
+  }
+   ,
+  "HorseTrainer" : { 
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ { 
+      "type" : "uri" ,
+      "value" : "http://www.w3.org/2002/07/owl#Class"
+    }
+     ] ,
+    "http://www.w3.org/2000/01/rdf-schema#subClassOf" : [ { 
+      "type" : "uri" ,
+      "value" : "Person"
+    }
+     ]
+  }
+   ,
+  "externalOrnament" : { 
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ { 
+      "type" : "uri" ,
+      "value" : "http://www.w3.org/2002/07/owl#DatatypeProperty"
+    }
+     ] ,
+    "http://www.w3.org/2000/01/rdf-schema#domain" : [ { 
+      "type" : "uri" ,
+      "value" : "Person"
+    }
+     ]
+  }
+   ,
+  "Engineer" : { 
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ { 
+      "type" : "uri" ,
+      "value" : "http://www.w3.org/2002/07/owl#Class"
+    }
+     ] ,
+    "http://www.w3.org/2000/01/rdf-schema#subClassOf" : [ { 
+      "type" : "uri" ,
+      "value" : "Person"
+    }
+     ]
+  }
+   ,
+  "electionDate" : { 
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ { 
+      "type" : "uri" ,
+      "value" : "http://www.w3.org/2002/07/owl#DatatypeProperty"
+    }
+     ] ,
+    "http://www.w3.org/2000/01/rdf-schema#domain" : [ { 
+      "type" : "uri" ,
+      "value" : "Person"
+    }
+     ]
+  }
+   ,
+  "Christian_VIII_of_Denmark" : { 
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ { 
+      "type" : "uri" ,
+      "value" : "Person"
+    }
+     ]
+  }
+   ,
+  "Albert_VII,_Archduke_of_Austria" : { 
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ { 
+      "type" : "uri" ,
+      "value" : "Person"
+    }
+     ]
+  }
+   ,
+  "endCareer" : { 
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ { 
+      "type" : "uri" ,
+      "value" : "http://www.w3.org/2002/07/owl#DatatypeProperty"
+    }
+     ] ,
+    "http://www.w3.org/2000/01/rdf-schema#domain" : [ { 
+      "type" : "uri" ,
+      "value" : "Person"
+    }
+     ]
+  }
+   ,
+  "Antonius_Ariantho" : { 
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ { 
+      "type" : "uri" ,
+      "value" : "Person"
+    }
+     ]
+  }
+   ,
+  "Astronaut" : { 
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ { 
+      "type" : "uri" ,
+      "value" : "http://www.w3.org/2002/07/owl#Class"
+    }
+     ] ,
+    "http://www.w3.org/2000/01/rdf-schema#subClassOf" : [ { 
+      "type" : "uri" ,
+      "value" : "Person"
+    }
+     ]
+  }
+   ,
+  "Constantina_(empress)" : { 
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ { 
+      "type" : "uri" ,
+      "value" : "Person"
+    }
+     ]
+  }
+   ,
+  "Bernard_of_Italy" : { 
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ { 
+      "type" : "uri" ,
+      "value" : "Person"
+    }
+     ]
+  }
+   ,
+  "Cyril_Mann" : { 
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ { 
+      "type" : "uri" ,
+      "value" : "Person"
+    }
+     ]
+  }
+   ,
+  "debutWork" : { 
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ { 
+      "type" : "uri" ,
+      "value" : "http://www.w3.org/2002/07/owl#DatatypeProperty"
+    }
+     ] ,
+    "http://www.w3.org/2000/01/rdf-schema#domain" : [ { 
+      "type" : "uri" ,
+      "value" : "Person"
+    }
+     ]
+  }
+   ,
+  "foot" : { 
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ { 
+      "type" : "uri" ,
+      "value" : "http://www.w3.org/2002/07/owl#DatatypeProperty"
+    }
+     ] ,
+    "http://www.w3.org/2000/01/rdf-schema#domain" : [ { 
+      "type" : "uri" ,
+      "value" : "Person"
+    }
+     ]
+  }
+   ,
+  "Beck" : { 
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ { 
+      "type" : "uri" ,
+      "value" : "Person"
+    }
+     ]
+  }
+   ,
+  "Best_(Portuguese_footballer)" : { 
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ { 
+      "type" : "uri" ,
+      "value" : "Person"
+    }
+     ]
+  }
+   ,
+  "Christian_I_of_Denmark" : { 
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ { 
+      "type" : "uri" ,
+      "value" : "Person"
+    }
+     ]
+  }
+   ,
+  "Albert_N._Whiting" : { 
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ { 
+      "type" : "uri" ,
+      "value" : "Person"
+    }
+     ]
+  }
+   ,
+  "PlayboyPlaymate" : { 
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ { 
+      "type" : "uri" ,
+      "value" : "http://www.w3.org/2002/07/owl#Class"
+    }
+     ] ,
+    "http://www.w3.org/2000/01/rdf-schema#subClassOf" : [ { 
+      "type" : "uri" ,
+      "value" : "Person"
+    }
+     ]
+  }
+   ,
+  "Christian_Corrêa_Dionisio" : { 
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ { 
+      "type" : "uri" ,
+      "value" : "Person"
+    }
+     ]
+  }
+   ,
+  "Antônio_de_Moura_Carvalho" : { 
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ { 
+      "type" : "uri" ,
+      "value" : "Person"
+    }
+     ]
+  }
+   ,
+  "created" : { 
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ { 
+      "type" : "uri" ,
+      "value" : "http://www.w3.org/2002/07/owl#DatatypeProperty"
+    }
+     ] ,
+    "http://www.w3.org/2000/01/rdf-schema#domain" : [ { 
+      "type" : "uri" ,
+      "value" : "Person"
+    }
+     ]
+  }
+   ,
+  "currentTeamManager" : { 
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ { 
+      "type" : "uri" ,
+      "value" : "http://www.w3.org/2002/07/owl#DatatypeProperty"
+    }
+     ] ,
+    "http://www.w3.org/2000/01/rdf-schema#domain" : [ { 
+      "type" : "uri" ,
+      "value" : "Person"
+    }
+     ]
+  }
+   ,
+  "Christian_VII_of_Denmark" : { 
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ { 
+      "type" : "uri" ,
+      "value" : "Person"
+    }
+     ]
+  }
+   ,
+  "cousurper" : { 
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ { 
+      "type" : "uri" ,
+      "value" : "http://www.w3.org/2002/07/owl#DatatypeProperty"
+    }
+     ] ,
+    "http://www.w3.org/2000/01/rdf-schema#domain" : [ { 
+      "type" : "uri" ,
+      "value" : "Person"
+    }
+     ]
+  }
+   ,
+  "Anders_Franzén" : { 
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ { 
+      "type" : "uri" ,
+      "value" : "Person"
+    }
+     ]
+  }
+   ,
+  "Aziz_(artist)" : { 
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ { 
+      "type" : "uri" ,
+      "value" : "Person"
+    }
+     ]
+  }
+   ,
+  "approach" : { 
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ { 
+      "type" : "uri" ,
+      "value" : "http://www.w3.org/2002/07/owl#DatatypeProperty"
+    }
+     ] ,
+    "http://www.w3.org/2000/01/rdf-schema#domain" : [ { 
+      "type" : "uri" ,
+      "value" : "Person"
+    }
+     ]
+  }
+   ,
+  "Angeli_(cartoonist)" : { 
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ { 
+      "type" : "uri" ,
+      "value" : "Person"
+    }
+     ]
+  }
+   ,
+  "Linguist" : { 
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ { 
+      "type" : "uri" ,
+      "value" : "http://www.w3.org/2002/07/owl#Class"
+    }
+     ] ,
+    "http://www.w3.org/2000/01/rdf-schema#subClassOf" : [ { 
+      "type" : "uri" ,
+      "value" : "Person"
+    }
+     ]
+  }
+   ,
+  "grave" : { 
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ { 
+      "type" : "uri" ,
+      "value" : "http://www.w3.org/2002/07/owl#DatatypeProperty"
+    }
+     ] ,
+    "http://www.w3.org/2000/01/rdf-schema#domain" : [ { 
+      "type" : "uri" ,
+      "value" : "Person"
+    }
+     ]
+  }
+   ,
+  "birthYear" : { 
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ { 
+      "type" : "uri" ,
+      "value" : "http://www.w3.org/2002/07/owl#DatatypeProperty"
+    }
+     ] ,
+    "http://www.w3.org/2000/01/rdf-schema#domain" : [ { 
+      "type" : "uri" ,
+      "value" : "Person"
+    }
+     ]
+  }
+   ,
+  "Architect" : { 
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ { 
+      "type" : "uri" ,
+      "value" : "http://www.w3.org/2002/07/owl#Class"
+    }
+     ] ,
+    "http://www.w3.org/2000/01/rdf-schema#subClassOf" : [ { 
+      "type" : "uri" ,
+      "value" : "Person"
+    }
+     ]
+  }
+   ,
+  "almaMater" : { 
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ { 
+      "type" : "uri" ,
+      "value" : "http://www.w3.org/2002/07/owl#DatatypeProperty"
+    }
+     ] ,
+    "http://www.w3.org/2000/01/rdf-schema#domain" : [ { 
+      "type" : "uri" ,
+      "value" : "Person"
+    }
+     ]
+  }
+   ,
+  "TheatreDirector" : { 
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ { 
+      "type" : "uri" ,
+      "value" : "http://www.w3.org/2002/07/owl#Class"
+    }
+     ] ,
+    "http://www.w3.org/2000/01/rdf-schema#subClassOf" : [ { 
+      "type" : "uri" ,
+      "value" : "Person"
+    }
+     ]
+  }
+   ,
+  "Antônio_Wilson_Vieira_Honório" : { 
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ { 
+      "type" : "uri" ,
+      "value" : "Person"
+    }
+     ]
+  }
+   ,
+  "bustSize" : { 
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ { 
+      "type" : "uri" ,
+      "value" : "http://www.w3.org/2002/07/owl#DatatypeProperty"
+    }
+     ] ,
+    "http://www.w3.org/2000/01/rdf-schema#domain" : [ { 
+      "type" : "uri" ,
+      "value" : "Person"
+    }
+     ]
+  }
+   ,
+  "eyeColour" : { 
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ { 
+      "type" : "uri" ,
+      "value" : "http://www.w3.org/2002/07/owl#DatatypeProperty"
+    }
+     ] ,
+    "http://www.w3.org/2000/01/rdf-schema#domain" : [ { 
+      "type" : "uri" ,
+      "value" : "Person"
+    }
+     ]
+  }
+   ,
+  "deadInFightDate" : { 
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ { 
+      "type" : "uri" ,
+      "value" : "http://www.w3.org/2002/07/owl#DatatypeProperty"
+    }
+     ] ,
+    "http://www.w3.org/2000/01/rdf-schema#domain" : [ { 
+      "type" : "uri" ,
+      "value" : "Person"
+    }
+     ]
+  }
+   ,
+  "derivedWord" : { 
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ { 
+      "type" : "uri" ,
+      "value" : "http://www.w3.org/2002/07/owl#DatatypeProperty"
+    }
+     ] ,
+    "http://www.w3.org/2000/01/rdf-schema#domain" : [ { 
+      "type" : "uri" ,
+      "value" : "Person"
+    }
+     ]
+  }
+   ,
+  "child" : { 
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ { 
+      "type" : "uri" ,
+      "value" : "http://www.w3.org/2002/07/owl#DatatypeProperty"
+    }
+     ] ,
+    "http://www.w3.org/2000/01/rdf-schema#domain" : [ { 
+      "type" : "uri" ,
+      "value" : "Person"
+    }
+     ]
+  }
+   ,
+  "feat" : { 
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ { 
+      "type" : "uri" ,
+      "value" : "http://www.w3.org/2002/07/owl#DatatypeProperty"
+    }
+     ] ,
+    "http://www.w3.org/2000/01/rdf-schema#domain" : [ { 
+      "type" : "uri" ,
+      "value" : "Person"
+    }
+     ]
+  }
+   ,
+  "bloodType" : { 
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ { 
+      "type" : "uri" ,
+      "value" : "http://www.w3.org/2002/07/owl#DatatypeProperty"
+    }
+     ] ,
+    "http://www.w3.org/2000/01/rdf-schema#domain" : [ { 
+      "type" : "uri" ,
+      "value" : "Person"
+    }
+     ]
+  }
+   ,
+  "continentalTournamentSilver" : { 
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ { 
+      "type" : "uri" ,
+      "value" : "http://www.w3.org/2002/07/owl#DatatypeProperty"
+    }
+     ] ,
+    "http://www.w3.org/2000/01/rdf-schema#domain" : [ { 
+      "type" : "uri" ,
+      "value" : "Person"
+    }
+     ]
+  }
+   ,
+  "OrganisationMember" : { 
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ { 
+      "type" : "uri" ,
+      "value" : "http://www.w3.org/2002/07/owl#Class"
+    }
+     ] ,
+    "http://www.w3.org/2000/01/rdf-schema#subClassOf" : [ { 
+      "type" : "uri" ,
+      "value" : "Person"
+    }
+     ]
+  }
+   ,
+  "freeProgCompetition" : { 
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ { 
+      "type" : "uri" ,
+      "value" : "http://www.w3.org/2002/07/owl#DatatypeProperty"
+    }
+     ] ,
+    "http://www.w3.org/2000/01/rdf-schema#domain" : [ { 
+      "type" : "uri" ,
+      "value" : "Person"
+    }
+     ]
+  }
+   ,
+  "Scientist" : { 
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ { 
+      "type" : "uri" ,
+      "value" : "http://www.w3.org/2002/07/owl#Class"
+    }
+     ] ,
+    "http://www.w3.org/2000/01/rdf-schema#subClassOf" : [ { 
+      "type" : "uri" ,
+      "value" : "Person"
+    }
+     ]
+  }
+   ,
+  "Arthur_Roberts_(physicist)" : { 
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ { 
+      "type" : "uri" ,
+      "value" : "Person"
+    }
+     ]
+  }
+   ,
+  "Albert_Casimir,_Duke_of_Teschen" : { 
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ { 
+      "type" : "uri" ,
+      "value" : "Person"
+    }
+     ]
+  }
+   ,
+  "Antonio_Thomas_(wrestler)" : { 
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ { 
+      "type" : "uri" ,
+      "value" : "Person"
+    }
+     ]
+  }
+   ,
+  "artisticFunction" : { 
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ { 
+      "type" : "uri" ,
+      "value" : "http://www.w3.org/2002/07/owl#DatatypeProperty"
+    }
+     ] ,
+    "http://www.w3.org/2000/01/rdf-schema#domain" : [ { 
+      "type" : "uri" ,
+      "value" : "Person"
+    }
+     ]
+  }
+   ,
+  "RomanEmperor" : { 
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ { 
+      "type" : "uri" ,
+      "value" : "http://www.w3.org/2002/07/owl#Class"
+    }
+     ] ,
+    "http://www.w3.org/2000/01/rdf-schema#subClassOf" : [ { 
+      "type" : "uri" ,
+      "value" : "Person"
+    }
+     ]
+  }
+   ,
+  "bustWaistHipSize" : { 
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ { 
+      "type" : "uri" ,
+      "value" : "http://www.w3.org/2002/07/owl#DatatypeProperty"
+    }
+     ] ,
+    "http://www.w3.org/2000/01/rdf-schema#domain" : [ { 
+      "type" : "uri" ,
+      "value" : "Person"
+    }
+     ]
+  }
+   ,
+  "catch" : { 
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ { 
+      "type" : "uri" ,
+      "value" : "http://www.w3.org/2002/07/owl#DatatypeProperty"
+    }
+     ] ,
+    "http://www.w3.org/2000/01/rdf-schema#domain" : [ { 
+      "type" : "uri" ,
+      "value" : "Person"
+    }
+     ]
+  }
+   ,
+  "Blake_Williams" : { 
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ { 
+      "type" : "uri" ,
+      "value" : "Person"
+    }
+     ]
+  }
+   ,
+  "astrologicalSign" : { 
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ { 
+      "type" : "uri" ,
+      "value" : "http://www.w3.org/2002/07/owl#DatatypeProperty"
+    }
+     ] ,
+    "http://www.w3.org/2000/01/rdf-schema#domain" : [ { 
+      "type" : "uri" ,
+      "value" : "Person"
+    }
+     ]
+  }
+   ,
+  "activity" : { 
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ { 
+      "type" : "uri" ,
+      "value" : "http://www.w3.org/2002/07/owl#DatatypeProperty"
+    }
+     ] ,
+    "http://www.w3.org/2000/01/rdf-schema#domain" : [ { 
+      "type" : "uri" ,
+      "value" : "Person"
+    }
+     ]
+  }
+   ,
+  "competitionTitle" : { 
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ { 
+      "type" : "uri" ,
+      "value" : "http://www.w3.org/2002/07/owl#DatatypeProperty"
+    }
+     ] ,
+    "http://www.w3.org/2000/01/rdf-schema#domain" : [ { 
+      "type" : "uri" ,
+      "value" : "Person"
+    }
+     ]
+  }
+   ,
+  "Artist" : { 
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ { 
+      "type" : "uri" ,
+      "value" : "http://www.w3.org/2002/07/owl#Class"
+    }
+     ] ,
+    "http://www.w3.org/2000/01/rdf-schema#subClassOf" : [ { 
+      "type" : "uri" ,
+      "value" : "Person"
+    }
+     ]
+  }
+   ,
+  "convictionDate" : { 
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ { 
+      "type" : "uri" ,
+      "value" : "http://www.w3.org/2002/07/owl#DatatypeProperty"
+    }
+     ] ,
+    "http://www.w3.org/2000/01/rdf-schema#domain" : [ { 
+      "type" : "uri" ,
+      "value" : "Person"
+    }
+     ]
+  }
+   ,
+  "Archeologist" : { 
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ { 
+      "type" : "uri" ,
+      "value" : "http://www.w3.org/2002/07/owl#Class"
+    }
+     ] ,
+    "http://www.w3.org/2000/01/rdf-schema#subClassOf" : [ { 
+      "type" : "uri" ,
+      "value" : "Person"
+    }
+     ]
+  }
+   ,
+  "Corneille_(singer)" : { 
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ { 
+      "type" : "uri" ,
+      "value" : "Person"
+    }
+     ]
+  }
+   ,
+  "deathAge" : { 
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ { 
+      "type" : "uri" ,
+      "value" : "http://www.w3.org/2002/07/owl#DatatypeProperty"
+    }
+     ] ,
+    "http://www.w3.org/2000/01/rdf-schema#domain" : [ { 
+      "type" : "uri" ,
+      "value" : "Person"
+    }
+     ]
+  }
+   ,
+  "Albert,_12th_Prince_of_Thurn_and_Taxis" : { 
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ { 
+      "type" : "uri" ,
+      "value" : "Person"
+    }
+     ]
+  }
+   ,
+  "fullScore" : { 
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ { 
+      "type" : "uri" ,
+      "value" : "http://www.w3.org/2002/07/owl#DatatypeProperty"
+    }
+     ] ,
+    "http://www.w3.org/2000/01/rdf-schema#domain" : [ { 
+      "type" : "uri" ,
+      "value" : "Person"
+    }
+     ]
+  }
+   ,
+  "Clarence_Mackay" : { 
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ { 
+      "type" : "uri" ,
+      "value" : "Person"
+    }
+     ]
+  }
+   ,
+  "Connie_Mulder" : { 
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ { 
+      "type" : "uri" ,
+      "value" : "Person"
+    }
+     ]
+  }
+   ,
+  "badGuy" : { 
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ { 
+      "type" : "uri" ,
+      "value" : "http://www.w3.org/2002/07/owl#DatatypeProperty"
+    }
+     ] ,
+    "http://www.w3.org/2000/01/rdf-schema#domain" : [ { 
+      "type" : "uri" ,
+      "value" : "Person"
+    }
+     ]
+  }
+   ,
+  "Albert,_Duke_of_Schleswig-Holstein" : { 
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ { 
+      "type" : "uri" ,
+      "value" : "Person"
+    }
+     ]
+  }
+   ,
+  "Bill_Leyden" : { 
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ { 
+      "type" : "uri" ,
+      "value" : "Person"
+    }
+     ]
+  }
+   ,
+  "Religious" : { 
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ { 
+      "type" : "uri" ,
+      "value" : "http://www.w3.org/2002/07/owl#Class"
+    }
+     ] ,
+    "http://www.w3.org/2000/01/rdf-schema#subClassOf" : [ { 
+      "type" : "uri" ,
+      "value" : "Person"
+    }
+     ]
+  }
+   ,
+  "DJ_Ajax" : { 
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ { 
+      "type" : "uri" ,
+      "value" : "Person"
+    }
+     ]
+  }
+   ,
+  "Lawyer" : { 
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ { 
+      "type" : "uri" ,
+      "value" : "http://www.w3.org/2002/07/owl#Class"
+    }
+     ] ,
+    "http://www.w3.org/2000/01/rdf-schema#subClassOf" : [ { 
+      "type" : "uri" ,
+      "value" : "Person"
+    }
+     ]
+  }
+   ,
+  "endReign" : { 
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ { 
+      "type" : "uri" ,
+      "value" : "http://www.w3.org/2002/07/owl#DatatypeProperty"
+    }
+     ] ,
+    "http://www.w3.org/2000/01/rdf-schema#domain" : [ { 
+      "type" : "uri" ,
+      "value" : "Person"
+    }
+     ]
+  }
+   ,
+  "expedition" : { 
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ { 
+      "type" : "uri" ,
+      "value" : "http://www.w3.org/2002/07/owl#DatatypeProperty"
+    }
+     ] ,
+    "http://www.w3.org/2000/01/rdf-schema#domain" : [ { 
+      "type" : "uri" ,
+      "value" : "Person"
+    }
+     ]
+  }
+   ,
+  "Bernhart,_Prince_of_Sayn-Wittgenstein-Hohenstein" : { 
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ { 
+      "type" : "uri" ,
+      "value" : "Person"
+    }
+     ]
+  }
+   ,
+  "BeautyQueen" : { 
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ { 
+      "type" : "uri" ,
+      "value" : "http://www.w3.org/2002/07/owl#Class"
+    }
+     ] ,
+    "http://www.w3.org/2000/01/rdf-schema#subClassOf" : [ { 
+      "type" : "uri" ,
+      "value" : "Person"
+    }
+     ]
+  }
+   ,
+  "activeYear" : { 
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ { 
+      "type" : "uri" ,
+      "value" : "http://www.w3.org/2002/07/owl#DatatypeProperty"
+    }
+     ] ,
+    "http://www.w3.org/2000/01/rdf-schema#domain" : [ { 
+      "type" : "uri" ,
+      "value" : "Person"
+    }
+     ]
+  }
+   ,
+  "Writer" : { 
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ { 
+      "type" : "uri" ,
+      "value" : "http://www.w3.org/2002/07/owl#Class"
+    }
+     ] ,
+    "http://www.w3.org/2000/01/rdf-schema#subClassOf" : [ { 
+      "type" : "uri" ,
+      "value" : "Person"
+    }
+     ]
+  }
+   ,
+  "Arthur_P._Jacobs" : { 
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ { 
+      "type" : "uri" ,
+      "value" : "Person"
+    }
+     ]
+  }
+   ,
+  "Judge" : { 
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ { 
+      "type" : "uri" ,
+      "value" : "http://www.w3.org/2002/07/owl#Class"
+    }
+     ] ,
+    "http://www.w3.org/2000/01/rdf-schema#subClassOf" : [ { 
+      "type" : "uri" ,
+      "value" : "Person"
+    }
+     ]
+  }
+   ,
+  "Augustine_of_Canterbury" : { 
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ { 
+      "type" : "uri" ,
+      "value" : "Person"
+    }
+     ]
+  }
+   ,
+  "friend" : { 
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ { 
+      "type" : "uri" ,
+      "value" : "http://www.w3.org/2002/07/owl#DatatypeProperty"
+    }
+     ] ,
+    "http://www.w3.org/2000/01/rdf-schema#domain" : [ { 
+      "type" : "uri" ,
+      "value" : "Person"
+    }
+     ]
+  }
+   ,
+  "activeYearsStartYearMgr" : { 
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ { 
+      "type" : "uri" ,
+      "value" : "http://www.w3.org/2002/07/owl#DatatypeProperty"
+    }
+     ] ,
+    "http://www.w3.org/2000/01/rdf-schema#domain" : [ { 
+      "type" : "uri" ,
+      "value" : "Person"
+    }
+     ]
+  }
+   ,
+  "college" : { 
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ { 
+      "type" : "uri" ,
+      "value" : "http://www.w3.org/2002/07/owl#DatatypeProperty"
+    }
+     ] ,
+    "http://www.w3.org/2000/01/rdf-schema#domain" : [ { 
+      "type" : "uri" ,
+      "value" : "Person"
+    }
+     ]
+  }
+   ,
+  "Abel,_King_of_Denmark" : { 
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ { 
+      "type" : "uri" ,
+      "value" : "Person"
+    }
+     ]
+  }
+   ,
+  "Cleric" : { 
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ { 
+      "type" : "uri" ,
+      "value" : "http://www.w3.org/2002/07/owl#Class"
+    }
+     ] ,
+    "http://www.w3.org/2000/01/rdf-schema#subClassOf" : [ { 
+      "type" : "uri" ,
+      "value" : "Person"
+    }
+     ]
+  }
+   ,
+  "Celebrity" : { 
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ { 
+      "type" : "uri" ,
+      "value" : "http://www.w3.org/2002/07/owl#Class"
+    }
+     ] ,
+    "http://www.w3.org/2000/01/rdf-schema#subClassOf" : [ { 
+      "type" : "uri" ,
+      "value" : "Person"
+    }
+     ]
+  }
+   ,
+  "Adolf_Holzhaus" : { 
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ { 
+      "type" : "uri" ,
+      "value" : "Person"
+    }
+     ]
+  }
+   ,
+  "B.G._(rapper)" : { 
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ { 
+      "type" : "uri" ,
+      "value" : "Person"
+    }
+     ]
+  }
+   ,
+  "dateOfBurial" : { 
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ { 
+      "type" : "uri" ,
+      "value" : "http://www.w3.org/2002/07/owl#DatatypeProperty"
+    }
+     ] ,
+    "http://www.w3.org/2000/01/rdf-schema#domain" : [ { 
+      "type" : "uri" ,
+      "value" : "Person"
+    }
+     ]
+  }
+   ,
+  "causeOfDeath" : { 
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ { 
+      "type" : "uri" ,
+      "value" : "http://www.w3.org/2002/07/owl#DatatypeProperty"
+    }
+     ] ,
+    "http://www.w3.org/2000/01/rdf-schema#domain" : [ { 
+      "type" : "uri" ,
+      "value" : "Person"
+    }
+     ]
+  }
+   ,
+  "Monarch" : { 
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ { 
+      "type" : "uri" ,
+      "value" : "http://www.w3.org/2002/07/owl#Class"
+    }
+     ] ,
+    "http://www.w3.org/2000/01/rdf-schema#subClassOf" : [ { 
+      "type" : "uri" ,
+      "value" : "Person"
+    }
+     ]
+  }
+   ,
+  "Philosopher" : { 
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ { 
+      "type" : "uri" ,
+      "value" : "http://www.w3.org/2002/07/owl#Class"
+    }
+     ] ,
+    "http://www.w3.org/2000/01/rdf-schema#subClassOf" : [ { 
+      "type" : "uri" ,
+      "value" : "Person"
+    }
+     ]
+  }
+   ,
+  "Presenter" : { 
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ { 
+      "type" : "uri" ,
+      "value" : "http://www.w3.org/2002/07/owl#Class"
+    }
+     ] ,
+    "http://www.w3.org/2000/01/rdf-schema#subClassOf" : [ { 
+      "type" : "uri" ,
+      "value" : "Person"
+    }
+     ]
+  }
+   ,
+  "freeProgScore" : { 
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ { 
+      "type" : "uri" ,
+      "value" : "http://www.w3.org/2002/07/owl#DatatypeProperty"
+    }
+     ] ,
+    "http://www.w3.org/2000/01/rdf-schema#domain" : [ { 
+      "type" : "uri" ,
+      "value" : "Person"
+    }
+     ]
+  }
+   ,
+  "Anthony_da_Silva" : { 
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ { 
+      "type" : "uri" ,
+      "value" : "Person"
+    }
+     ]
+  }
+   ,
+  "hairColor" : { 
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ { 
+      "type" : "uri" ,
+      "value" : "http://www.w3.org/2002/07/owl#DatatypeProperty"
+    }
+     ] ,
+    "http://www.w3.org/2000/01/rdf-schema#domain" : [ { 
+      "type" : "uri" ,
+      "value" : "Person"
+    }
+     ]
+  }
+   ,
+  "Albert,_8th_Prince_of_Thurn_and_Taxis" : { 
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ { 
+      "type" : "uri" ,
+      "value" : "Person"
+    }
+     ]
+  }
+   ,
+  "Chef" : { 
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ { 
+      "type" : "uri" ,
+      "value" : "http://www.w3.org/2002/07/owl#Class"
+    }
+     ] ,
+    "http://www.w3.org/2000/01/rdf-schema#subClassOf" : [ { 
+      "type" : "uri" ,
+      "value" : "Person"
+    }
+     ]
+  }
+   ,
+  "Boss_(rapper)" : { 
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ { 
+      "type" : "uri" ,
+      "value" : "Person"
+    }
+     ]
+  }
+   ,
+  "activeYearsEndDateMgr" : { 
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ { 
+      "type" : "uri" ,
+      "value" : "http://www.w3.org/2002/07/owl#DatatypeProperty"
+    }
+     ] ,
+    "http://www.w3.org/2000/01/rdf-schema#domain" : [ { 
+      "type" : "uri" ,
+      "value" : "Person"
+    }
+     ]
+  }
+   ,
+  "affair" : { 
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ { 
+      "type" : "uri" ,
+      "value" : "http://www.w3.org/2002/07/owl#DatatypeProperty"
+    }
+     ] ,
+    "http://www.w3.org/2000/01/rdf-schema#domain" : [ { 
+      "type" : "uri" ,
+      "value" : "Person"
+    }
+     ]
+  }
+   ,
+  "Damianus" : { 
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ { 
+      "type" : "uri" ,
+      "value" : "Person"
+    }
+     ]
+  }
+   ,
+  "Bernard_of_Saxe-Weimar" : { 
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ { 
+      "type" : "uri" ,
+      "value" : "Person"
+    }
+     ]
+  }
+   ,
+  "contest" : { 
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ { 
+      "type" : "uri" ,
+      "value" : "http://www.w3.org/2002/07/owl#DatatypeProperty"
+    }
+     ] ,
+    "http://www.w3.org/2000/01/rdf-schema#domain" : [ { 
+      "type" : "uri" ,
+      "value" : "Person"
+    }
+     ]
+  }
+   ,
+  "detractor" : { 
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ { 
+      "type" : "uri" ,
+      "value" : "http://www.w3.org/2002/07/owl#DatatypeProperty"
+    }
+     ] ,
+    "http://www.w3.org/2000/01/rdf-schema#domain" : [ { 
+      "type" : "uri" ,
+      "value" : "Person"
+    }
+     ]
+  }
+   ,
+  "Criminal" : { 
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ { 
+      "type" : "uri" ,
+      "value" : "http://www.w3.org/2002/07/owl#Class"
+    }
+     ] ,
+    "http://www.w3.org/2000/01/rdf-schema#subClassOf" : [ { 
+      "type" : "uri" ,
+      "value" : "Person"
+    }
+     ]
+  }
+   ,
+  "Albert,_Prince_of_Schwarzburg-Rudolstadt" : { 
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ { 
+      "type" : "uri" ,
+      "value" : "Person"
+    }
+     ]
+  }
+   ,
+  "Bertin" : { 
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ { 
+      "type" : "uri" ,
+      "value" : "Person"
+    }
+     ]
+  }
+   ,
+  "careerStation" : { 
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ { 
+      "type" : "uri" ,
+      "value" : "http://www.w3.org/2002/07/owl#DatatypeProperty"
+    }
+     ] ,
+    "http://www.w3.org/2000/01/rdf-schema#domain" : [ { 
+      "type" : "uri" ,
+      "value" : "Person"
+    }
+     ]
+  }
+   ,
+  "filmNumber" : { 
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ { 
+      "type" : "uri" ,
+      "value" : "http://www.w3.org/2002/07/owl#DatatypeProperty"
+    }
+     ] ,
+    "http://www.w3.org/2000/01/rdf-schema#domain" : [ { 
+      "type" : "uri" ,
+      "value" : "Person"
+    }
+     ]
+  }
+   ,
+  "Albert,_King_of_Sweden" : { 
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ { 
+      "type" : "uri" ,
+      "value" : "Person"
+    }
+     ]
+  }
+   ,
+  "Christian_Oliver" : { 
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ { 
+      "type" : "uri" ,
+      "value" : "Person"
+    }
+     ]
+  }
+   ,
+  "Colin_George" : { 
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ { 
+      "type" : "uri" ,
+      "value" : "Person"
+    }
+     ]
+  }
+   ,
+  "britishWins" : { 
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ { 
+      "type" : "uri" ,
+      "value" : "http://www.w3.org/2002/07/owl#DatatypeProperty"
+    }
+     ] ,
+    "http://www.w3.org/2000/01/rdf-schema#domain" : [ { 
+      "type" : "uri" ,
+      "value" : "Person"
+    }
+     ]
+  }
+   ,
+  "Archduchess_Maria_Magdalena_of_Austria_(1689\u20131743)" : { 
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ { 
+      "type" : "uri" ,
+      "value" : "Person"
+    }
+     ]
+  }
+   ,
+  "Blake_Williams_(basketball)" : { 
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ { 
+      "type" : "uri" ,
+      "value" : "Person"
+    }
+     ]
+  }
+   ,
+  "Beth_Phoenix" : { 
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ { 
+      "type" : "uri" ,
+      "value" : "Person"
+    }
+     ]
+  }
+   ,
+  "Person/height" : { 
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ { 
+      "type" : "uri" ,
+      "value" : "http://www.w3.org/2002/07/owl#DatatypeProperty"
+    }
+     ] ,
+    "http://www.w3.org/2000/01/rdf-schema#domain" : [ { 
+      "type" : "uri" ,
+      "value" : "Person"
+    }
+     ]
+  }
+   ,
+  "decoration" : { 
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ { 
+      "type" : "uri" ,
+      "value" : "http://www.w3.org/2002/07/owl#DatatypeProperty"
+    }
+     ] ,
+    "http://www.w3.org/2000/01/rdf-schema#domain" : [ { 
+      "type" : "uri" ,
+      "value" : "Person"
+    }
+     ]
+  }
+   ,
+  "Christina,_Queen_of_Sweden" : { 
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ { 
+      "type" : "uri" ,
+      "value" : "Person"
+    }
+     ]
+  }
+   ,
+  "freeScoreCompetition" : { 
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ { 
+      "type" : "uri" ,
+      "value" : "http://www.w3.org/2002/07/owl#DatatypeProperty"
+    }
+     ] ,
+    "http://www.w3.org/2000/01/rdf-schema#domain" : [ { 
+      "type" : "uri" ,
+      "value" : "Person"
+    }
+     ]
+  }
+   ,
+  "MilitaryPerson" : { 
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ { 
+      "type" : "uri" ,
+      "value" : "http://www.w3.org/2002/07/owl#Class"
+    }
+     ] ,
+    "http://www.w3.org/2000/01/rdf-schema#subClassOf" : [ { 
+      "type" : "uri" ,
+      "value" : "Person"
+    }
+     ]
+  }
+   ,
+  "birthSign" : { 
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ { 
+      "type" : "uri" ,
+      "value" : "http://www.w3.org/2002/07/owl#DatatypeProperty"
+    }
+     ] ,
+    "http://www.w3.org/2000/01/rdf-schema#domain" : [ { 
+      "type" : "uri" ,
+      "value" : "Person"
+    }
+     ]
+  }
+   ,
+  "eyeColor" : { 
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ { 
+      "type" : "uri" ,
+      "value" : "http://www.w3.org/2002/07/owl#DatatypeProperty"
+    }
+     ] ,
+    "http://www.w3.org/2000/01/rdf-schema#domain" : [ { 
+      "type" : "uri" ,
+      "value" : "Person"
+    }
+     ]
+  }
+   ,
+  "Christian,_Duke_of_Saxe-Eisenberg" : { 
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ { 
+      "type" : "uri" ,
+      "value" : "Person"
+    }
+     ]
+  }
+   ,
+  "case" : { 
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ { 
+      "type" : "uri" ,
+      "value" : "http://www.w3.org/2002/07/owl#DatatypeProperty"
+    }
+     ] ,
+    "http://www.w3.org/2000/01/rdf-schema#domain" : [ { 
+      "type" : "uri" ,
+      "value" : "Person"
+    }
+     ]
+  }
+   ,
+  "Benjamin_Smoke" : { 
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ { 
+      "type" : "uri" ,
+      "value" : "Person"
+    }
+     ]
+  }
+   ,
+  "diploma" : { 
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ { 
+      "type" : "uri" ,
+      "value" : "http://www.w3.org/2002/07/owl#DatatypeProperty"
+    }
+     ] ,
+    "http://www.w3.org/2000/01/rdf-schema#domain" : [ { 
+      "type" : "uri" ,
+      "value" : "Person"
+    }
+     ]
+  }
+   ,
+  "arrestDate" : { 
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ { 
+      "type" : "uri" ,
+      "value" : "http://www.w3.org/2002/07/owl#DatatypeProperty"
+    }
+     ] ,
+    "http://www.w3.org/2000/01/rdf-schema#domain" : [ { 
+      "type" : "uri" ,
+      "value" : "Person"
+    }
+     ]
+  }
+   ,
+  "Atlantis_(wrestler)" : { 
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ { 
+      "type" : "uri" ,
+      "value" : "Person"
+    }
+     ]
+  }
+   ,
+  "Bert_Bakker" : { 
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ { 
+      "type" : "uri" ,
+      "value" : "Person"
+    }
+     ]
+  }
+   ,
+  "Cornelis_Pronk" : { 
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ { 
+      "type" : "uri" ,
+      "value" : "Person"
+    }
+     ]
+  }
+   ,
+  "MovieDirector" : { 
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ { 
+      "type" : "uri" ,
+      "value" : "http://www.w3.org/2002/07/owl#Class"
+    }
+     ] ,
+    "http://www.w3.org/2000/01/rdf-schema#subClassOf" : [ { 
+      "type" : "uri" ,
+      "value" : "Person"
+    }
+     ]
+  }
+   ,
+  "Bernard_of_Kilwinning" : { 
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ { 
+      "type" : "uri" ,
+      "value" : "Person"
+    }
+     ]
+  }
+   ,
+  "escalafon" : { 
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ { 
+      "type" : "uri" ,
+      "value" : "http://www.w3.org/2002/07/owl#DatatypeProperty"
+    }
+     ] ,
+    "http://www.w3.org/2000/01/rdf-schema#domain" : [ { 
+      "type" : "uri" ,
+      "value" : "Person"
+    }
+     ]
+  }
+   ,
+  "Asser" : { 
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ { 
+      "type" : "uri" ,
+      "value" : "Person"
+    }
+     ]
+  }
+   ,
+  "circumcised" : { 
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ { 
+      "type" : "uri" ,
+      "value" : "http://www.w3.org/2002/07/owl#DatatypeProperty"
+    }
+     ] ,
+    "http://www.w3.org/2000/01/rdf-schema#domain" : [ { 
+      "type" : "uri" ,
+      "value" : "Person"
+    }
+     ]
+  }
+   ,
+  "Carey_Wilson_(writer)" : { 
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ { 
+      "type" : "uri" ,
+      "value" : "Person"
+    }
+     ]
+  }
+   ,
+  "Cliff_Norton" : { 
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ { 
+      "type" : "uri" ,
+      "value" : "Person"
+    }
+     ]
+  }
+   ,
+  "bloodGroup" : { 
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ { 
+      "type" : "uri" ,
+      "value" : "http://www.w3.org/2002/07/owl#DatatypeProperty"
+    }
+     ] ,
+    "http://www.w3.org/2000/01/rdf-schema#domain" : [ { 
+      "type" : "uri" ,
+      "value" : "Person"
+    }
+     ]
+  }
+   ,
+  "achievement" : { 
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ { 
+      "type" : "uri" ,
+      "value" : "http://www.w3.org/2002/07/owl#DatatypeProperty"
+    }
+     ] ,
+    "http://www.w3.org/2000/01/rdf-schema#domain" : [ { 
+      "type" : "uri" ,
+      "value" : "Person"
+    }
+     ]
+  }
+   ,
+  "hairColour" : { 
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ { 
+      "type" : "uri" ,
+      "value" : "http://www.w3.org/2002/07/owl#DatatypeProperty"
+    }
+     ] ,
+    "http://www.w3.org/2000/01/rdf-schema#domain" : [ { 
+      "type" : "uri" ,
+      "value" : "Person"
+    }
+     ]
+  }
+   ,
+  "Christian_IV_of_Denmark" : { 
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ { 
+      "type" : "uri" ,
+      "value" : "Person"
+    }
+     ]
+  }
+   ,
+  "education" : { 
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ { 
+      "type" : "uri" ,
+      "value" : "http://www.w3.org/2002/07/owl#DatatypeProperty"
+    }
+     ] ,
+    "http://www.w3.org/2000/01/rdf-schema#domain" : [ { 
+      "type" : "uri" ,
+      "value" : "Person"
+    }
+     ]
+  }
+   ,
+  "Economist" : { 
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ { 
+      "type" : "uri" ,
+      "value" : "http://www.w3.org/2002/07/owl#Class"
+    }
+     ] ,
+    "http://www.w3.org/2000/01/rdf-schema#subClassOf" : [ { 
+      "type" : "uri" ,
+      "value" : "Person"
+    }
+     ]
+  }
+   ,
+  "Aspekt" : { 
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ { 
+      "type" : "uri" ,
+      "value" : "Person"
+    }
+     ]
+  }
+   ,
+  "employer" : { 
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ { 
+      "type" : "uri" ,
+      "value" : "http://www.w3.org/2002/07/owl#DatatypeProperty"
+    }
+     ] ,
+    "http://www.w3.org/2000/01/rdf-schema#domain" : [ { 
+      "type" : "uri" ,
+      "value" : "Person"
+    }
+     ]
+  }
+   ,
+  "complexion" : { 
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ { 
+      "type" : "uri" ,
+      "value" : "http://www.w3.org/2002/07/owl#DatatypeProperty"
+    }
+     ] ,
+    "http://www.w3.org/2000/01/rdf-schema#domain" : [ { 
+      "type" : "uri" ,
+      "value" : "Person"
+    }
+     ]
+  }
+   ,
+  "continentalTournamentBronze" : { 
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ { 
+      "type" : "uri" ,
+      "value" : "http://www.w3.org/2002/07/owl#DatatypeProperty"
+    }
+     ] ,
+    "http://www.w3.org/2000/01/rdf-schema#domain" : [ { 
+      "type" : "uri" ,
+      "value" : "Person"
+    }
+     ]
+  }
+   ,
+  "deadInFightPlace" : { 
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ { 
+      "type" : "uri" ,
+      "value" : "http://www.w3.org/2002/07/owl#DatatypeProperty"
+    }
+     ] ,
+    "http://www.w3.org/2000/01/rdf-schema#domain" : [ { 
+      "type" : "uri" ,
+      "value" : "Person"
+    }
+     ]
+  }
+   ,
+  "continentalTournamentGold" : { 
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ { 
+      "type" : "uri" ,
+      "value" : "http://www.w3.org/2002/07/owl#DatatypeProperty"
+    }
+     ] ,
+    "http://www.w3.org/2000/01/rdf-schema#domain" : [ { 
+      "type" : "uri" ,
+      "value" : "Person"
+    }
+     ]
+  }
+   ,
+  "Akhenaton_(rapper)" : { 
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ { 
+      "type" : "uri" ,
+      "value" : "Person"
+    }
+     ]
+  }
+   ,
+  "MemberResistanceMovement" : { 
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ { 
+      "type" : "uri" ,
+      "value" : "http://www.w3.org/2002/07/owl#Class"
+    }
+     ] ,
+    "http://www.w3.org/2000/01/rdf-schema#subClassOf" : [ { 
+      "type" : "uri" ,
+      "value" : "Person"
+    }
+     ]
+  }
+   ,
+  "Model" : { 
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ { 
+      "type" : "uri" ,
+      "value" : "http://www.w3.org/2002/07/owl#Class"
+    }
+     ] ,
+    "http://www.w3.org/2000/01/rdf-schema#subClassOf" : [ { 
+      "type" : "uri" ,
+      "value" : "Person"
+    }
+     ]
+  }
+   ,
+  "TelevisionDirector" : { 
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ { 
+      "type" : "uri" ,
+      "value" : "http://www.w3.org/2002/07/owl#Class"
+    }
+     ] ,
+    "http://www.w3.org/2000/01/rdf-schema#subClassOf" : [ { 
+      "type" : "uri" ,
+      "value" : "Person"
+    }
+     ]
+  }
+   ,
+  "Bernardo_Domínguez" : { 
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ { 
+      "type" : "uri" ,
+      "value" : "Person"
+    }
+     ]
+  }
+   ,
+  "deathYear" : { 
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ { 
+      "type" : "uri" ,
+      "value" : "http://www.w3.org/2002/07/owl#DatatypeProperty"
+    }
+     ] ,
+    "http://www.w3.org/2000/01/rdf-schema#domain" : [ { 
+      "type" : "uri" ,
+      "value" : "Person"
+    }
+     ]
+  }
+   ,
+  "TelevisionPersonality" : { 
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ { 
+      "type" : "uri" ,
+      "value" : "http://www.w3.org/2002/07/owl#Class"
+    }
+     ] ,
+    "http://www.w3.org/2000/01/rdf-schema#subClassOf" : [ { 
+      "type" : "uri" ,
+      "value" : "Person"
+    }
+     ]
+  }
+   ,
+  "Aa_(architect)" : { 
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ { 
+      "type" : "uri" ,
+      "value" : "Person"
+    }
+     ]
+  }
+   ,
+  "Corona_(footballer)" : { 
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ { 
+      "type" : "uri" ,
+      "value" : "Person"
+    }
+     ]
+  }
+   ,
+  "Albert_of_Saxony" : { 
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ { 
+      "type" : "uri" ,
+      "value" : "Person"
+    }
+     ]
+  }
+   ,
+  "Augustine_Ahinful" : { 
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ { 
+      "type" : "uri" ,
+      "value" : "Person"
+    }
+     ]
+  }
+   ,
+  "Orphan" : { 
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ { 
+      "type" : "uri" ,
+      "value" : "http://www.w3.org/2002/07/owl#Class"
+    }
+     ] ,
+    "http://www.w3.org/2000/01/rdf-schema#subClassOf" : [ { 
+      "type" : "uri" ,
+      "value" : "Person"
+    }
+     ]
+  }
+   ,
+  "Christian_VI_of_Denmark" : { 
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ { 
+      "type" : "uri" ,
+      "value" : "Person"
+    }
+     ]
+  }
+   ,
+  "coalition" : { 
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ { 
+      "type" : "uri" ,
+      "value" : "http://www.w3.org/2002/07/owl#DatatypeProperty"
+    }
+     ] ,
+    "http://www.w3.org/2000/01/rdf-schema#domain" : [ { 
+      "type" : "uri" ,
+      "value" : "Person"
+    }
+     ]
+  }
+   ,
+  "Blake_Richards" : { 
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ { 
+      "type" : "uri" ,
+      "value" : "Person"
+    }
+     ]
+  }
+   ,
+  "activeYears" : { 
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ { 
+      "type" : "uri" ,
+      "value" : "http://www.w3.org/2002/07/owl#DatatypeProperty"
+    }
+     ] ,
+    "http://www.w3.org/2000/01/rdf-schema#domain" : [ { 
+      "type" : "uri" ,
+      "value" : "Person"
+    }
+     ]
+  }
+   ,
+  "Referee" : { 
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ { 
+      "type" : "uri" ,
+      "value" : "http://www.w3.org/2002/07/owl#Class"
+    }
+     ] ,
+    "http://www.w3.org/2000/01/rdf-schema#subClassOf" : [ { 
+      "type" : "uri" ,
+      "value" : "Person"
+    }
+     ]
+  }
+   ,
+  "Albert_Hall_(footballer,_born_1918)" : { 
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ { 
+      "type" : "uri" ,
+      "value" : "Person"
+    }
+     ]
+  }
+   ,
+  "Boom_(entertainer)" : { 
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ { 
+      "type" : "uri" ,
+      "value" : "Person"
+    }
+     ]
+  }
+   ,
+  "BusinessPerson" : { 
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ { 
+      "type" : "uri" ,
+      "value" : "http://www.w3.org/2002/07/owl#Class"
+    }
+     ] ,
+    "http://www.w3.org/2000/01/rdf-schema#subClassOf" : [ { 
+      "type" : "uri" ,
+      "value" : "Person"
+    }
+     ]
+  }
+   ,
+  "Christian_I,_Elector_of_Saxony" : { 
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ { 
+      "type" : "uri" ,
+      "value" : "Person"
+    }
+     ]
+  }
+   ,
+  "Christian_V_of_Denmark" : { 
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ { 
+      "type" : "uri" ,
+      "value" : "Person"
+    }
+     ]
+  }
+   ,
+  "clothingSize" : { 
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ { 
+      "type" : "uri" ,
+      "value" : "http://www.w3.org/2002/07/owl#DatatypeProperty"
+    }
+     ] ,
+    "http://www.w3.org/2000/01/rdf-schema#domain" : [ { 
+      "type" : "uri" ,
+      "value" : "Person"
+    }
+     ]
+  }
+   ,
+  "Bernardo_Fernandes_da_Silva" : { 
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ { 
+      "type" : "uri" ,
+      "value" : "Person"
+    }
+     ]
+  }
+   ,
+  "Abel_Miglietti" : { 
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ { 
+      "type" : "uri" ,
+      "value" : "Person"
+    }
+     ]
+  }
+   ,
+  "Buff_Bagwell" : { 
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ { 
+      "type" : "uri" ,
+      "value" : "Person"
+    }
+     ]
+  }
+   ,
+  "awardName" : { 
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ { 
+      "type" : "uri" ,
+      "value" : "http://www.w3.org/2002/07/owl#DatatypeProperty"
+    }
+     ] ,
+    "http://www.w3.org/2000/01/rdf-schema#domain" : [ { 
+      "type" : "uri" ,
+      "value" : "Person"
+    }
+     ]
+  }
+   ,
+  "SportsManager" : { 
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ { 
+      "type" : "uri" ,
+      "value" : "http://www.w3.org/2002/07/owl#Class"
+    }
+     ] ,
+    "http://www.w3.org/2000/01/rdf-schema#subClassOf" : [ { 
+      "type" : "uri" ,
+      "value" : "Person"
+    }
+     ]
+  }
+   ,
+  "Person" : { 
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ { 
+      "type" : "uri" ,
+      "value" : "http://www.w3.org/2002/07/owl#Class"
+    }
+     ]
+  }
+   ,
+  "citizenship" : { 
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ { 
+      "type" : "uri" ,
+      "value" : "http://www.w3.org/2002/07/owl#DatatypeProperty"
+    }
+     ] ,
+    "http://www.w3.org/2000/01/rdf-schema#domain" : [ { 
+      "type" : "uri" ,
+      "value" : "Person"
+    }
+     ]
+  }
+   ,
+  "danseScore" : { 
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ { 
+      "type" : "uri" ,
+      "value" : "http://www.w3.org/2002/07/owl#DatatypeProperty"
+    }
+     ] ,
+    "http://www.w3.org/2000/01/rdf-schema#domain" : [ { 
+      "type" : "uri" ,
+      "value" : "Person"
+    }
+     ]
+  }
+   ,
+  "activeYearsStartDateMgr" : { 
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ { 
+      "type" : "uri" ,
+      "value" : "http://www.w3.org/2002/07/owl#DatatypeProperty"
+    }
+     ] ,
+    "http://www.w3.org/2000/01/rdf-schema#domain" : [ { 
+      "type" : "uri" ,
+      "value" : "Person"
+    }
+     ]
+  }
+   ,
+  "PoliticianSpouse" : { 
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ { 
+      "type" : "uri" ,
+      "value" : "http://www.w3.org/2002/07/owl#Class"
+    }
+     ] ,
+    "http://www.w3.org/2000/01/rdf-schema#subClassOf" : [ { 
+      "type" : "uri" ,
+      "value" : "Person"
+    }
+     ]
+  }
+   ,
+  "Cicero" : { 
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ { 
+      "type" : "uri" ,
+      "value" : "Person"
+    }
+     ]
+  }
+   ,
+  "dubber" : { 
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ { 
+      "type" : "uri" ,
+      "value" : "http://www.w3.org/2002/07/owl#DatatypeProperty"
+    }
+     ] ,
+    "http://www.w3.org/2000/01/rdf-schema#domain" : [ { 
+      "type" : "uri" ,
+      "value" : "Person"
+    }
+     ]
+  }
+   ,
+  "Canaletto" : { 
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ { 
+      "type" : "uri" ,
+      "value" : "Person"
+    }
+     ]
+  }
+   ,
+  "birthName" : { 
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ { 
+      "type" : "uri" ,
+      "value" : "http://www.w3.org/2002/07/owl#DatatypeProperty"
+    }
+     ] ,
+    "http://www.w3.org/2000/01/rdf-schema#domain" : [ { 
+      "type" : "uri" ,
+      "value" : "Person"
+    }
+     ]
+  }
+   ,
+  "activeYearsEndYearMgr" : { 
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ { 
+      "type" : "uri" ,
+      "value" : "http://www.w3.org/2002/07/owl#DatatypeProperty"
+    }
+     ] ,
+    "http://www.w3.org/2000/01/rdf-schema#domain" : [ { 
+      "type" : "uri" ,
+      "value" : "Person"
+    }
+     ]
+  }
+   ,
+  "father" : { 
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ { 
+      "type" : "uri" ,
+      "value" : "http://www.w3.org/2002/07/owl#DatatypeProperty"
+    }
+     ] ,
+    "http://www.w3.org/2000/01/rdf-schema#domain" : [ { 
+      "type" : "uri" ,
+      "value" : "Person"
+    }
+     ]
+  }
+   ,
+  "FictionalCharacter" : { 
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ { 
+      "type" : "uri" ,
+      "value" : "http://www.w3.org/2002/07/owl#Class"
+    }
+     ] ,
+    "http://www.w3.org/2000/01/rdf-schema#subClassOf" : [ { 
+      "type" : "uri" ,
+      "value" : "Person"
+    }
+     ]
+  }
+   ,
+  "Egyptologist" : { 
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ { 
+      "type" : "uri" ,
+      "value" : "http://www.w3.org/2002/07/owl#Class"
+    }
+     ] ,
+    "http://www.w3.org/2000/01/rdf-schema#subClassOf" : [ { 
+      "type" : "uri" ,
+      "value" : "Person"
+    }
+     ]
+  }
+   ,
+  "deathCause" : { 
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ { 
+      "type" : "uri" ,
+      "value" : "http://www.w3.org/2002/07/owl#DatatypeProperty"
+    }
+     ] ,
+    "http://www.w3.org/2000/01/rdf-schema#domain" : [ { 
+      "type" : "uri" ,
+      "value" : "Person"
+    }
+     ]
+  }
+   ,
+  "Christian_Fernández_Salas" : { 
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ { 
+      "type" : "uri" ,
+      "value" : "Person"
+    }
+     ]
+  }
+}

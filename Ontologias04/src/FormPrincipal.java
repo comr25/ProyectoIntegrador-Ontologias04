@@ -1,6 +1,15 @@
 import javax.swing.JOptionPane;
 import javax.swing.ImageIcon;
-import com.hp.hpl.jena.ontology.OntModel;
+import com.hp.hpl.jena.query.*;
+import com.hp.hpl.jena.rdf.model.Literal;
+import org.openrdf.query.parser.sparql.SPARQLUtil;
+import java.io.*;
+import javax.swing.JFrame;
+
+import org.apache.jena.ontology.OntModel;
+import org.apache.jena.ontology.OntModelSpec;
+import org.apache.jena.rdf.model.ModelFactory;
+import org.apache.jena.util.FileManager;
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -22,6 +31,7 @@ public class FormPrincipal extends javax.swing.JFrame {
      */
     public FormPrincipal() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -33,136 +43,357 @@ public class FormPrincipal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        btnCargar = new javax.swing.JButton();
-        btnInstancias = new javax.swing.JButton();
-        btnClases = new javax.swing.JButton();
-        btnPropiedades = new javax.swing.JButton();
-        btnPropiedadesDatos = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
+        bAbrir = new javax.swing.JButton();
+        bCerrar = new javax.swing.JButton();
+        bDownload = new javax.swing.JButton();
+        bShowClases = new javax.swing.JButton();
+        bShowInstance = new javax.swing.JButton();
+        bShowPropDatos = new javax.swing.JButton();
+        bPropiedadesObjeto = new javax.swing.JButton();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        mExit = new javax.swing.JMenu();
+        mOpen = new javax.swing.JMenuItem();
+        mClose = new javax.swing.JMenuItem();
+        jMenuItem1 = new javax.swing.JMenuItem();
+        jMenu2 = new javax.swing.JMenu();
+        mDownload = new javax.swing.JMenuItem();
+        mShowClasses = new javax.swing.JMenuItem();
+        mShowInstance = new javax.swing.JMenuItem();
+        mDataProperties = new javax.swing.JMenuItem();
+        mObjectProperties = new javax.swing.JMenuItem();
+        jMenu1 = new javax.swing.JMenu();
+        mAbout = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Ontology []");
+        setBackground(new java.awt.Color(51, 102, 255));
+        setSize(new java.awt.Dimension(200, 200));
 
-        btnCargar.setText("Cargar Ontologia");
-        btnCargar.addActionListener(new java.awt.event.ActionListener() {
+        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
+        bAbrir.setBackground(new java.awt.Color(255, 255, 255));
+        bAbrir.setForeground(new java.awt.Color(255, 255, 255));
+        bAbrir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/openonto.png"))); // NOI18N
+        bAbrir.setToolTipText("Open Ontology");
+        bAbrir.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        bAbrir.setInheritsPopupMenu(true);
+        bAbrir.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+        bAbrir.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
+        bAbrir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCargarActionPerformed(evt);
+                bAbrirActionPerformed(evt);
             }
         });
 
-        btnInstancias.setText("Mostrar Instancia de la Ontologia");
-        btnInstancias.addActionListener(new java.awt.event.ActionListener() {
+        bCerrar.setBackground(new java.awt.Color(255, 204, 0));
+        bCerrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cerrar33.png"))); // NOI18N
+        bCerrar.setToolTipText("Close Ontology");
+        bCerrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnInstanciasActionPerformed(evt);
+                bCerrarActionPerformed(evt);
             }
         });
 
-        btnClases.setText("Mostrar Clases de la Ontologia");
-        btnClases.addActionListener(new java.awt.event.ActionListener() {
+        bDownload.setIcon(new javax.swing.ImageIcon(getClass().getResource("/downloadr.png"))); // NOI18N
+        bDownload.setToolTipText("Download Ontology");
+        bDownload.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnClasesActionPerformed(evt);
+                bDownloadActionPerformed(evt);
             }
         });
 
-        btnPropiedades.setText("Mostrar Propiedades del Objeto");
-        btnPropiedades.addActionListener(new java.awt.event.ActionListener() {
+        bShowClases.setIcon(new javax.swing.ImageIcon(getClass().getResource("/clasesrrrr.png"))); // NOI18N
+        bShowClases.setToolTipText("Show Classes");
+        bShowClases.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnPropiedadesActionPerformed(evt);
+                bShowClasesActionPerformed(evt);
             }
         });
 
-        btnPropiedadesDatos.setText("Mostrar Propiedades de los Datos");
-        btnPropiedadesDatos.addActionListener(new java.awt.event.ActionListener() {
+        bShowInstance.setIcon(new javax.swing.ImageIcon(getClass().getResource("/instancais.png"))); // NOI18N
+        bShowInstance.setToolTipText("Show Instances");
+        bShowInstance.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnPropiedadesDatosActionPerformed(evt);
+                bShowInstanceActionPerformed(evt);
             }
         });
+
+        bShowPropDatos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/propiedades de objetossssss.png"))); // NOI18N
+        bShowPropDatos.setToolTipText("Show Data Properties");
+        bShowPropDatos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bShowPropDatosActionPerformed(evt);
+            }
+        });
+
+        bPropiedadesObjeto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/propiedadesssssssssssssssssssssjsjsjs.png"))); // NOI18N
+        bPropiedadesObjeto.setToolTipText("Show Object Properties");
+        bPropiedadesObjeto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bPropiedadesObjetoActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(bAbrir, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(bCerrar, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(bDownload, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(bShowClases, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(bShowInstance, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(bShowPropDatos, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(bPropiedadesObjeto, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 246, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(bAbrir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(bCerrar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(bDownload, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(bShowPropDatos)
+                    .addComponent(bPropiedadesObjeto)
+                    .addComponent(bShowClases)
+                    .addComponent(bShowInstance))
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+
+        mExit.setText("File");
+
+        mOpen.setIcon(new javax.swing.ImageIcon(getClass().getResource("/openIco.png"))); // NOI18N
+        mOpen.setText("Open Ontology...");
+        mOpen.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                mOpenMouseClicked(evt);
+            }
+        });
+        mOpen.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mOpenActionPerformed(evt);
+            }
+        });
+        mExit.add(mOpen);
+
+        mClose.setIcon(new javax.swing.ImageIcon(getClass().getResource("/close.png"))); // NOI18N
+        mClose.setText("Close Ontology");
+        mClose.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mCloseActionPerformed(evt);
+            }
+        });
+        mExit.add(mClose);
+
+        jMenuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/salir.png"))); // NOI18N
+        jMenuItem1.setText("Exit");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        mExit.add(jMenuItem1);
+
+        jMenuBar1.add(mExit);
+
+        jMenu2.setText("Ontology");
+
+        mDownload.setIcon(new javax.swing.ImageIcon(getClass().getResource("/downloads2.png"))); // NOI18N
+        mDownload.setText("Download...");
+        mDownload.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mDownloadActionPerformed(evt);
+            }
+        });
+        jMenu2.add(mDownload);
+
+        mShowClasses.setIcon(new javax.swing.ImageIcon(getClass().getResource("/clases.png"))); // NOI18N
+        mShowClasses.setText("Show Classes...");
+        mShowClasses.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mShowClassesActionPerformed(evt);
+            }
+        });
+        jMenu2.add(mShowClasses);
+
+        mShowInstance.setIcon(new javax.swing.ImageIcon(getClass().getResource("/instancias2.png"))); // NOI18N
+        mShowInstance.setText("Show Instance...");
+        mShowInstance.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mShowInstanceActionPerformed(evt);
+            }
+        });
+        jMenu2.add(mShowInstance);
+
+        mDataProperties.setIcon(new javax.swing.ImageIcon(getClass().getResource("/propiedades de objeto.png"))); // NOI18N
+        mDataProperties.setText("Show Data Properties...");
+        mDataProperties.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mDataPropertiesActionPerformed(evt);
+            }
+        });
+        jMenu2.add(mDataProperties);
+
+        mObjectProperties.setIcon(new javax.swing.ImageIcon(getClass().getResource("/propiedades.png"))); // NOI18N
+        mObjectProperties.setText("Show Object Properties...");
+        mObjectProperties.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mObjectPropertiesActionPerformed(evt);
+            }
+        });
+        jMenu2.add(mObjectProperties);
+
+        jMenuBar1.add(jMenu2);
+
+        jMenu1.setText("Help");
+
+        mAbout.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ifomacion.png"))); // NOI18N
+        mAbout.setText("About...");
+        mAbout.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mAboutActionPerformed(evt);
+            }
+        });
+        jMenu1.add(mAbout);
+
+        jMenuBar1.add(jMenu1);
+
+        setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(btnCargar, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnInstancias)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnClases)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnPropiedades)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnPropiedadesDatos, javax.swing.GroupLayout.DEFAULT_SIZE, 218, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(btnPropiedades, javax.swing.GroupLayout.DEFAULT_SIZE, 44, Short.MAX_VALUE)
-                    .addComponent(btnClases, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnCargar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnInstancias, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnPropiedadesDatos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(0, 467, Short.MAX_VALUE))
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 483, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnCargarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCargarActionPerformed
-        OpenOntology openOnt = new OpenOntology();
+    private void mOpenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mOpenActionPerformed
+        OpenOntology3 openOnt = new OpenOntology3();
         NameFile = openOnt.cargaOntologia(model); 
         NameFullFile = openOnt.GetNameFile();
         model = openOnt.GetOntModel(); 
-    }//GEN-LAST:event_btnCargarActionPerformed
+    }//GEN-LAST:event_mOpenActionPerformed
 
-    private void btnInstanciasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInstanciasActionPerformed
+    private void mCloseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mCloseActionPerformed
+        JOptionPane.showMessageDialog(rootPane, "Ontology closed");
+        
+    }//GEN-LAST:event_mCloseActionPerformed
+
+    private void mDownloadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mDownloadActionPerformed
+       try{
+            frmDownload frm = new frmDownload();
+            frm.setLocationRelativeTo(null);
+            frm.setVisible(true);
+            frm.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        }catch(Exception e)
+        {
+            
+        }
+    }//GEN-LAST:event_mDownloadActionPerformed
+
+    private void mShowInstanceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mShowInstanceActionPerformed
         ShowInstances onto = new ShowInstances();
         onto.LoadInstances(model, NameFile);
-    }//GEN-LAST:event_btnInstanciasActionPerformed
+    }//GEN-LAST:event_mShowInstanceActionPerformed
 
-    private void btnClasesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClasesActionPerformed
+    private void bAbrirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bAbrirActionPerformed
+        OpenOntology3 openOnt = new OpenOntology3();
+        NameFile = openOnt.cargaOntologia(model); 
+        NameFullFile = openOnt.GetNameFile();
+        model = openOnt.GetOntModel(); 
+    }//GEN-LAST:event_bAbrirActionPerformed
+
+    private void mOpenMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mOpenMouseClicked
+        OpenOntology3 openOnt = new OpenOntology3();
+        NameFile = openOnt.cargaOntologia(model); 
+        NameFullFile = openOnt.GetNameFile();
+        model = openOnt.GetOntModel();
+    }//GEN-LAST:event_mOpenMouseClicked
+
+    private void mShowClassesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mShowClassesActionPerformed
         ShowClasses onto = new ShowClasses();                                
         onto.cargaOntologia(model,NameFile);
-    }//GEN-LAST:event_btnClasesActionPerformed
 
-    private void btnPropiedadesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPropiedadesActionPerformed
+    }//GEN-LAST:event_mShowClassesActionPerformed
+
+    private void mObjectPropertiesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mObjectPropertiesActionPerformed
         ShowObjectProperties onto = new ShowObjectProperties();
         onto.LoadObjectProperties(model,NameFile);
-    }//GEN-LAST:event_btnPropiedadesActionPerformed
+    }//GEN-LAST:event_mObjectPropertiesActionPerformed
 
-    private void btnPropiedadesDatosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPropiedadesDatosActionPerformed
+    private void mDataPropertiesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mDataPropertiesActionPerformed
         ShowDataProperties onto = new ShowDataProperties();
         onto.LoadDataProperties(model,NameFile);
-    }//GEN-LAST:event_btnPropiedadesDatosActionPerformed
+    }//GEN-LAST:event_mDataPropertiesActionPerformed
 
+    private void bShowClasesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bShowClasesActionPerformed
+        ShowClasses onto = new ShowClasses();                                
+        onto.cargaOntologia(model,NameFile);
+    }//GEN-LAST:event_bShowClasesActionPerformed
+
+    private void bShowInstanceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bShowInstanceActionPerformed
+        ShowInstances onto = new ShowInstances();
+        onto.LoadInstances(model, NameFile);
+    }//GEN-LAST:event_bShowInstanceActionPerformed
+
+    private void bShowPropDatosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bShowPropDatosActionPerformed
+        ShowDataProperties onto = new ShowDataProperties();
+        onto.LoadDataProperties(model,NameFile);
+    }//GEN-LAST:event_bShowPropDatosActionPerformed
+
+    private void bPropiedadesObjetoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bPropiedadesObjetoActionPerformed
+        ShowObjectProperties onto = new ShowObjectProperties();
+        onto.LoadObjectProperties(model,NameFile);
+    }//GEN-LAST:event_bPropiedadesObjetoActionPerformed
+
+    private void bCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bCerrarActionPerformed
+        JOptionPane.showMessageDialog(rootPane, "Ontology closed");
+    }//GEN-LAST:event_bCerrarActionPerformed
+
+    private void mAboutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mAboutActionPerformed
+        JOptionPane.showMessageDialog(rootPane, "Universidad Autonoma de San Luis Potosi \n Ontology Web Search\n version 1.0\n Autors: \n José Sandoval \n César Martínez \n Oliverio Celestino \n Vianney Ortiz ");
+    }//GEN-LAST:event_mAboutActionPerformed
+
+    private void bDownloadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bDownloadActionPerformed
+        try{
+            frmDownload frm = new frmDownload();
+            frm.setVisible(true);
+            frm.setLocationRelativeTo(null);
+            frm.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        }catch(Exception e)
+        {
+            
+        }
+    }//GEN-LAST:event_bDownloadActionPerformed
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+       System.exit(0);
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
+ 
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FormPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FormPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FormPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(FormPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
+    public static void main(String args[]){ 
+        
 
-        /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new FormPrincipal().setVisible(true);
@@ -171,10 +402,26 @@ public class FormPrincipal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnCargar;
-    private javax.swing.JButton btnClases;
-    private javax.swing.JButton btnInstancias;
-    private javax.swing.JButton btnPropiedades;
-    private javax.swing.JButton btnPropiedadesDatos;
+    private javax.swing.JButton bAbrir;
+    private javax.swing.JButton bCerrar;
+    private javax.swing.JButton bDownload;
+    private javax.swing.JButton bPropiedadesObjeto;
+    private javax.swing.JButton bShowClases;
+    private javax.swing.JButton bShowInstance;
+    private javax.swing.JButton bShowPropDatos;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JMenuItem mAbout;
+    private javax.swing.JMenuItem mClose;
+    private javax.swing.JMenuItem mDataProperties;
+    private javax.swing.JMenuItem mDownload;
+    private javax.swing.JMenu mExit;
+    private javax.swing.JMenuItem mObjectProperties;
+    private javax.swing.JMenuItem mOpen;
+    private javax.swing.JMenuItem mShowClasses;
+    private javax.swing.JMenuItem mShowInstance;
     // End of variables declaration//GEN-END:variables
 }

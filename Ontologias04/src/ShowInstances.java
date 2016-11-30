@@ -1,8 +1,7 @@
-
-
-import com.hp.hpl.jena.ontology.OntModel;
-import com.hp.hpl.jena.ontology.Individual;
-import com.hp.hpl.jena.util.iterator.ExtendedIterator;
+import org.apache.jena.ontology.OntModel;
+import org.apache.jena.util.iterator.ExtendedIterator;
+import org.apache.jena.ontology.Individual;
+        
 
 import java.awt.Toolkit;
 
@@ -74,6 +73,8 @@ public class ShowInstances {
                 v.getContentPane().add(scroll);
                 v.setBounds(20, 170, 60, 160); //Ubicar el frame en la ventana
                 v.pack(); 
+                v.setLocationRelativeTo(null);
+                v.setSize(300, 400);
                 v.setVisible(true);
                 v.setDefaultCloseOperation(WindowConstants.HIDE_ON_CLOSE);
       }   

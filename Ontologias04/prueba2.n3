@@ -1,0 +1,155 @@
+@prefix       : <http://www.ejemplo.org/#> .
+@prefix  owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix  xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix  rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+:Ambassador a owl:Class .
+:Archeologist a owl:Class .
+:Architect a owl:Class .
+:Aristocrat a owl:Class .
+:Artist a owl:Class .
+:Astronaut a owl:Class .
+:Athlete a owl:Class .
+:BeautyQueen a owl:Class .
+:BusinessPerson a owl:Class .
+:Celebrity a owl:Class .
+:Chef a owl:Class .
+:Cleric a owl:Class .
+:Coach a owl:Class .
+:Criminal a owl:Class .
+:Economist a owl:Class .
+:Egyptologist a owl:Class .
+:Engineer a owl:Class .
+:Farmer a owl:Class .
+:FictionalCharacter a owl:Class .
+:HorseTrainer a owl:Class .
+:Journalist a owl:Class .
+:Judge a owl:Class .
+:Lawyer a owl:Class .
+:Linguist a owl:Class .
+:MemberResistanceMovement a owl:Class .
+:MilitaryPerson a owl:Class .
+:Model a owl:Class .
+:Monarch a owl:Class .
+:MovieDirector a owl:Class .
+:Noble a owl:Class .
+:OfficeHolder a owl:Class .
+:OrganisationMember a owl:Class .
+:Orphan a owl:Class .
+:Philosopher a owl:Class .
+:PlayboyPlaymate a owl:Class .
+:Politician a owl:Class .
+:PoliticianSpouse a owl:Class .
+:Presenter a owl:Class .
+:Producer a owl:Class .
+:Psychologist a owl:Class .
+:Referee a owl:Class .
+:Religious a owl:Class .
+:RomanEmperor a owl:Class .
+:Royalty a owl:Class .
+:Scientist a owl:Class .
+:SportsManager a owl:Class .
+:TelevisionDirector a owl:Class .
+:TelevisionPersonality a owl:Class .
+:TheatreDirector a owl:Class .
+:Writer a owl:Class .
+  :Person/height a owl:DatatypeProperty .
+  :Person/weight a owl:DatatypeProperty .
+  :achievement a owl:DatatypeProperty .
+  :activeYear a owl:DatatypeProperty .
+  :activeYears a owl:DatatypeProperty .
+  :activeYearsEndDateMgr a owl:DatatypeProperty .
+  :activeYearsEndYearMgr a owl:DatatypeProperty .
+  :activeYearsStartDateMgr a owl:DatatypeProperty .
+  :activeYearsStartYearMgr a owl:DatatypeProperty .
+  :activity a owl:DatatypeProperty .
+  :affair a owl:DatatypeProperty .
+  :agency a owl:DatatypeProperty .
+  :allegiance a owl:DatatypeProperty .
+  :almaMater a owl:DatatypeProperty .
+  :announcedFrom a owl:DatatypeProperty .
+  :approach a owl:DatatypeProperty .
+  :arrestDate a owl:DatatypeProperty .
+  :artisticFunction a owl:DatatypeProperty .
+  :astrologicalSign a owl:DatatypeProperty .
+  :awardName a owl:DatatypeProperty .
+  :badGuy a owl:DatatypeProperty .
+  :bestLap a owl:DatatypeProperty .
+  :bigPoolRecord a owl:DatatypeProperty .
+  :birthName a owl:DatatypeProperty .
+  :birthSign a owl:DatatypeProperty .
+  :birthYear a owl:DatatypeProperty .
+  :bloodGroup a owl:DatatypeProperty .
+  :bloodType a owl:DatatypeProperty .
+  :board a owl:DatatypeProperty .
+  :bodyDiscovered a owl:DatatypeProperty .
+  :britishWins a owl:DatatypeProperty .
+  :bustSize a owl:DatatypeProperty .
+  :bustWaistHipSize a owl:DatatypeProperty .
+  :careerStation a owl:DatatypeProperty .
+  :case a owl:DatatypeProperty .
+  :catch a owl:DatatypeProperty .
+  :causeOfDeath a owl:DatatypeProperty .
+  :child a owl:DatatypeProperty .
+  :circumcised a owl:DatatypeProperty .
+  :citizenship a owl:DatatypeProperty .
+  :clothSize a owl:DatatypeProperty .
+  :clothingSize a owl:DatatypeProperty .
+  :coalition a owl:DatatypeProperty .
+  :collaboration a owl:DatatypeProperty .
+  :colleague a owl:DatatypeProperty .
+  :college a owl:DatatypeProperty .
+  :competitionTitle a owl:DatatypeProperty .
+  :complexion a owl:DatatypeProperty .
+  :contest a owl:DatatypeProperty .
+  :continentalTournament a owl:DatatypeProperty .
+  :continentalTournamentBronze a owl:DatatypeProperty .
+  :continentalTournamentGold a owl:DatatypeProperty .
+  :continentalTournamentSilver a owl:DatatypeProperty .
+  :convictionDate a owl:DatatypeProperty .
+  :copilote a owl:DatatypeProperty .
+  :cousurper a owl:DatatypeProperty .
+  :created a owl:DatatypeProperty .
+  :currentTeamManager a owl:DatatypeProperty .
+  :danseCompetition a owl:DatatypeProperty .
+  :danseScore a owl:DatatypeProperty .
+  :dateOfBurial a owl:DatatypeProperty .
+  :deadInFightDate a owl:DatatypeProperty .
+  :deadInFightPlace a owl:DatatypeProperty .
+  :deathAge a owl:DatatypeProperty .
+  :deathCause a owl:DatatypeProperty .
+  :deathYear a owl:DatatypeProperty .
+  :debutWork a owl:DatatypeProperty .
+  :decoration a owl:DatatypeProperty .
+  :derivedWord a owl:DatatypeProperty .
+  :detractor a owl:DatatypeProperty .
+  :diploma a owl:DatatypeProperty .
+  :dubber a owl:DatatypeProperty .
+  :education a owl:DatatypeProperty .
+  :educationPlace a owl:DatatypeProperty .
+  :electionDate a owl:DatatypeProperty .
+  :employer a owl:DatatypeProperty .
+  :endCareer a owl:DatatypeProperty .
+  :endReign a owl:DatatypeProperty .
+  :escalafon a owl:DatatypeProperty .
+  :ethnicity a owl:DatatypeProperty .
+  :expedition a owl:DatatypeProperty .
+  :externalOrnament a owl:DatatypeProperty .
+  :eyeColor a owl:DatatypeProperty .
+  :eyeColour a owl:DatatypeProperty .
+  :father a owl:DatatypeProperty .
+  :feat a owl:DatatypeProperty .
+  :federation a owl:DatatypeProperty .
+  :filmNumber a owl:DatatypeProperty .
+  :foot a owl:DatatypeProperty .
+  :freeDanseScore a owl:DatatypeProperty .
+  :freeProgCompetition a owl:DatatypeProperty .
+  :freeProgScore a owl:DatatypeProperty .
+  :freeScoreCompetition a owl:DatatypeProperty .
+  :friend a owl:DatatypeProperty .
+  :fullCompetition a owl:DatatypeProperty .
+  :fullScore a owl:DatatypeProperty .
+  :grave a owl:DatatypeProperty .
+  :gymApparatus a owl:DatatypeProperty .
+  :hairColor a owl:DatatypeProperty .
+  :hairColour a owl:DatatypeProperty .

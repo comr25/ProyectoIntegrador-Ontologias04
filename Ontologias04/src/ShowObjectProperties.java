@@ -1,8 +1,6 @@
-
-
-import com.hp.hpl.jena.ontology.ObjectProperty;
-import com.hp.hpl.jena.ontology.OntModel;
-import com.hp.hpl.jena.util.iterator.ExtendedIterator;
+import org.apache.jena.ontology.OntModel;
+import org.apache.jena.util.iterator.ExtendedIterator;
+import org.apache.jena.ontology.ObjectProperty;
 
 import java.awt.Toolkit;
 
@@ -74,6 +72,8 @@ public class ShowObjectProperties {
                 v.getContentPane().add(scroll);
                 v.setBounds(20, 170, 60, 160); //Ubicar el frame en la ventana
                 v.pack(); 
+                v.setSize(300, 400);
+                v.setLocationRelativeTo(null);
                 v.setVisible(true);
                 v.setDefaultCloseOperation(WindowConstants.HIDE_ON_CLOSE);
         }

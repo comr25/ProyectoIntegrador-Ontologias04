@@ -1,8 +1,6 @@
-
-
-import com.hp.hpl.jena.ontology.OntClass;
-import com.hp.hpl.jena.ontology.OntModel;
-import com.hp.hpl.jena.util.iterator.ExtendedIterator;
+import org.apache.jena.ontology.OntClass;
+import org.apache.jena.ontology.OntModel;
+import org.apache.jena.util.iterator.ExtendedIterator;
 
 import java.awt.Font;
 import java.util.Iterator;
@@ -64,6 +62,7 @@ public class ShowClasses {
         {                       
             ExtendedIterator iteratorClasses = model.listHierarchyRootClasses();        
 	    while ( iteratorClasses.hasNext() ){
+                    System.out.println("Aqui estoy");
 		    OntClass ontClass = (OntClass) iteratorClasses.next();     
                     if( ontClass.getLocalName() != null && !"Thing".equals(ontClass.getLocalName())   ){       
                             Cad = ontClass.getLocalName(); 
@@ -85,8 +84,10 @@ public class ShowClasses {
                         }                                      
                   }   
           }
-          tree.expandPath(new TreePath(abuelo)); // Se muestra la raiz con sus hijos, se expande el arbol    
-                
+          tree.expandPath(new TreePath(abuelo)); // Se muestra la raiz con sus hijos, se expande el arbol         
+          
+          if(tree.getRowCount()>1)
+              tree.expandRow(1);
           // Construccion y visualizacion de la ventana     
           
                 JLabel jUserName = new JLabel("Demo How to Set JLabel font size");
@@ -98,7 +99,9 @@ public class ShowClasses {
                 JScrollPane scroll = new JScrollPane(tree);
                 v.getContentPane().add(scroll);
                 v.setBounds(20, 170, 60, 160); //Ubicar el frame en la ventana
-                v.pack();                                             
+                v.pack();          
+                v.setLocationRelativeTo(null);
+                v.setSize(300, 400);
                 v.setVisible(true);
                 v.setDefaultCloseOperation(WindowConstants.HIDE_ON_CLOSE);
                 

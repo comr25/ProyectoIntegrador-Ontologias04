@@ -46,7 +46,7 @@ public class OpenOntology
     {
         String aux = null;               
         JFileChooser a = new JFileChooser();
-        FileNameExtensionFilter filter = new FileNameExtensionFilter("n3, Turtle, RDF, and OWL Languages","n3","turtle","rdf","OWL");
+        FileNameExtensionFilter filter = new FileNameExtensionFilter("N3, JSON","N3","JSON");
         a.setFileSelectionMode(JFileChooser.FILES_ONLY);
         a.setFileFilter(filter);                                     
         a.setDialogTitle("Choose an Ontology"); // a.addChoosableFileFilter(filter);                
@@ -59,7 +59,7 @@ public class OpenOntology
              }
              Cad = getExtension( a.getSelectedFile() );
              JOptionPane.showMessageDialog(null," It was a success! \n "+a.getSelectedFile().getName(),"Ontology loaded!",JOptionPane.WARNING_MESSAGE,new ImageIcon(getClass().getResource("Tasks.png")));              
-             if ( Cad.compareTo("n3") == 0 )
+             if ( Cad.compareTo("N3") == 0 )
                model.read(in, "", "TTL"); // Se leen tripletas en n3
              else    
                model.read(in, "", "");   // Se leen ontologias en OWL      
